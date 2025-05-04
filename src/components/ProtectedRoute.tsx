@@ -2,6 +2,7 @@ import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { Box, Typography, Paper } from '@mui/material';
 import { useUnlockedSections } from '../context/UnlockedSectionsContext';
+import { useAuth } from '../context/AuthContext';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -11,6 +12,7 @@ interface ProtectedRouteProps {
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, section }) => {
   const { isSectionUnlocked } = useUnlockedSections();
   const location = useLocation();
+  const { isAuthenticated } = useAuth();
 
   if (!isSectionUnlocked(section)) {
     return (

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   AppBar as MuiAppBar,
   Toolbar,
-  Typography,
+  IconButton,
   Button,
   Box,
   useTheme,
