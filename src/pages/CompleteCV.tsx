@@ -108,13 +108,13 @@ const CompleteCV: React.FC = () => {
                       p: 3,
                       height: '100%',
                       backgroundColor: unlockedSections.includes(section.section)
-                        ? 'rgba(255, 255, 255, 0.9)'
-                        : 'rgba(255, 255, 255, 0.1)',
+                        ? 'rgba(0, 0, 0, 0.3)'
+                        : 'rgba(0, 0, 0, 0.2)',
                       backdropFilter: 'blur(5px)',
                       borderWidth: '0.5px',
                       borderColor: unlockedSections.includes(section.section)
-                        ? 'primary.main'
-                        : 'rgba(255, 255, 255, 0.5)',
+                        ? '#ffffff'
+                        : 'rgba(255, 255, 255, 0.3)',
                       borderRadius: '8px',
                       transition: 'all 0.3s ease',
                       cursor: 'pointer',
@@ -123,14 +123,14 @@ const CompleteCV: React.FC = () => {
                           ? 'translateY(-5px)'
                           : 'none',
                         boxShadow: unlockedSections.includes(section.section)
-                          ? '0 4px 8px rgba(0,0,0,0.1)'
+                          ? '0 4px 8px rgba(0,0,0,0.2)'
                           : 'none',
                         borderColor: unlockedSections.includes(section.section)
                           ? '#ffff00'
-                          : 'rgba(255, 255, 255, 0.5)',
+                          : 'rgba(255, 255, 255, 0.3)',
                         backgroundColor: unlockedSections.includes(section.section)
-                          ? 'rgba(255, 255, 255, 1)'
-                          : 'rgba(255, 255, 255, 0.15)'
+                          ? 'rgba(0, 0, 0, 0.4)'
+                          : 'rgba(0, 0, 0, 0.25)'
                       }
                     }}
                   >
@@ -142,16 +142,12 @@ const CompleteCV: React.FC = () => {
                         variant="h4"
                         gutterBottom
                         sx={{
-                          color: unlockedSections.includes(section.section)
-                            ? '#000000'
-                            : '#ffffff',
+                          color: '#ffffff',
                           opacity: unlockedSections.includes(section.section) ? 1 : 0.7,
                           transition: 'all 0.3s ease',
                           '&:hover': {
                             opacity: 1,
-                            textShadow: unlockedSections.includes(section.section)
-                              ? '2px 2px 4px rgba(0,0,0,0.1)'
-                              : '2px 2px 4px rgba(255,255,255,0.2)'
+                            textShadow: '2px 2px 4px rgba(255,255,255,0.2)'
                           }
                         }}
                       >
@@ -164,7 +160,13 @@ const CompleteCV: React.FC = () => {
                           transition={{ duration: 0.5 }}
                           whileHover={{ scale: 1.01 }}
                         >
-                          <Typography variant="body1">
+                          <Typography 
+                            variant="body1"
+                            sx={{
+                              color: '#ffffff',
+                              opacity: 0.9
+                            }}
+                          >
                             {section.content}
                           </Typography>
                         </motion.div>
