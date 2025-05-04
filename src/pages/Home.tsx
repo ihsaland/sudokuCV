@@ -85,7 +85,7 @@ const Home: React.FC = () => {
                     textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
                   }}
                 >
-                  Software Engineer & Problem Solver
+                  Software Engineer & Performance Architect
                 </Typography>
               </motion.div>
               <motion.div
