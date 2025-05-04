@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider, createTheme, CssBaseline, Box } from '@mui/material';
+import './App.css';
 import AppBar from './components/AppBar';
 import Footer from './components/Footer';
 import SudokuGame from './components/SudokuGame';
