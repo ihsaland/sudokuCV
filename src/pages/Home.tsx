@@ -18,14 +18,15 @@ const Home: React.FC = () => {
     >
       <Box
         sx={{
-          minHeight: '100vh',
+          minHeight: 'calc(100vh - 64px)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'flex-start',
           position: 'relative',
           overflow: 'hidden',
           p: 3,
+          pt: { xs: 8, sm: 10 },
         }}
       >
         <BackgroundPattern />

@@ -19,12 +19,13 @@ const AppBar: React.FC = () => {
 
   return (
     <MuiAppBar
-      position="static"
+      position="fixed"
       elevation={0}
       sx={{
-        backgroundColor: 'transparent',
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
         backdropFilter: 'blur(10px)',
         borderBottom: '0.5px solid #ffffff',
+        zIndex: (theme) => theme.zIndex.drawer + 1,
       }}
     >
       <Toolbar>

@@ -210,7 +210,12 @@ const App: React.FC = () => {
       <CssBaseline />
       <UnlockedSectionsProvider>
         <Router>
-          <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+          <Box sx={{ 
+            minHeight: '100vh', 
+            display: 'flex', 
+            flexDirection: 'column',
+            pt: { xs: '56px', sm: '64px' }
+          }}>
             <AppBar />
             <Routes>
               <Route path="/" element={<Home />} />

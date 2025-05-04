@@ -449,6 +449,25 @@ const SudokuGame: React.FC = () => {
       ...prev,
       isComplete: true
     }));
+
+    // Unlock sections based on difficulty
+    if (gameState.difficulty === 'easy') {
+      unlockSection('Professional Summary');
+      unlockSection('Education');
+    } else if (gameState.difficulty === 'medium') {
+      unlockSection('Work Experience');
+    } else if (gameState.difficulty === 'hard') {
+      unlockSection('Skills');
+    } else if (gameState.difficulty === 'expert') {
+      unlockSection('Projects');
+    }
+
+    // Progress to next difficulty level
+    const currentDifficultyIndex = difficultyOrder.indexOf(gameState.difficulty);
+    if (currentDifficultyIndex < difficultyOrder.length - 1) {
+      const nextDifficulty = difficultyOrder[currentDifficultyIndex + 1];
+      setDifficulty(nextDifficulty);
+    }
   };
 
   const handleNextPuzzle = () => {
