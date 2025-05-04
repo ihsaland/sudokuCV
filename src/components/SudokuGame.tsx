@@ -521,18 +521,20 @@ const SudokuGame: React.FC = () => {
           <Paper
             elevation={3}
             sx={{
-              p: 3,
+              p: { xs: 2, sm: 3 },
               backgroundColor: 'rgba(255, 255, 255, 0.1)',
               backdropFilter: 'blur(5px)',
               border: '2px solid #ffffff',
               borderRadius: '8px',
+              maxWidth: { xs: '100%', sm: '600px' },
+              margin: '0 auto',
             }}
           >
             <Box sx={{ mb: 2 }}>
-              <Typography variant="body1" sx={{ color: '#ffffff' }}>
+              <Typography variant="body1" sx={{ color: '#ffffff', fontSize: { xs: '0.875rem', sm: '1rem' } }}>
                 Difficulty: {gameState.difficulty.charAt(0).toUpperCase() + gameState.difficulty.slice(1)}
               </Typography>
-              <Typography variant="body1" sx={{ color: '#ffffff' }}>
+              <Typography variant="body1" sx={{ color: '#ffffff', fontSize: { xs: '0.875rem', sm: '1rem' } }}>
                 Mistakes: {gameState.mistakes}
               </Typography>
             </Box>
@@ -542,7 +544,7 @@ const SudokuGame: React.FC = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: 3,
+                gap: { xs: 2, sm: 3 },
                 maxWidth: '600px',
                 margin: '0 auto',
                 backgroundColor: 'transparent',
@@ -550,7 +552,7 @@ const SudokuGame: React.FC = () => {
             >
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <Paper elevation={3} sx={{ p: 2, maxWidth: '600px', margin: '0 auto' }}>
+                  <Paper elevation={3} sx={{ p: { xs: 1, sm: 2 }, maxWidth: '600px', margin: '0 auto' }}>
                     <Box
                       sx={{
                         display: 'grid',
@@ -594,7 +596,7 @@ const SudokuGame: React.FC = () => {
                                 fontWeight: 'bold',
                                 color: cell.isFixed ? 'text.primary' : 'primary.main',
                                 opacity: cell.value ? 1 : 0,
-                                fontSize: { xs: '1rem', sm: '1.25rem' },
+                                fontSize: { xs: '0.875rem', sm: '1.25rem' },
                               }}
                             >
                               {cell.value}
@@ -606,12 +608,32 @@ const SudokuGame: React.FC = () => {
                   </Paper>
 
                   {/* Add number pad and controls */}
-                  <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, maxWidth: '600px', margin: '0 auto' }}>
-                    <Box sx={{ display: 'flex', gap: 1 }}>
+                  <Box sx={{ 
+                    mt: 2, 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    alignItems: 'center', 
+                    gap: 1, 
+                    maxWidth: '600px', 
+                    margin: '0 auto',
+                    width: '100%',
+                  }}>
+                    <Box sx={{ 
+                      display: 'flex', 
+                      gap: 1,
+                      width: '100%',
+                      justifyContent: 'center',
+                    }}>
                       <IconButton 
                         onClick={handleUndo} 
                         disabled={history.length === 0}
                         title="Undo (Ctrl+Z)"
+                        sx={{ 
+                          p: { xs: 0.5, sm: 1 },
+                          '& .MuiSvgIcon-root': {
+                            fontSize: { xs: '1.25rem', sm: '1.5rem' }
+                          }
+                        }}
                       >
                         <UndoIcon />
                       </IconButton>
@@ -619,19 +641,33 @@ const SudokuGame: React.FC = () => {
                         onClick={handleDelete} 
                         disabled={!gameState.selectedCell}
                         title="Delete (Backspace/Delete)"
+                        sx={{ 
+                          p: { xs: 0.5, sm: 1 },
+                          '& .MuiSvgIcon-root': {
+                            fontSize: { xs: '1.25rem', sm: '1.5rem' }
+                          }
+                        }}
                       >
                         <DeleteIcon />
                       </IconButton>
                     </Box>
-                    <Box sx={{ display: 'flex', gap: 1 }}>
+                    <Box sx={{ 
+                      display: 'flex', 
+                      gap: 1,
+                      width: '100%',
+                      justifyContent: 'center',
+                      flexWrap: 'wrap',
+                    }}>
                       {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
                         <Button
                           key={num}
                           variant="contained"
                           onClick={() => handleNumberInput(num)}
                           sx={{ 
-                            minWidth: { xs: '30px', sm: '40px' },
+                            minWidth: { xs: '28px', sm: '40px' },
+                            height: { xs: '28px', sm: '40px' },
                             fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                            p: 0,
                           }}
                         >
                           {num}
@@ -643,7 +679,7 @@ const SudokuGame: React.FC = () => {
               </Grid>
 
               {/* Unlocked CV Sections moved to bottom */}
-              <Box sx={{ mt: 4 }}>
+              <Box sx={{ mt: 4, width: '100%' }}>
                 <Paper elevation={3} sx={{ p: 2 }}>
                   <Typography 
                     variant="h6" 
@@ -651,7 +687,7 @@ const SudokuGame: React.FC = () => {
                     sx={{ 
                       color: '#000000',
                       fontWeight: 500,
-                      fontSize: { xs: '1.1rem', sm: '1.25rem' },
+                      fontSize: { xs: '1rem', sm: '1.25rem' },
                     }}
                   >
                     Unlocked CV Sections
@@ -667,7 +703,7 @@ const SudokuGame: React.FC = () => {
                           sx={{ 
                             textAlign: 'left',
                             color: 'primary.main',
-                            fontSize: { xs: '0.9rem', sm: '1rem' },
+                            fontSize: { xs: '0.875rem', sm: '1rem' },
                             '&:hover': {
                               color: 'primary.dark',
                               textDecoration: 'underline'
@@ -680,7 +716,7 @@ const SudokuGame: React.FC = () => {
                           variant="body2" 
                           sx={{ 
                             mt: 1,
-                            fontSize: { xs: '0.8rem', sm: '0.875rem' },
+                            fontSize: { xs: '0.75rem', sm: '0.875rem' },
                           }}
                         >
                           {section.content}
@@ -690,12 +726,23 @@ const SudokuGame: React.FC = () => {
                 </Paper>
               </Box>
 
-              <Box sx={{ mt: 4 }}>
+              <Box sx={{ 
+                mt: 4,
+                display: 'flex',
+                flexDirection: { xs: 'column', sm: 'row' },
+                gap: { xs: 1, sm: 2 },
+                width: '100%',
+                justifyContent: 'center',
+              }}>
                 <Button
                   variant="contained"
                   color="primary"
                   onClick={handlePuzzleComplete}
                   disabled={gameState.isComplete}
+                  sx={{ 
+                    width: { xs: '100%', sm: 'auto' },
+                    fontSize: { xs: '0.875rem', sm: '1rem' },
+                  }}
                 >
                   Complete Puzzle
                 </Button>
@@ -704,7 +751,10 @@ const SudokuGame: React.FC = () => {
                     variant="contained"
                     color="secondary"
                     onClick={handleNextPuzzle}
-                    sx={{ ml: 2 }}
+                    sx={{ 
+                      width: { xs: '100%', sm: 'auto' },
+                      fontSize: { xs: '0.875rem', sm: '1rem' },
+                    }}
                   >
                     {currentPuzzle < 5 ? 'Next Puzzle' : 'View Complete CV'}
                   </Button>
