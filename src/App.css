@@ -12,6 +12,7 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   overflow: auto;
+  z-index: 0;
 }
 
 #root::before {
