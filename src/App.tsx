@@ -208,7 +208,7 @@ const App: React.FC = () => {
               left: 0,
               right: 0,
               bottom: 0,
-              backgroundImage: 'url(/background.jpg)',
+              backgroundImage: 'url(/sudokuCV/background.jpg)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundAttachment: 'fixed',
