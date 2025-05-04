@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ian Salandy CV</title>
+    <script>
+      // Handle client-side routing for GitHub Pages
+      (function() {
+        var pathSegmentsToKeep = 1;
+        var l = window.location;
+        var pathname = l.pathname;
+        var search = l.search;
+        var hash = l.hash;
+
+        // If we're already on the root path, just redirect to the home page
+        if (pathname === '/') {
+          window.location.replace('/');
+          return;
+        }
+
+        // Handle direct URL access and page refreshes
+        var newPath = pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+          pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~');
+
+        // Preserve search parameters and hash
+        if (search) {
+          newPath += '&' + search.slice(1).replace(/&/g, '~and~');
+        }
+        if (hash) {
+          newPath += hash;
+        }
+
+        // Redirect to the new URL
+        window.location.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + newPath
+        );
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html> 

@@ -199,71 +199,20 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <UnlockedSectionsProvider>
-        <Router>
-          <Box
-            sx={{
-              minHeight: '100vh',
-              display: 'flex',
-              flexDirection: 'column',
-            }}
-          >
+        <Router basename={import.meta.env.BASE_URL}>
+          <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             <AppBar />
-            <Box
-              component="main"
-              sx={{
-                flexGrow: 1,
-                overflow: 'auto',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/game" element={<SudokuGame />} />
-                <Route path="/cv" element={<CompleteCV />} />
-                <Route
-                  path="/professional-summary"
-                  element={
-                    <ProtectedRoute section="professional-summary">
-                      <ProfessionalSummary />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/education"
-                  element={
-                    <ProtectedRoute section="education">
-                      <Education />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/work-experience"
-                  element={
-                    <ProtectedRoute section="work-experience">
-                      <WorkExperience />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/skills"
-                  element={
-                    <ProtectedRoute section="skills">
-                      <Skills />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/projects"
-                  element={
-                    <ProtectedRoute section="projects">
-                      <Projects />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Routes>
-            </Box>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/game" element={<SudokuGame />} />
+              <Route path="/cv" element={<CompleteCV />} />
+              <Route path="/professional-summary" element={<ProtectedRoute section="professional-summary"><ProfessionalSummary /></ProtectedRoute>} />
+              <Route path="/education" element={<ProtectedRoute section="education"><Education /></ProtectedRoute>} />
+              <Route path="/work-experience" element={<ProtectedRoute section="work-experience"><WorkExperience /></ProtectedRoute>} />
+              <Route path="/skills" element={<ProtectedRoute section="skills"><Skills /></ProtectedRoute>} />
+              <Route path="/projects" element={<ProtectedRoute section="projects"><Projects /></ProtectedRoute>} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
             <Footer />
           </Box>
         </Router>
