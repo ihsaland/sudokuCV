@@ -26,7 +26,7 @@ const Projects: React.FC = () => {
   return (
     <Box sx={{ p: { xs: 2, sm: 3 }, maxWidth: 1200, mx: 'auto' }}>
       <Paper 
-        elevation={3} 
+        variant="outlined"
         sx={{ 
           p: { xs: 2, sm: 4 },
           backgroundColor: 'rgba(255, 255, 255, 0.9)',

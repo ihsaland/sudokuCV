@@ -524,7 +524,7 @@ const SudokuGame: React.FC = () => {
               p: { xs: 2, sm: 3 },
               backgroundColor: 'rgba(255, 255, 255, 0.1)',
               backdropFilter: 'blur(5px)',
-              border: '2px solid #ffffff',
+              border: '0.5px solid #ffffff',
               borderRadius: '8px',
               maxWidth: { xs: '100%', sm: '600px' },
               margin: '0 auto',

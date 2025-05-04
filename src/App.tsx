@@ -11,58 +11,59 @@ import Skills from './pages/Skills';
 import Projects from './pages/Projects';
 import Home from './pages/Home';
 import CompleteCV from './pages/CompleteCV';
+import ContactMe from './pages/ContactMe';
 import { UnlockedSectionsProvider } from './context/UnlockedSectionsContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'TA-ModernTimes-RoundedExtraLight',
+    fontFamily: 'DS-DIGII',
     h1: {
       fontSize: '3.5rem',
       color: '#ffffff',
-      fontFamily: 'TA-ModernTimes-RoundedExtraLight',
+      fontFamily: 'DS-DIGII',
       fontWeight: 700,
     },
     h2: {
       fontSize: '2.5rem',
       color: '#ffffff',
-      fontFamily: 'TA-ModernTimes-RoundedExtraLight',
+      fontFamily: 'DS-DIGII',
       fontWeight: 700,
     },
     h3: {
       fontSize: '2rem',
       color: '#ffffff',
-      fontFamily: 'TA-ModernTimes-RoundedExtraLight',
+      fontFamily: 'DS-DIGII',
       fontWeight: 700,
     },
     h4: {
       fontSize: '1.75rem',
       color: '#ffffff',
-      fontFamily: 'TA-ModernTimes-RoundedExtraLight',
+      fontFamily: 'DS-DIGII',
       fontWeight: 700,
     },
     h5: {
       fontSize: '1.5rem',
       color: '#ffffff',
-      fontFamily: 'TA-ModernTimes-RoundedExtraLight',
+      fontFamily: 'DS-DIGII',
       fontWeight: 700,
     },
     h6: {
       fontSize: '1.25rem',
       color: '#ffffff',
-      fontFamily: 'TA-ModernTimes-RoundedExtraLight',
+      fontFamily: 'DS-DIGII',
       fontWeight: 700,
     },
     body1: {
       fontSize: '1rem',
       color: '#000000',
-      fontFamily: 'TA-ModernTimes-RoundedExtraLight',
+      fontFamily: 'DS-DIGII',
       fontWeight: 700,
     },
     button: {
       fontSize: '1rem',
       textTransform: 'none',
-      fontFamily: 'TA-ModernTimes-RoundedExtraLight',
+      fontFamily: 'DS-DIGII',
       fontWeight: 700,
     },
   },
@@ -98,8 +99,8 @@ const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         '@font-face': {
-          fontFamily: 'TA-ModernTimes-RoundedExtraLight',
-          src: `url('/fonts/TA-ModernTimes-RoundedExtraLight.otf') format('opentype')`,
+          fontFamily: 'DS-DIGII',
+          src: `url('/fonts/DS-DIGII.TTF') format('truetype')`,
           fontWeight: 'normal',
           fontStyle: 'normal',
           fontDisplay: 'swap',
@@ -110,7 +111,7 @@ const theme = createTheme({
         body: {
           height: '100%',
           overflow: 'hidden',
-          fontFamily: 'TA-ModernTimes-RoundedExtraLight !important',
+          fontFamily: 'DS-DIGII !important',
           fontSize: '1rem',
           fontWeight: 700,
           color: '#000000',
@@ -119,15 +120,15 @@ const theme = createTheme({
           height: '100%',
         },
         '& *': {
-          fontFamily: 'TA-ModernTimes-RoundedExtraLight !important',
+          fontFamily: 'DS-DIGII !important',
           fontWeight: 700,
         },
         '& .MuiTypography-root': {
-          fontFamily: 'TA-ModernTimes-RoundedExtraLight !important',
+          fontFamily: 'DS-DIGII !important',
           fontWeight: 700,
         },
         '& .MuiButton-root': {
-          fontFamily: 'TA-ModernTimes-RoundedExtraLight !important',
+          fontFamily: 'DS-DIGII !important',
           fontWeight: 700,
         },
       },
@@ -147,10 +148,12 @@ const theme = createTheme({
           },
           '&.MuiButton-outlined': {
             borderColor: '#ff0000',
+            borderWidth: '0.5px',
             color: '#ff0000',
             '&:hover': {
               backgroundColor: 'rgba(255, 0, 0, 0.1)',
               borderColor: '#ff0000',
+              borderWidth: '0.5px',
             },
           },
         },
@@ -161,33 +164,40 @@ const theme = createTheme({
         root: {
           backgroundColor: 'rgba(255, 255, 255, 0.9)',
           '&.MuiPaper-elevation': {
-            boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)',
+            boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.2)',
+          },
+          '&.MuiPaper-outlined': {
+            borderWidth: '0.5px',
           },
         },
       },
     },
-    MuiTypography: {
+    MuiDivider: {
       styleOverrides: {
         root: {
-          color: '#000000',
+          borderWidth: '0.5px',
         },
-        h1: {
-          color: '#000000',
+      },
+    },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          borderWidth: '0.5px',
         },
-        h2: {
-          color: '#000000',
-        },
-        h3: {
-          color: '#000000',
-        },
-        h4: {
-          color: '#000000',
-        },
-        h5: {
-          color: '#000000',
-        },
-        h6: {
-          color: '#000000',
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderWidth: '0.5px',
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderWidth: '0.5px',
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderWidth: '0.5px',
+          },
         },
       },
     },
@@ -206,6 +216,7 @@ const App: React.FC = () => {
               <Route path="/" element={<Home />} />
               <Route path="/game" element={<SudokuGame />} />
               <Route path="/cv" element={<CompleteCV />} />
+              <Route path="/contact" element={<ContactMe />} />
               <Route path="/professional-summary" element={<ProtectedRoute section="professional-summary"><ProfessionalSummary /></ProtectedRoute>} />
               <Route path="/education" element={<ProtectedRoute section="education"><Education /></ProtectedRoute>} />
               <Route path="/work-experience" element={<ProtectedRoute section="work-experience"><WorkExperience /></ProtectedRoute>} />
@@ -222,3 +233,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+

@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
               mt: 'auto',
               backgroundColor: 'rgba(0, 0, 0, 0.2)',
               backdropFilter: 'blur(5px)',
-              borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+              borderTop: '0.5px solid rgba(255, 255, 255, 0.1)',
               position: 'fixed',
               bottom: 0,
               left: 0,
@@ -85,7 +85,7 @@ const Footer: React.FC = () => {
                 initial="hidden"
                 animate="visible"
               >
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <motion.div variants={itemVariants}>
                     <Typography
                       variant="body2"
@@ -104,6 +104,7 @@ const Footer: React.FC = () => {
                           borderBottom: '1px solid rgba(255, 255, 255, 0.3)',
                           transition: 'all 0.3s ease',
                           '&:hover': {
+                            color: '#ffff00',
                             borderBottom: '1px solid rgba(255, 255, 255, 0.8)',
                             textShadow: '0 0 8px rgba(255, 255, 255, 0.5)'
                           }
@@ -111,24 +112,6 @@ const Footer: React.FC = () => {
                       >
                         ihsaland@gmail.com
                       </Link>
-                    </Typography>
-                  </motion.div>
-
-                  <motion.div variants={itemVariants}>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: '#ffffff',
-                        fontSize: { xs: '0.8rem', sm: '0.9rem' },
-                        textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)',
-                        whiteSpace: 'pre-line',
-                        lineHeight: 1.4
-                      }}
-                    >
-                      {`Begin and end, the digits twin,
-A southern code lies deep within.
-Mirror the start, then climb in line—
-Six, seven, eight, then nine.`}
                     </Typography>
                   </motion.div>
                 </Box>

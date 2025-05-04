@@ -41,10 +41,10 @@ const Home: React.FC = () => {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                minHeight: '60vh',
+                minHeight: '50vh',
                 gap: 4,
                 p: 3,
-                border: '2px solid #ffffff',
+                border: '0.5px solid #ffffff',
                 borderRadius: '8px',
                 backgroundColor: 'rgba(0, 0, 0, 0.3)',
                 backdropFilter: 'blur(5px)',
@@ -101,14 +101,14 @@ const Home: React.FC = () => {
                     sx={{
                       fontSize: { xs: '1rem', sm: '1.2rem' },
                       padding: { xs: '8px 16px', sm: '12px 24px' },
-                      border: '2px solid #ffffff',
+                      border: '0.5px solid #ffffff',
                       '&:hover': {
                         backgroundColor: 'primary.dark',
                         borderColor: 'primary.light',
                       },
                     }}
                   >
-                    Play Sudoku
+                    Play Sudoku to Unlock CV
                   </Button>
                 </Box>
               </motion.div>

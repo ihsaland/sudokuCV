@@ -10,6 +10,7 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const AppBar: React.FC = () => {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const AppBar: React.FC = () => {
       sx={{
         backgroundColor: 'transparent',
         backdropFilter: 'blur(10px)',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+        borderBottom: '0.5px solid #ffffff',
       }}
     >
       <Toolbar>
@@ -35,7 +36,8 @@ const AppBar: React.FC = () => {
         >
           <Button
             color="inherit"
-            onClick={() => navigate('/')}
+            component={Link}
+            to="/"
             sx={{
               color: '#ffffff',
               fontWeight: 700,
@@ -46,7 +48,8 @@ const AppBar: React.FC = () => {
           </Button>
           <Button
             color="inherit"
-            onClick={() => navigate('/game')}
+            component={Link}
+            to="/game"
             sx={{
               color: '#ffffff',
               fontWeight: 700,
@@ -57,7 +60,8 @@ const AppBar: React.FC = () => {
           </Button>
           <Button
             color="inherit"
-            onClick={() => navigate('/cv')}
+            component={Link}
+            to="/cv"
             sx={{
               color: '#ffffff',
               fontWeight: 700,
@@ -65,6 +69,18 @@ const AppBar: React.FC = () => {
             }}
           >
             {isMobile ? 'CV' : 'View CV'}
+          </Button>
+          <Button
+            color="inherit"
+            component={Link}
+            to="/contact"
+            sx={{
+              color: '#ffffff',
+              fontWeight: 700,
+              fontSize: { xs: '0.875rem', sm: '1rem' }
+            }}
+          >
+            Contact Me
           </Button>
         </Box>
       </Toolbar>

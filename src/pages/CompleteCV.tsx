@@ -103,7 +103,7 @@ const CompleteCV: React.FC = () => {
               <Grid item xs={12} md={6} key={section.title}>
                 <motion.div variants={itemVariants}>
                   <Paper
-                    elevation={3}
+                    variant="outlined"
                     sx={{
                       p: 3,
                       height: '100%',
@@ -111,7 +111,10 @@ const CompleteCV: React.FC = () => {
                         ? 'rgba(255, 255, 255, 0.9)'
                         : 'rgba(255, 255, 255, 0.1)',
                       backdropFilter: 'blur(5px)',
-                      border: '2px solid #ffffff',
+                      borderWidth: '0.5px',
+                      borderColor: unlockedSections.includes(section.section)
+                        ? 'primary.main'
+                        : 'rgba(255, 255, 255, 0.5)',
                       borderRadius: '8px',
                       transition: 'all 0.3s ease',
                       cursor: 'pointer',
@@ -120,10 +123,10 @@ const CompleteCV: React.FC = () => {
                           ? 'translateY(-5px)'
                           : 'none',
                         boxShadow: unlockedSections.includes(section.section)
-                          ? '0 8px 16px rgba(0,0,0,0.2)'
+                          ? '0 4px 8px rgba(0,0,0,0.1)'
                           : 'none',
                         borderColor: unlockedSections.includes(section.section)
-                          ? '#ffffff'
+                          ? '#ffff00'
                           : 'rgba(255, 255, 255, 0.5)',
                         backgroundColor: unlockedSections.includes(section.section)
                           ? 'rgba(255, 255, 255, 1)'
