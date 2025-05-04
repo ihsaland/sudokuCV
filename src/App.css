@@ -1,31 +1,30 @@
 #root {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
   background-image: url('/background.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  overflow: auto;
+  overflow-x: hidden;
   z-index: 0;
 }
 
 #root::before {
   content: '';
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('../public/background.jpg');
+  background-image: url('/background.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   z-index: -1;
 }
 
