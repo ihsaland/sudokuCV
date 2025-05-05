@@ -490,277 +490,331 @@ const SudokuGame: React.FC = () => {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <Box
-        sx={{
-          minHeight: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          position: 'relative',
-          overflow: 'hidden',
-          p: 3,
-        }}
-      >
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+    <Box sx={{ 
+      display: 'flex', 
+      flexDirection: 'column', 
+      alignItems: 'center',
+      gap: 2,
+      position: 'relative',
+      minHeight: '100vh',
+      padding: 4,
+      background: 'none',
+      transition: 'background 0.5s ease-in-out'
+    }}>
+      {gameState.isComplete && (
+        <Box
+          sx={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'rgba(0, 0, 0, 0.85)',
+            zIndex: 1000,
+            animation: 'fadeIn 0.5s ease-in-out'
+          }}
         >
           <Paper
-            elevation={3}
+            elevation={24}
             sx={{
-              p: { xs: 2, sm: 3 },
-              backgroundColor: 'rgba(255, 255, 255, 0.1)',
-              backdropFilter: 'blur(5px)',
-              border: '0.5px solid #ffffff',
-              borderRadius: '8px',
-              maxWidth: { xs: '100%', sm: '600px' },
-              margin: '0 auto',
+              p: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              backgroundColor: 'rgba(255, 255, 255, 0.95)',
+              borderRadius: 2,
+              maxWidth: '90%',
+              width: '400px'
             }}
           >
-            <Box sx={{ mb: 2 }}>
-              <Typography variant="body1" sx={{ color: '#ffffff', fontSize: { xs: '0.875rem', sm: '1rem' } }}>
-                Difficulty: {gameState.difficulty.charAt(0).toUpperCase() + gameState.difficulty.slice(1)}
-              </Typography>
-              <Typography variant="body1" sx={{ color: '#ffffff', fontSize: { xs: '0.875rem', sm: '1rem' } }}>
-                Mistakes: {gameState.mistakes}
-              </Typography>
-            </Box>
-
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: { xs: 2, sm: 3 },
-                maxWidth: '600px',
-                margin: '0 auto',
-                backgroundColor: 'transparent',
+            <Typography 
+              variant="h3" 
+              sx={{ 
+                color: 'text.primary',
+                textAlign: 'center',
+                mb: 2,
+                fontWeight: 600,
+                animation: 'pulse 1s infinite'
               }}
             >
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <Paper elevation={3} sx={{ p: { xs: 1, sm: 2 }, maxWidth: '600px', margin: '0 auto' }}>
-                    <Box
-                      sx={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(9, 1fr)',
-                        gap: '1px',
-                        backgroundColor: '#000',
-                        border: '2px solid #000',
-                        '& > div:nth-child(3n)': {
-                          borderRight: '2px solid #000',
-                        },
-                        '& > div:nth-child(9n)': {
-                          borderRight: 'none',
-                        },
-                        '& > div:nth-child(n+19):nth-child(-n+27), & > div:nth-child(n+46):nth-child(-n+54)': {
-                          borderBottom: '2px solid #000',
-                        },
-                      }}
-                    >
-                      {gameState.board.map((row, rowIndex) => (
-                        row.map((cell, colIndex) => (
-                          <Box
-                            key={`${rowIndex}-${colIndex}`}
-                            sx={{
-                              aspectRatio: '1',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              backgroundColor: getCellColor(rowIndex, colIndex),
-                              border: '1px solid #ccc',
-                              cursor: cell.isFixed ? 'default' : 'pointer',
-                              position: 'relative',
-                              '&:hover': {
-                                backgroundColor: '#f5f5f5',
-                              },
-                            }}
-                            onClick={() => handleCellClick(rowIndex, colIndex)}
-                          >
-                            <Typography
-                              variant="h6"
+              Puzzle Complete
+            </Typography>
+            <Typography 
+              variant="h6" 
+              sx={{ 
+                color: 'text.secondary',
+                textAlign: 'center',
+                mb: 4
+              }}
+            >
+              Unlocking new sections...
+            </Typography>
+            <Box
+              sx={{
+                width: 60,
+                height: 60,
+                borderRadius: '50%',
+                border: '3px solid',
+                borderColor: 'primary.main',
+                borderTopColor: 'transparent',
+                animation: 'spin 1s linear infinite'
+              }}
+            />
+          </Paper>
+        </Box>
+      )}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <Box
+          sx={{
+            minHeight: '100vh',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'relative',
+            overflow: 'hidden',
+            p: 3,
+          }}
+        >
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <Paper
+              elevation={3}
+              sx={{
+                p: { xs: 2, sm: 3 },
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(5px)',
+                border: '0.5px solid #ffffff',
+                borderRadius: '8px',
+                maxWidth: { xs: '100%', sm: '600px' },
+                margin: '0 auto',
+              }}
+            >
+              <Box sx={{ mb: 2 }}>
+                <Typography variant="body1" sx={{ color: '#ffffff', fontSize: { xs: '0.875rem', sm: '1rem' } }}>
+                  Difficulty: {gameState.difficulty.charAt(0).toUpperCase() + gameState.difficulty.slice(1)}
+                </Typography>
+                <Typography variant="body1" sx={{ color: '#ffffff', fontSize: { xs: '0.875rem', sm: '1rem' } }}>
+                  Mistakes: {gameState.mistakes}
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: { xs: 2, sm: 3 },
+                  maxWidth: '600px',
+                  margin: '0 auto',
+                  backgroundColor: 'transparent',
+                }}
+              >
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <Paper elevation={3} sx={{ p: { xs: 1, sm: 2 }, maxWidth: '600px', margin: '0 auto' }}>
+                      <Box
+                        sx={{
+                          display: 'grid',
+                          gridTemplateColumns: 'repeat(9, 1fr)',
+                          gap: '1px',
+                          backgroundColor: '#000',
+                          border: '2px solid #000',
+                          '& > div:nth-child(3n)': {
+                            borderRight: '2px solid #000',
+                          },
+                          '& > div:nth-child(9n)': {
+                            borderRight: 'none',
+                          },
+                          '& > div:nth-child(n+19):nth-child(-n+27), & > div:nth-child(n+46):nth-child(-n+54)': {
+                            borderBottom: '2px solid #000',
+                          },
+                        }}
+                      >
+                        {gameState.board.map((row, rowIndex) => (
+                          row.map((cell, colIndex) => (
+                            <Box
+                              key={`${rowIndex}-${colIndex}`}
                               sx={{
-                                fontWeight: 'bold',
-                                color: cell.isFixed ? 'text.primary' : 'primary.main',
-                                opacity: cell.value ? 1 : 0,
-                                fontSize: { xs: '0.875rem', sm: '1.25rem' },
+                                aspectRatio: '1',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                backgroundColor: getCellColor(rowIndex, colIndex),
+                                border: '1px solid #ccc',
+                                cursor: cell.isFixed ? 'default' : 'pointer',
+                                position: 'relative',
+                                '&:hover': {
+                                  backgroundColor: '#f5f5f5',
+                                },
                               }}
+                              onClick={() => handleCellClick(rowIndex, colIndex)}
                             >
-                              {cell.value}
-                            </Typography>
-                          </Box>
-                        ))
-                      ))}
-                    </Box>
-                  </Paper>
+                              <Typography
+                                variant="h6"
+                                sx={{
+                                  fontWeight: 'bold',
+                                  color: cell.isFixed ? 'text.primary' : 'primary.main',
+                                  opacity: cell.value ? 1 : 0,
+                                  fontSize: { xs: '0.875rem', sm: '1.25rem' },
+                                }}
+                              >
+                                {cell.value}
+                              </Typography>
+                            </Box>
+                          ))
+                        ))}
+                      </Box>
+                    </Paper>
 
-                  {/* Add number pad and controls */}
-                  <Box sx={{ 
-                    mt: 2, 
-                    display: 'flex', 
-                    flexDirection: 'column', 
-                    alignItems: 'center', 
-                    gap: 1, 
-                    maxWidth: '600px', 
-                    margin: '0 auto',
-                    width: '100%',
-                  }}>
+                    {/* Add number pad and controls */}
                     <Box sx={{ 
+                      mt: 2, 
                       display: 'flex', 
-                      gap: 1,
+                      flexDirection: 'column', 
+                      alignItems: 'center', 
+                      gap: 1, 
+                      maxWidth: '600px', 
+                      margin: '0 auto',
                       width: '100%',
-                      justifyContent: 'center',
                     }}>
-                      <IconButton 
-                        onClick={handleUndo} 
-                        disabled={history.length === 0}
-                        title="Undo (Ctrl+Z)"
-                        sx={{ 
-                          p: { xs: 0.5, sm: 1 },
-                          '& .MuiSvgIcon-root': {
-                            fontSize: { xs: '1.25rem', sm: '1.5rem' }
-                          }
-                        }}
-                      >
-                        <UndoIcon />
-                      </IconButton>
-                      <IconButton 
-                        onClick={handleDelete} 
-                        disabled={!gameState.selectedCell}
-                        title="Delete (Backspace/Delete)"
-                        sx={{ 
-                          p: { xs: 0.5, sm: 1 },
-                          '& .MuiSvgIcon-root': {
-                            fontSize: { xs: '1.25rem', sm: '1.5rem' }
-                          }
-                        }}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </Box>
-                    <Box sx={{ 
-                      display: 'flex', 
-                      gap: 1,
-                      width: '100%',
-                      justifyContent: 'center',
-                      flexWrap: 'wrap',
-                    }}>
-                      {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
-                        <Button
-                          key={num}
-                          variant="contained"
-                          onClick={() => handleNumberInput(num)}
+                      <Box sx={{ 
+                        display: 'flex', 
+                        gap: 1,
+                        width: '100%',
+                        justifyContent: 'center',
+                      }}>
+                        <IconButton 
+                          onClick={handleUndo} 
+                          disabled={history.length === 0}
+                          title="Undo (Ctrl+Z)"
                           sx={{ 
-                            minWidth: { xs: '28px', sm: '40px' },
-                            height: { xs: '28px', sm: '40px' },
-                            fontSize: { xs: '0.75rem', sm: '0.875rem' },
-                            p: 0,
-                          }}
-                        >
-                          {num}
-                        </Button>
-                      ))}
-                    </Box>
-                  </Box>
-                </Grid>
-              </Grid>
-
-              {/* Unlocked CV Sections moved to bottom */}
-              <Box sx={{ mt: 4, width: '100%' }}>
-                <Paper elevation={3} sx={{ p: 2 }}>
-                  <Typography 
-                    variant="h6" 
-                    gutterBottom
-                    sx={{ 
-                      color: '#000000',
-                      fontWeight: 500,
-                      fontSize: { xs: '1rem', sm: '1.25rem' },
-                    }}
-                  >
-                    Unlocked CV Sections
-                  </Typography>
-                  {cvSections
-                    .filter(section => gameState.unlockedSections.includes(section.id))
-                    .map(section => (
-                      <Box key={section.id} sx={{ mb: 2 }}>
-                        <Link
-                          component="button"
-                          variant="subtitle1"
-                          onClick={() => handleCVSectionClick(section)}
-                          sx={{ 
-                            textAlign: 'left',
-                            color: 'primary.main',
-                            fontSize: { xs: '0.875rem', sm: '1rem' },
-                            '&:hover': {
-                              color: 'primary.dark',
-                              textDecoration: 'underline'
+                            p: { xs: 0.5, sm: 1 },
+                            '& .MuiSvgIcon-root': {
+                              fontSize: { xs: '1.25rem', sm: '1.5rem' }
                             }
                           }}
                         >
-                          {section.title}
-                        </Link>
-                        <Typography 
-                          variant="body2" 
+                          <UndoIcon />
+                        </IconButton>
+                        <IconButton 
+                          onClick={handleDelete} 
+                          disabled={!gameState.selectedCell}
+                          title="Delete (Backspace/Delete)"
                           sx={{ 
-                            mt: 1,
-                            fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                            p: { xs: 0.5, sm: 1 },
+                            '& .MuiSvgIcon-root': {
+                              fontSize: { xs: '1.25rem', sm: '1.5rem' }
+                            }
                           }}
                         >
-                          {section.content}
-                        </Typography>
+                          <DeleteIcon />
+                        </IconButton>
                       </Box>
-                    ))}
-                </Paper>
-              </Box>
+                      <Box sx={{ 
+                        display: 'flex', 
+                        gap: 1,
+                        width: '100%',
+                        justifyContent: 'center',
+                        flexWrap: 'wrap',
+                      }}>
+                        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+                          <Button
+                            key={num}
+                            variant="contained"
+                            onClick={() => handleNumberInput(num)}
+                            sx={{ 
+                              minWidth: { xs: '28px', sm: '40px' },
+                              height: { xs: '28px', sm: '40px' },
+                              fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                              p: 0,
+                            }}
+                          >
+                            {num}
+                          </Button>
+                        ))}
+                      </Box>
+                    </Box>
+                  </Grid>
+                </Grid>
 
-              <Box sx={{ 
-                mt: 4,
-                display: 'flex',
-                flexDirection: { xs: 'column', sm: 'row' },
-                gap: { xs: 1, sm: 2 },
-                width: '100%',
-                justifyContent: 'center',
-              }}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handlePuzzleComplete}
-                  disabled={gameState.isComplete}
-                  sx={{ 
-                    width: { xs: '100%', sm: 'auto' },
-                    fontSize: { xs: '0.875rem', sm: '1rem' },
-                  }}
-                >
-                  Complete Puzzle
-                </Button>
-                {gameState.isComplete && (
+                <Box sx={{ 
+                  mt: 4,
+                  display: 'flex',
+                  flexDirection: { xs: 'column', sm: 'row' },
+                  gap: { xs: 1, sm: 2 },
+                  width: '100%',
+                  justifyContent: 'center',
+                }}>
                   <Button
                     variant="contained"
-                    color="secondary"
-                    onClick={handleNextPuzzle}
+                    color="primary"
+                    onClick={handlePuzzleComplete}
+                    disabled={gameState.isComplete}
                     sx={{ 
                       width: { xs: '100%', sm: 'auto' },
                       fontSize: { xs: '0.875rem', sm: '1rem' },
                     }}
                   >
-                    {currentPuzzle < 5 ? 'Next Puzzle' : 'View Complete CV'}
+                    Complete Puzzle
                   </Button>
-                )}
+                  {gameState.isComplete && (
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={handleNextPuzzle}
+                      sx={{ 
+                        width: { xs: '100%', sm: 'auto' },
+                        fontSize: { xs: '0.875rem', sm: '1rem' },
+                      }}
+                    >
+                      {currentPuzzle < 5 ? 'Next Puzzle' : 'View Complete CV'}
+                    </Button>
+                  )}
+                </Box>
               </Box>
-            </Box>
-          </Paper>
-        </motion.div>
-      </Box>
-    </motion.div>
+            </Paper>
+          </motion.div>
+        </Box>
+      </motion.div>
+    </Box>
   );
 };
+
+// Add these keyframes at the top of the file, after the imports
+const keyframes = `
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+`;
+
+// Add the keyframes to the document
+const style = document.createElement('style');
+style.textContent = keyframes;
+document.head.appendChild(style);
 
 export default SudokuGame; 
