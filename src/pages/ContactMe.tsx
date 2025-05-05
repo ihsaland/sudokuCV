@@ -139,11 +139,11 @@ const ContactMe: React.FC = () => {
                       flex: 1
                     }}
                   >
-                    LinkedIn: linkedin.com/in/ihsaland
+                    LinkedIn: linkedin.com/in/isalandy
                   </Typography>
                   <Tooltip title="Copy LinkedIn URL">
                     <IconButton 
-                      onClick={() => handleCopy('linkedin.com/in/ihsaland')}
+                      onClick={() => handleCopy('linkedin.com/in/isalandy')}
                       size="small"
                       sx={{ 
                         color: 'rgba(255, 255, 255, 0.7)',

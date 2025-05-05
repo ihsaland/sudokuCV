@@ -38,35 +38,35 @@ interface CVSection {
 const cvSections: CVSection[] = [
   {
     id: 1,
-    title: "Professional Summary",
+    title: "professional-summary",
     content: "Seasoned Performance Architect with a proven track record in software engineering, SaaS optimization, and enterprise-scale product development. Expertise spans performance tuning, capacity planning, system profiling, and architectural process improvement. Known for designing and leading strategic initiatives that elevate application performance, scalability, and operational efficiency across complex, distributed systems.",
     difficulty: 'easy',
     isUnlocked: false
   },
   {
     id: 2,
-    title: "Education",
+    title: "education",
     content: "Bachelor's Degree in Computer Science from Morehouse College, Master's Degree from North Carolina State University",
     difficulty: 'easy',
     isUnlocked: false
   },
   {
     id: 3,
-    title: "Work Experience",
+    title: "work-experience",
     content: "Principal Performance Architect at Salesforce (2021-Present), IBM (2016-2021), Accenture (2009-2016), and IBM (2005-2009)",
     difficulty: 'medium',
     isUnlocked: false
   },
   {
     id: 4,
-    title: "Skills",
+    title: "skills",
     content: "Performance Engineering, System Architecture, JVM Tuning, Database Optimization, Machine Learning, Cloud Infrastructure",
     difficulty: 'hard',
     isUnlocked: false
   },
   {
     id: 5,
-    title: "Projects",
+    title: "projects",
     content: "Led development of enterprise performance frameworks, ML-powered performance modeling, and cross-platform query optimization strategies",
     difficulty: 'expert',
     isUnlocked: false
@@ -326,33 +326,32 @@ const SudokuGame: React.FC = () => {
             unlockedSections: [...prev.unlockedSections, ...unlockedSections.map(s => s.id)]
           }));
 
-          // Automatically progress to next difficulty level
-          const currentIndex = difficultyOrder.indexOf(gameState.difficulty);
-          if (currentIndex < difficultyOrder.length - 1) {
-            setTimeout(() => {
-              startNewGame(difficultyOrder[currentIndex + 1]);
-            }, 2000); // Wait 2 seconds before starting next level
-          }
-
           // Unlock the corresponding CV section based on the current puzzle
           switch (currentPuzzle) {
             case 1:
               unlockSection('professional-summary');
-              break;
-            case 2:
               unlockSection('education');
               break;
-            case 3:
+            case 2:
               unlockSection('work-experience');
               break;
-            case 4:
+            case 3:
               unlockSection('skills');
               break;
-            case 5:
+            case 4:
               unlockSection('projects');
               break;
             default:
               break;
+          }
+
+          // Progress to next difficulty level
+          const currentIndex = difficultyOrder.indexOf(gameState.difficulty);
+          if (currentIndex < difficultyOrder.length - 1) {
+            const nextDifficulty = difficultyOrder[currentIndex + 1];
+            setTimeout(() => {
+              setDifficulty(nextDifficulty);
+            }, 2000); // Wait 2 seconds before starting next level
           }
         }
       } else {
@@ -433,15 +432,7 @@ const SudokuGame: React.FC = () => {
   };
 
   const handleCVSectionClick = (section: CVSection) => {
-    const pathMap: Record<string, string> = {
-      'Professional Summary': '/professional-summary',
-      'Education': '/education',
-      'Work Experience': '/work-experience',
-      'Skills': '/skills',
-      'Projects': '/projects'
-    };
-    
-    navigate(pathMap[section.title]);
+    navigate(`/${section.title}`);
   };
 
   const handlePuzzleComplete = () => {
@@ -452,21 +443,23 @@ const SudokuGame: React.FC = () => {
 
     // Unlock sections based on difficulty
     if (gameState.difficulty === 'easy') {
-      unlockSection('Professional Summary');
-      unlockSection('Education');
+      unlockSection('professional-summary');
+      unlockSection('education');
     } else if (gameState.difficulty === 'medium') {
-      unlockSection('Work Experience');
+      unlockSection('work-experience');
     } else if (gameState.difficulty === 'hard') {
-      unlockSection('Skills');
+      unlockSection('skills');
     } else if (gameState.difficulty === 'expert') {
-      unlockSection('Projects');
+      unlockSection('projects');
     }
 
     // Progress to next difficulty level
     const currentDifficultyIndex = difficultyOrder.indexOf(gameState.difficulty);
     if (currentDifficultyIndex < difficultyOrder.length - 1) {
       const nextDifficulty = difficultyOrder[currentDifficultyIndex + 1];
-      setDifficulty(nextDifficulty);
+      setTimeout(() => {
+        setDifficulty(nextDifficulty);
+      }, 2000);
     }
   };
 
@@ -491,8 +484,9 @@ const SudokuGame: React.FC = () => {
       selectedCell: null,
       mistakes: 0,
       isComplete: false,
-      unlockedSections: []
+      unlockedSections: prev.unlockedSections
     }));
+    startNewGame(difficulty);
   };
 
   return (
