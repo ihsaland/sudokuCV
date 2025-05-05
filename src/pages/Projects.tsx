@@ -4,21 +4,39 @@ import { Box, Paper, Typography, Grid, Card, CardContent, CardActions, Button } 
 const Projects: React.FC = () => {
   const projects = [
     {
-      title: 'Infrastructure Engineering Initiative',
-      description: 'Led the development of a scalable infrastructure system that improved system resilience and reduced operational costs by 30%.',
-      technologies: ['Salesforce', 'Cloud Infrastructure', 'DevOps', 'CI/CD'],
+      title: 'Enterprise Performance Framework',
+      description: 'Led the development of standardized performance engineering frameworks across core SaaS products, integrating end-to-end PE solutions into CI/CD pipelines. Improved system responsiveness by 40% and reduced resource consumption.',
+      technologies: ['Performance Engineering', 'CI/CD', 'System Architecture', 'JVM Tuning'],
       link: '#'
     },
     {
-      title: 'Financial Operations Optimization',
-      description: 'Implemented a comprehensive FinOps strategy that optimized resource allocation and reduced cloud spending by 25%.',
-      technologies: ['FinOps', 'Cost Optimization', 'Resource Management', 'Cloud Computing'],
+      title: 'ML-Powered Performance Modeling',
+      description: 'Designed and deployed scalable infrastructure performance models using machine learning for scenario-based workload simulations and predictive analysis. Enabled accurate capacity forecasting and proactive scaling.',
+      technologies: ['Machine Learning', 'Performance Modeling', 'Capacity Planning', 'Cloud Infrastructure'],
       link: '#'
     },
     {
-      title: 'System Architecture Redesign',
-      description: 'Architected and implemented a new system design that improved scalability and reduced maintenance costs.',
-      technologies: ['System Architecture', 'Cloud Computing', 'Infrastructure as Code', 'DevOps'],
+      title: 'Cross-Platform Query Optimization',
+      description: 'Architected and implemented query optimization strategies for Trino, Oracle, and SDB, enhancing throughput and reducing latency. Improved query performance by 60% across distributed systems.',
+      technologies: ['Database Optimization', 'Query Tuning', 'Distributed Systems', 'Performance Testing'],
+      link: '#'
+    },
+    {
+      title: 'Real-Time Trading Platform',
+      description: 'Led architectural validation and tuning strategies for real-time trading applications, ensuring performance compliance with technical and business requirements. Achieved sub-millisecond latency.',
+      technologies: ['Low-latency Optimization', 'System Architecture', 'Performance Testing', 'Real-time Systems'],
+      link: '#'
+    },
+    {
+      title: 'Developer Enablement Program',
+      description: 'Championed developer enablement through VTO-led initiatives, including HackerRank training and internal performance engineering courses. Established standards for profiling and tuning.',
+      technologies: ['Technical Training', 'Performance Best Practices', 'Developer Tools', 'Knowledge Sharing'],
+      link: '#'
+    },
+    {
+      title: 'Global Performance Testing Framework',
+      description: 'Managed global delivery of performance test solutions, overseeing teams responsible for scripting, scenario execution, and results analysis. Standardized testing practices across distributed teams.',
+      technologies: ['Performance Testing', 'Test Automation', 'Global Delivery', 'Quality Assurance'],
       link: '#'
     }
   ];
