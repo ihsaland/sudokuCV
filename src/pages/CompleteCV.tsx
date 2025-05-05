@@ -75,25 +75,6 @@ const CompleteCV: React.FC = () => {
     >
       <Container maxWidth="lg" sx={{ py: 4 }}>
         <motion.div
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-        >
-          <Typography
-            variant="h1"
-            sx={{
-              color: '#ffffff',
-              textAlign: 'center',
-              mb: 6,
-              fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4rem' },
-              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
-            }}
-          >
-            Ian Salandy CV
-          </Typography>
-        </motion.div>
-
-        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"

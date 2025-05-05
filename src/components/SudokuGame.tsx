@@ -517,24 +517,6 @@ const SudokuGame: React.FC = () => {
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <Typography
-            variant="h1"
-            sx={{
-              color: '#ffffff',
-              textAlign: 'center',
-              mb: 4,
-              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
-            }}
-          >
-            Ian Salandy CV
-          </Typography>
-        </motion.div>
-
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <Paper
