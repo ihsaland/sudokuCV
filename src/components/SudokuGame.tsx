@@ -27,52 +27,6 @@ interface GameState {
   unlockedSections: number[];
 }
 
-interface CVSection {
-  id: number;
-  title: string;
-  content: string;
-  difficulty: Difficulty;
-  isUnlocked: boolean;
-}
-
-const cvSections: CVSection[] = [
-  {
-    id: 1,
-    title: "professional-summary",
-    content: "Seasoned Performance Architect with a proven track record in software engineering, SaaS optimization, and enterprise-scale product development. Expertise spans performance tuning, capacity planning, system profiling, and architectural process improvement. Known for designing and leading strategic initiatives that elevate application performance, scalability, and operational efficiency across complex, distributed systems.",
-    difficulty: 'easy',
-    isUnlocked: false
-  },
-  {
-    id: 2,
-    title: "education",
-    content: "Bachelor's Degree in Computer Science from Morehouse College, Master's Degree from North Carolina State University",
-    difficulty: 'easy',
-    isUnlocked: false
-  },
-  {
-    id: 3,
-    title: "work-experience",
-    content: "Principal Performance Architect at Salesforce (2021-Present), IBM (2016-2021), Accenture (2009-2016), and IBM (2005-2009)",
-    difficulty: 'medium',
-    isUnlocked: false
-  },
-  {
-    id: 4,
-    title: "skills",
-    content: "Performance Engineering, System Architecture, JVM Tuning, Database Optimization, Machine Learning, Cloud Infrastructure",
-    difficulty: 'hard',
-    isUnlocked: false
-  },
-  {
-    id: 5,
-    title: "projects",
-    content: "Led development of enterprise performance frameworks, ML-powered performance modeling, and cross-platform query optimization strategies",
-    difficulty: 'expert',
-    isUnlocked: false
-  }
-];
-
 const difficultyOrder: Difficulty[] = ['easy', 'medium', 'hard', 'expert'];
 
 const isValidPlacement = (board: Board, row: number, col: number, num: number): boolean => {
@@ -212,10 +166,7 @@ const SudokuGame: React.FC = () => {
     };
   });
 
-  const [showCVSection, setShowCVSection] = useState<CVSection | null>(null);
-
   const [history, setHistory] = useState<Board[]>([]);
-
   const navigate = useNavigate();
   const [currentPuzzle, setCurrentPuzzle] = useState<number>(1);
 
@@ -314,45 +265,37 @@ const SudokuGame: React.FC = () => {
       );
 
       if (isCorrect) {
-        const unlockedSections = cvSections.filter(
-          section => section.difficulty === gameState.difficulty && !gameState.unlockedSections.includes(section.id)
-        );
+        setGameState(prev => ({
+          ...prev,
+          isComplete: true
+        }));
 
-        if (unlockedSections.length > 0) {
-          setShowCVSection(unlockedSections[0]);
-          setGameState(prev => ({
-            ...prev,
-            isComplete: true,
-            unlockedSections: [...prev.unlockedSections, ...unlockedSections.map(s => s.id)]
-          }));
+        // Unlock the corresponding CV section based on the current puzzle
+        switch (currentPuzzle) {
+          case 1:
+            unlockSection('professional-summary');
+            unlockSection('education');
+            break;
+          case 2:
+            unlockSection('work-experience');
+            break;
+          case 3:
+            unlockSection('skills');
+            break;
+          case 4:
+            unlockSection('projects');
+            break;
+          default:
+            break;
+        }
 
-          // Unlock the corresponding CV section based on the current puzzle
-          switch (currentPuzzle) {
-            case 1:
-              unlockSection('professional-summary');
-              unlockSection('education');
-              break;
-            case 2:
-              unlockSection('work-experience');
-              break;
-            case 3:
-              unlockSection('skills');
-              break;
-            case 4:
-              unlockSection('projects');
-              break;
-            default:
-              break;
-          }
-
-          // Progress to next difficulty level
-          const currentIndex = difficultyOrder.indexOf(gameState.difficulty);
-          if (currentIndex < difficultyOrder.length - 1) {
-            const nextDifficulty = difficultyOrder[currentIndex + 1];
-            setTimeout(() => {
-              setDifficulty(nextDifficulty);
-            }, 2000); // Wait 2 seconds before starting next level
-          }
+        // Progress to next difficulty level
+        const currentIndex = difficultyOrder.indexOf(gameState.difficulty);
+        if (currentIndex < difficultyOrder.length - 1) {
+          const nextDifficulty = difficultyOrder[currentIndex + 1];
+          setTimeout(() => {
+            setDifficulty(nextDifficulty);
+          }, 2000); // Wait 2 seconds before starting next level
         }
       } else {
         // If the solution is incorrect, show an error message
@@ -429,10 +372,6 @@ const SudokuGame: React.FC = () => {
     }
     
     return getCellHighlight(row, col);
-  };
-
-  const handleCVSectionClick = (section: CVSection) => {
-    navigate(`/${section.title}`);
   };
 
   const handlePuzzleComplete = () => {
