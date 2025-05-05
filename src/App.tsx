@@ -216,21 +216,24 @@ const App: React.FC = () => {
               minHeight: '100vh', 
               display: 'flex', 
               flexDirection: 'column',
-              pt: { xs: '56px', sm: '64px' }
+              pt: { xs: '56px', sm: '64px' },
+              overflow: 'auto'
             }}>
               <AppBar />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/game" element={<SudokuGame />} />
-                <Route path="/cv" element={<CompleteCV />} />
-                <Route path="/contact" element={<ContactMe />} />
-                <Route path="/professional-summary" element={<ProtectedRoute section="professional-summary"><ProfessionalSummary /></ProtectedRoute>} />
-                <Route path="/education" element={<ProtectedRoute section="education"><Education /></ProtectedRoute>} />
-                <Route path="/work-experience" element={<ProtectedRoute section="work-experience"><WorkExperience /></ProtectedRoute>} />
-                <Route path="/skills" element={<ProtectedRoute section="skills"><Skills /></ProtectedRoute>} />
-                <Route path="/projects" element={<ProtectedRoute section="projects"><Projects /></ProtectedRoute>} />
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Routes>
+              <Box sx={{ flex: 1 }}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/game" element={<SudokuGame />} />
+                  <Route path="/cv" element={<CompleteCV />} />
+                  <Route path="/contact" element={<ContactMe />} />
+                  <Route path="/professional-summary" element={<ProtectedRoute section="professional-summary"><ProfessionalSummary /></ProtectedRoute>} />
+                  <Route path="/education" element={<ProtectedRoute section="education"><Education /></ProtectedRoute>} />
+                  <Route path="/work-experience" element={<ProtectedRoute section="work-experience"><WorkExperience /></ProtectedRoute>} />
+                  <Route path="/skills" element={<ProtectedRoute section="skills"><Skills /></ProtectedRoute>} />
+                  <Route path="/projects" element={<ProtectedRoute section="projects"><Projects /></ProtectedRoute>} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+              </Box>
               <Footer />
             </Box>
           </Router>
