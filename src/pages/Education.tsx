@@ -50,7 +50,7 @@ const Education: React.FC = () => {
               fontSize: { xs: '1.1rem', sm: '1.25rem' },
             }}
           >
-            Bachelor's Degree
+            Master's Degree
           </Typography>
           <Typography 
             variant="subtitle1" 
@@ -61,6 +61,53 @@ const Education: React.FC = () => {
             }}
           >
             North Carolina State University
+          </Typography>
+          <Typography 
+            variant="body2" 
+            color="text.secondary"
+            sx={{ 
+              mb: 2,
+              fontSize: { xs: '0.8rem', sm: '0.875rem' },
+            }}
+          >
+            2004 - 2006
+          </Typography>
+          <Typography 
+            variant="body1" 
+            sx={{ 
+              mt: 1,
+              color: 'text.secondary',
+              lineHeight: 1.8,
+              fontSize: { xs: '0.9rem', sm: '1rem' },
+            }}
+          >
+            Advanced studies in computer science and engineering, focusing on software development and system architecture.
+          </Typography>
+        </Box>
+
+        <Divider sx={{ my: { xs: 2, sm: 3 } }} />
+
+        <Box sx={{ mb: { xs: 3, sm: 4 } }}>
+          <Typography 
+            variant="h6" 
+            gutterBottom
+            sx={{ 
+              color: 'primary.main',
+              fontWeight: 500,
+              fontSize: { xs: '1.1rem', sm: '1.25rem' },
+            }}
+          >
+            Bachelor's Degree
+          </Typography>
+          <Typography 
+            variant="subtitle1" 
+            color="text.secondary"
+            sx={{ 
+              fontWeight: 500,
+              fontSize: { xs: '0.9rem', sm: '1rem' },
+            }}
+          >
+            Morehouse College
           </Typography>
           <Typography 
             variant="body2" 

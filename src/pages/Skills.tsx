@@ -3,11 +3,74 @@ import { Box, Paper, Typography, Grid, Chip } from '@mui/material';
 
 const Skills: React.FC = () => {
   const skills = {
-    'Salesforce': ['Salesforce Development', 'Apex', 'Visualforce', 'Lightning Components', 'Salesforce Integration'],
-    'Infrastructure': ['System Architecture', 'Cloud Infrastructure', 'DevOps', 'CI/CD', 'Infrastructure as Code'],
-    'Leadership': ['Strategic Planning', 'Team Management', 'Project Leadership', 'Cross-functional Collaboration'],
-    'Financial Operations': ['FinOps', 'Cost Optimization', 'Resource Management', 'Budget Planning'],
-    'Technical': ['Software Development', 'System Design', 'Cloud Computing', 'Database Management', 'API Development']
+    'Core Technical Expertise': [
+      'System Architecture & Design',
+      'Distributed Systems',
+      'Scalable Architecture',
+      'Performance Engineering',
+      'JVM Tuning',
+      'Garbage Collection',
+      'Low-latency Optimization',
+      'Secure System Design',
+      'SaaS Security',
+      'Machine Learning for Performance Modeling',
+      'System Behavior Prediction'
+    ],
+    'Cloud & Infrastructure': [
+      'Cloud Infrastructure',
+      'AWS',
+      'Azure',
+      'CI/CD',
+      'Infrastructure as Code',
+      'Performance Testing',
+      'Infrastructure Validation',
+      'Cloud Cost Efficiency',
+      'Performance-Cost Alignment'
+    ],
+    'Database & Performance': [
+      'Database Optimization',
+      'SQL Query Tuning',
+      'Trino',
+      'Oracle',
+      'SDB',
+      'Capacity Planning',
+      'Usage Growth Forecasting',
+      'Infrastructure Needs Analysis'
+    ],
+    'Tools & Monitoring': [
+      'Monitoring Tools',
+      'YourKit',
+      'JFR',
+      'APM Tools',
+      'System Profiling',
+      'Performance Monitoring',
+      'Framework Development',
+      'Performance Validation Patterns'
+    ],
+    'Leadership & Strategy': [
+      'Strategic Planning',
+      'Cross-Functional Collaboration',
+      'Product Management Collaboration',
+      'Infrastructure Team Collaboration',
+      'Developer Collaboration',
+      'Business-Technical Alignment',
+      'Performance Strategy Development',
+      'Cost Optimization',
+      'Resource Management',
+      'Budget Planning'
+    ],
+    'Knowledge Sharing': [
+      'Engineering Mentorship',
+      'Best Practices Training',
+      'Team Standardization',
+      'Technical Coaching',
+      'Performance Best Practices',
+      'Technical Documentation',
+      'Architectural Proposals',
+      'Technical Writing',
+      'Technical Presentations',
+      'System Design Documentation'
+    ]
   };
 
   return (
