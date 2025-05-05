@@ -39,35 +39,35 @@ const cvSections: CVSection[] = [
   {
     id: 1,
     title: "Professional Summary",
-    content: "Experienced software engineer with a strong background in full-stack development, specializing in React and Node.js. Proven track record of delivering high-quality, scalable applications while maintaining clean code and best practices. Passionate about creating intuitive user experiences and solving complex technical challenges.",
+    content: "Seasoned Performance Architect with a proven track record in software engineering, SaaS optimization, and enterprise-scale product development. Expertise spans performance tuning, capacity planning, system profiling, and architectural process improvement. Known for designing and leading strategic initiatives that elevate application performance, scalability, and operational efficiency across complex, distributed systems.",
     difficulty: 'easy',
     isUnlocked: false
   },
   {
     id: 2,
     title: "Education",
-    content: "Bachelor's Degree in Computer Science from XYZ University",
+    content: "Bachelor's Degree in Computer Science from Morehouse College, Master's Degree from North Carolina State University",
     difficulty: 'easy',
     isUnlocked: false
   },
   {
     id: 3,
     title: "Work Experience",
-    content: "Software Engineer at ABC Corp (2020-2023)",
+    content: "Principal Performance Architect at Salesforce (2021-Present), IBM (2016-2021), Accenture (2009-2016), and IBM (2005-2009)",
     difficulty: 'medium',
     isUnlocked: false
   },
   {
     id: 4,
     title: "Skills",
-    content: "React, TypeScript, Node.js, Python",
+    content: "Performance Engineering, System Architecture, JVM Tuning, Database Optimization, Machine Learning, Cloud Infrastructure",
     difficulty: 'hard',
     isUnlocked: false
   },
   {
     id: 5,
     title: "Projects",
-    content: "Built a full-stack e-commerce platform with React and Node.js",
+    content: "Led development of enterprise performance frameworks, ML-powered performance modeling, and cross-platform query optimization strategies",
     difficulty: 'expert',
     isUnlocked: false
   }

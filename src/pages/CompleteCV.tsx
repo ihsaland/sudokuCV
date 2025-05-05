@@ -2,42 +2,53 @@ import React from 'react';
 import { Box, Typography, Paper, Grid, Container } from '@mui/material';
 import { useUnlockedSections } from '../context/UnlockedSectionsContext';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const CompleteCV: React.FC = () => {
   const { unlockedSections } = useUnlockedSections();
+  const navigate = useNavigate();
 
   const sections = [
     {
       title: "Professional Summary",
-      content: "Experienced software engineer with a strong background in full-stack development, specializing in React and Node.js. Proven track record of delivering high-quality, scalable applications while maintaining clean code and best practices.",
+      content: "Seasoned Performance Architect with a proven track record in software engineering, SaaS optimization, and enterprise-scale product development. Expertise spans performance tuning, capacity planning, system profiling, and architectural process improvement. Known for designing and leading strategic initiatives that elevate application performance, scalability, and operational efficiency across complex, distributed systems.",
       section: "professional-summary",
-      difficulty: "Easy"
+      difficulty: "Easy",
+      path: "/professional-summary"
     },
     {
       title: "Education",
-      content: "Bachelor's Degree in Computer Science from XYZ University",
+      content: "Bachelor's Degree in Computer Science from Morehouse College, Master's Degree from North Carolina State University",
       section: "education",
-      difficulty: "Easy"
+      difficulty: "Easy",
+      path: "/education"
     },
     {
       title: "Work Experience",
-      content: "Software Engineer at ABC Corp (2020-2023)",
+      content: "Principal Performance Architect at Salesforce (2021-Present), IBM (2016-2021), Accenture (2009-2016), and IBM (2005-2009)",
       section: "work-experience",
-      difficulty: "Medium"
+      difficulty: "Medium",
+      path: "/work-experience"
     },
     {
       title: "Skills",
-      content: "React, TypeScript, Node.js, Python",
+      content: "Performance Engineering, System Architecture, JVM Tuning, Database Optimization, Machine Learning, Cloud Infrastructure",
       section: "skills",
-      difficulty: "Hard"
+      difficulty: "Hard",
+      path: "/skills"
     },
     {
       title: "Projects",
-      content: "Built a full-stack e-commerce platform with React and Node.js",
+      content: "Led development of enterprise performance frameworks, ML-powered performance modeling, and cross-platform query optimization strategies",
       section: "projects",
-      difficulty: "Expert"
+      difficulty: "Expert",
+      path: "/projects"
     }
   ];
+
+  const handleSectionClick = (path: string) => {
+    navigate(path);
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -129,8 +140,10 @@ const CompleteCV: React.FC = () => {
                           '&:hover': {
                             opacity: 1,
                             textShadow: '2px 2px 4px rgba(255,255,255,0.2)'
-                          }
+                          },
+                          cursor: unlockedSections.includes(section.section) ? 'pointer' : 'default'
                         }}
+                        onClick={() => unlockedSections.includes(section.section) && handleSectionClick(section.path)}
                       >
                         {section.title}
                       </Typography>
@@ -140,6 +153,8 @@ const CompleteCV: React.FC = () => {
                           animate={{ opacity: 1 }}
                           transition={{ duration: 0.5 }}
                           whileHover={{ scale: 1.01 }}
+                          onClick={() => handleSectionClick(section.path)}
+                          style={{ cursor: 'pointer' }}
                         >
                           <Typography 
                             variant="body1"
