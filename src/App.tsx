@@ -18,6 +18,7 @@ import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import GoogleAnalytics from './components/GoogleAnalytics';
 import SEO from './components/SEO';
+import TestGA from './pages/TestGA';
 
 const theme = createTheme({
   typography: {
@@ -243,6 +244,7 @@ const App: React.FC = () => {
                     <Route path="/game" element={<SudokuGame />} />
                     <Route path="/cv" element={<CompleteCV />} />
                     <Route path="/contact" element={<ContactMe />} />
+                    <Route path="/test-ga" element={<TestGA />} />
                     <Route path="/professional-summary" element={<ProtectedRoute section="professional-summary"><ProfessionalSummary /></ProtectedRoute>} />
                     <Route path="/education" element={<ProtectedRoute section="education"><Education /></ProtectedRoute>} />
                     <Route path="/work-experience" element={<ProtectedRoute section="work-experience"><WorkExperience /></ProtectedRoute>} />

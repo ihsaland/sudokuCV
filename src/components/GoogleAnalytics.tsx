@@ -37,18 +37,25 @@ export const initGA = () => {
     gtag('js', new Date());
     gtag('config', '${measurementId}', {
       send_page_view: true,
-      debug_mode: true
+      debug_mode: true,
+      cookie_flags: 'SameSite=None;Secure'
     });
   `;
 
   document.head.appendChild(script1);
   document.head.appendChild(script2);
+
+  // Log initialization
+  console.log('Google Analytics scripts added to document head');
 };
 
 // Track page views
 export const trackPageView = (path: string) => {
   const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
-  if (!measurementId) return;
+  if (!measurementId) {
+    console.warn('Cannot track page view: Measurement ID not found');
+    return;
+  }
 
   console.log('Tracking page view:', path);
   window.gtag('config', measurementId, {
@@ -60,7 +67,10 @@ export const trackPageView = (path: string) => {
 // Track events
 export const trackEvent = (action: string, category: string, label: string, value?: number) => {
   const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
-  if (!measurementId) return;
+  if (!measurementId) {
+    console.warn('Cannot track event: Measurement ID not found');
+    return;
+  }
 
   console.log('Tracking event:', { action, category, label, value });
   window.gtag('event', action, {
@@ -76,11 +86,13 @@ const GoogleAnalytics: React.FC = () => {
 
   useEffect(() => {
     // Initialize GA on component mount
+    console.log('GoogleAnalytics component mounted');
     initGA();
   }, []);
 
   useEffect(() => {
     // Track page views on route changes
+    console.log('Location changed:', location.pathname + location.search);
     trackPageView(location.pathname + location.search);
   }, [location]);
 

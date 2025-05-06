@@ -38,6 +38,7 @@ jobs:
           echo "Checking if GA Measurement ID is set..."
           if [ -n "${{ secrets.VITE_GA_MEASUREMENT_ID }}" ]; then
             echo "GA Measurement ID is set"
+            echo "Length of ID: ${#VITE_GA_MEASUREMENT_ID}"
           else
             echo "GA Measurement ID is not set"
           fi
@@ -47,6 +48,7 @@ jobs:
           VITE_GA_MEASUREMENT_ID: ${{ secrets.VITE_GA_MEASUREMENT_ID }}
         run: |
           echo "Building with GA Measurement ID..."
+          echo "VITE_GA_MEASUREMENT_ID length: ${#VITE_GA_MEASUREMENT_ID}"
           npm run build
 
       - name: Setup Pages
