@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useUnlockedSections } from '../context/UnlockedSectionsContext';
 import { cache } from '../utils/cache';
 import { motion, AnimatePresence } from 'framer-motion';
+import { trackEvent } from './GoogleAnalytics';
 
 interface Cell {
   value: number | null;

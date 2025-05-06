@@ -1,5 +1,6 @@
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider, createTheme, CssBaseline, Box } from '@mui/material';
+import { HelmetProvider } from 'react-helmet-async';
 import './App.css';
 import AppBar from './components/AppBar';
 import Footer from './components/Footer';
@@ -15,6 +16,8 @@ import ContactMe from './pages/ContactMe';
 import { UnlockedSectionsProvider } from './context/UnlockedSectionsContext';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import GoogleAnalytics from './components/GoogleAnalytics';
+import SEO from './components/SEO';
 
 const theme = createTheme({
   typography: {
@@ -208,49 +211,53 @@ const theme = createTheme({
 
 const App: React.FC = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <AuthProvider>
-        <UnlockedSectionsProvider>
-          <Router>
-            <Box sx={{ 
-              minHeight: '100vh', 
-              display: 'flex', 
-              flexDirection: 'column',
-              pt: { xs: '56px', sm: '64px' },
-              position: 'relative',
-              width: '100%',
-              overflow: 'hidden'
-            }}>
-              <AppBar />
+    <HelmetProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <AuthProvider>
+          <UnlockedSectionsProvider>
+            <Router>
+              <GoogleAnalytics />
+              <SEO />
               <Box sx={{ 
-                flex: 1,
-                width: '100%',
-                overflow: 'auto',
-                pb: 4,
+                minHeight: '100vh', 
+                display: 'flex', 
+                flexDirection: 'column',
+                pt: { xs: '56px', sm: '64px' },
                 position: 'relative',
-                display: 'flex',
-                flexDirection: 'column'
+                width: '100%',
+                overflow: 'hidden'
               }}>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/game" element={<SudokuGame />} />
-                  <Route path="/cv" element={<CompleteCV />} />
-                  <Route path="/contact" element={<ContactMe />} />
-                  <Route path="/professional-summary" element={<ProtectedRoute section="professional-summary"><ProfessionalSummary /></ProtectedRoute>} />
-                  <Route path="/education" element={<ProtectedRoute section="education"><Education /></ProtectedRoute>} />
-                  <Route path="/work-experience" element={<ProtectedRoute section="work-experience"><WorkExperience /></ProtectedRoute>} />
-                  <Route path="/skills" element={<ProtectedRoute section="skills"><Skills /></ProtectedRoute>} />
-                  <Route path="/projects" element={<ProtectedRoute section="projects"><Projects /></ProtectedRoute>} />
-                  <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
+                <AppBar />
+                <Box sx={{ 
+                  flex: 1,
+                  width: '100%',
+                  overflow: 'auto',
+                  pb: 4,
+                  position: 'relative',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/game" element={<SudokuGame />} />
+                    <Route path="/cv" element={<CompleteCV />} />
+                    <Route path="/contact" element={<ContactMe />} />
+                    <Route path="/professional-summary" element={<ProtectedRoute section="professional-summary"><ProfessionalSummary /></ProtectedRoute>} />
+                    <Route path="/education" element={<ProtectedRoute section="education"><Education /></ProtectedRoute>} />
+                    <Route path="/work-experience" element={<ProtectedRoute section="work-experience"><WorkExperience /></ProtectedRoute>} />
+                    <Route path="/skills" element={<ProtectedRoute section="skills"><Skills /></ProtectedRoute>} />
+                    <Route path="/projects" element={<ProtectedRoute section="projects"><Projects /></ProtectedRoute>} />
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                  </Routes>
+                </Box>
+                <Footer />
               </Box>
-              <Footer />
-            </Box>
-          </Router>
-        </UnlockedSectionsProvider>
-      </AuthProvider>
-    </ThemeProvider>
+            </Router>
+          </UnlockedSectionsProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </HelmetProvider>
   );
 };
 
