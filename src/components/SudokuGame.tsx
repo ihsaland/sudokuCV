@@ -269,7 +269,7 @@ const SudokuGame: React.FC = () => {
           isComplete: true
         }));
 
-        // Unlock sections based on current puzzle and difficulty
+        // Unlock sections based on current difficulty
         if (gameState.difficulty === 'easy') {
           unlockSection('professional-summary');
           unlockSection('education');
@@ -285,6 +285,9 @@ const SudokuGame: React.FC = () => {
         const currentIndex = difficultyOrder.indexOf(gameState.difficulty);
         if (currentIndex < difficultyOrder.length - 1) {
           const nextDifficulty = difficultyOrder[currentIndex + 1];
+          // Update current puzzle number
+          setCurrentPuzzle(currentIndex + 2);
+          // Set new difficulty after a short delay
           setTimeout(() => {
             setDifficulty(nextDifficulty);
           }, 2000);
@@ -300,10 +303,10 @@ const SudokuGame: React.FC = () => {
   };
 
   const handleNextPuzzle = () => {
-    if (currentPuzzle < 5) {
-      const nextPuzzle = currentPuzzle + 1;
-      setCurrentPuzzle(nextPuzzle);
-      const nextDifficulty = difficultyOrder[nextPuzzle - 1];
+    const currentIndex = difficultyOrder.indexOf(gameState.difficulty);
+    if (currentIndex < difficultyOrder.length - 1) {
+      const nextDifficulty = difficultyOrder[currentIndex + 1];
+      setCurrentPuzzle(currentIndex + 2);
       setDifficulty(nextDifficulty);
     } else {
       navigate('/cv');
