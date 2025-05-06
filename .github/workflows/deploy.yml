@@ -33,10 +33,21 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      - name: Debug Environment
+        run: |
+          echo "Checking if GA Measurement ID is set..."
+          if [ -n "${{ secrets.VITE_GA_MEASUREMENT_ID }}" ]; then
+            echo "GA Measurement ID is set"
+          else
+            echo "GA Measurement ID is not set"
+          fi
+
       - name: Build
         env:
           VITE_GA_MEASUREMENT_ID: ${{ secrets.VITE_GA_MEASUREMENT_ID }}
-        run: npm run build
+        run: |
+          echo "Building with GA Measurement ID..."
+          npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

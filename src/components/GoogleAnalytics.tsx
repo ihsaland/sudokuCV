@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 declare global {
   interface Window {
     gtag: (...args: any[]) => void;
+    dataLayer: any[];
   }
 }
 
@@ -15,6 +16,16 @@ export const initGA = () => {
     return;
   }
 
+  console.log('Initializing Google Analytics with ID:', measurementId);
+
+  // Initialize dataLayer
+  window.dataLayer = window.dataLayer || [];
+  function gtag(...args: any[]) {
+    window.dataLayer.push(arguments);
+  }
+  window.gtag = gtag;
+
+  // Add GA script
   const script1 = document.createElement('script');
   script1.async = true;
   script1.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
@@ -24,7 +35,10 @@ export const initGA = () => {
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', '${measurementId}');
+    gtag('config', '${measurementId}', {
+      send_page_view: true,
+      debug_mode: true
+    });
   `;
 
   document.head.appendChild(script1);
@@ -36,8 +50,10 @@ export const trackPageView = (path: string) => {
   const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
   if (!measurementId) return;
 
+  console.log('Tracking page view:', path);
   window.gtag('config', measurementId, {
     page_path: path,
+    debug_mode: true
   });
 };
 
@@ -46,10 +62,12 @@ export const trackEvent = (action: string, category: string, label: string, valu
   const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
   if (!measurementId) return;
 
+  console.log('Tracking event:', { action, category, label, value });
   window.gtag('event', action, {
     event_category: category,
     event_label: label,
     value: value,
+    debug_mode: true
   });
 };
 
