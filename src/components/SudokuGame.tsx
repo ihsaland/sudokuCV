@@ -19,12 +19,11 @@ type Board = Cell[][];
 type Difficulty = 'easy' | 'medium' | 'hard' | 'expert';
 
 interface GameState {
-  board: Board;
-  solution: Board;
+  board: Cell[][];
+  solution: Cell[][];
   selectedCell: { row: number; col: number } | null;
-  mistakes: number;
-  difficulty: Difficulty;
   isComplete: boolean;
+  difficulty: Difficulty;
 }
 
 const difficultyOrder: Difficulty[] = ['easy', 'medium', 'hard', 'expert'];
@@ -150,18 +149,13 @@ const createEmptyBoard = (): Board => {
 const SudokuGame: React.FC = () => {
   const { unlockSection } = useUnlockedSections();
   const [gameState, setGameState] = useState<GameState>(() => {
-    const cached = cache.get<GameState>(CACHE_KEY);
-    if (cached) {
-      return cached;
-    }
     const emptyBoard = createEmptyBoard();
     return {
       board: emptyBoard,
       solution: createEmptyBoard(),
       selectedCell: null,
-      mistakes: 0,
-      difficulty: 'easy',
-      isComplete: false
+      isComplete: false,
+      difficulty: 'easy'
     };
   });
 
@@ -264,6 +258,9 @@ const SudokuGame: React.FC = () => {
       );
 
       if (isCorrect && !gameState.isComplete) {
+        // Track puzzle completion
+        trackEvent('puzzle_complete', 'game', gameState.difficulty, currentPuzzle);
+
         // Set completion state
         setGameState(prev => ({
           ...prev,
@@ -274,12 +271,16 @@ const SudokuGame: React.FC = () => {
         if (gameState.difficulty === 'easy') {
           unlockSection('professional-summary');
           unlockSection('education');
+          trackEvent('section_unlock', 'cv', 'professional-summary,education', 1);
         } else if (gameState.difficulty === 'medium') {
           unlockSection('work-experience');
+          trackEvent('section_unlock', 'cv', 'work-experience', 2);
         } else if (gameState.difficulty === 'hard') {
           unlockSection('skills');
+          trackEvent('section_unlock', 'cv', 'skills', 3);
         } else if (gameState.difficulty === 'expert') {
           unlockSection('projects');
+          trackEvent('section_unlock', 'cv', 'projects', 4);
         }
 
         // Progress to next difficulty level
@@ -288,17 +289,13 @@ const SudokuGame: React.FC = () => {
           const nextDifficulty = difficultyOrder[currentIndex + 1];
           // Update current puzzle number
           setCurrentPuzzle(currentIndex + 2);
+          // Track difficulty change
+          trackEvent('difficulty_change', 'game', nextDifficulty, currentIndex + 2);
           // Set new difficulty after a short delay
           setTimeout(() => {
             setDifficulty(nextDifficulty);
           }, 2000);
         }
-      } else if (!isCorrect) {
-        // If the solution is incorrect, show an error message
-        setGameState(prev => ({
-          ...prev,
-          mistakes: prev.mistakes + 1
-        }));
       }
     }
   };
@@ -325,7 +322,6 @@ const SudokuGame: React.FC = () => {
       solution,
       difficulty,
       selectedCell: null,
-      mistakes: 0,
       isComplete: false
     }));
   };
@@ -391,7 +387,6 @@ const SudokuGame: React.FC = () => {
       solution,
       difficulty,
       selectedCell: null,
-      mistakes: 0,
       isComplete: false
     });
   };
@@ -522,9 +517,6 @@ const SudokuGame: React.FC = () => {
               <Box sx={{ mb: 2 }}>
                 <Typography variant="body1" sx={{ color: '#ffffff', fontSize: { xs: '0.875rem', sm: '1rem' } }}>
                   Difficulty: {gameState.difficulty.charAt(0).toUpperCase() + gameState.difficulty.slice(1)}
-                </Typography>
-                <Typography variant="body1" sx={{ color: '#ffffff', fontSize: { xs: '0.875rem', sm: '1rem' } }}>
-                  Mistakes: {gameState.mistakes}
                 </Typography>
               </Box>
 
