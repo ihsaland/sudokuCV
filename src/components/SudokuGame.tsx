@@ -404,7 +404,7 @@ const SudokuGame: React.FC = () => {
       transition: 'background 0.5s ease-in-out',
       width: '100%',
       maxWidth: '100vw',
-      overflow: 'hidden'
+      overflow: 'auto'
     }}>
       {gameState.isComplete && (
         <Box
@@ -483,16 +483,14 @@ const SudokuGame: React.FC = () => {
       >
         <Box
           sx={{
-            minHeight: '100vh',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
             position: 'relative',
-            overflow: 'hidden',
-            p: { xs: 1, sm: 3 },
             width: '100%',
-            maxWidth: '100%'
+            maxWidth: '100%',
+            pb: 4
           }}
         >
           <motion.div
