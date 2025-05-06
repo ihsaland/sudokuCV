@@ -24,7 +24,6 @@ interface GameState {
   mistakes: number;
   difficulty: Difficulty;
   isComplete: boolean;
-  unlockedSections: number[];
 }
 
 const difficultyOrder: Difficulty[] = ['easy', 'medium', 'hard', 'expert'];
@@ -161,8 +160,7 @@ const SudokuGame: React.FC = () => {
       selectedCell: null,
       mistakes: 0,
       difficulty: 'easy',
-      isComplete: false,
-      unlockedSections: []
+      isComplete: false
     };
   });
 
@@ -271,23 +269,16 @@ const SudokuGame: React.FC = () => {
           isComplete: true
         }));
 
-        // Unlock sections based on current puzzle
-        switch (currentPuzzle) {
-          case 1:
-            unlockSection('professional-summary');
-            unlockSection('education');
-            break;
-          case 2:
-            unlockSection('work-experience');
-            break;
-          case 3:
-            unlockSection('skills');
-            break;
-          case 4:
-            unlockSection('projects');
-            break;
-          default:
-            break;
+        // Unlock sections based on current puzzle and difficulty
+        if (gameState.difficulty === 'easy') {
+          unlockSection('professional-summary');
+          unlockSection('education');
+        } else if (gameState.difficulty === 'medium') {
+          unlockSection('work-experience');
+        } else if (gameState.difficulty === 'hard') {
+          unlockSection('skills');
+        } else if (gameState.difficulty === 'expert') {
+          unlockSection('projects');
         }
 
         // Progress to next difficulty level
@@ -397,8 +388,7 @@ const SudokuGame: React.FC = () => {
       difficulty,
       selectedCell: null,
       mistakes: 0,
-      isComplete: false,
-      unlockedSections: gameState.unlockedSections
+      isComplete: false
     });
   };
 
@@ -410,9 +400,12 @@ const SudokuGame: React.FC = () => {
       gap: 2,
       position: 'relative',
       minHeight: '100vh',
-      padding: 4,
+      padding: { xs: 2, sm: 4 },
       background: 'none',
-      transition: 'background 0.5s ease-in-out'
+      transition: 'background 0.5s ease-in-out',
+      width: '100%',
+      maxWidth: '100vw',
+      overflow: 'hidden'
     }}>
       {gameState.isComplete && (
         <Box
@@ -434,14 +427,14 @@ const SudokuGame: React.FC = () => {
           <Paper
             elevation={24}
             sx={{
-              p: 4,
+              p: { xs: 2, sm: 4 },
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               backgroundColor: 'rgba(255, 255, 255, 0.95)',
               borderRadius: 2,
               maxWidth: '90%',
-              width: '400px'
+              width: { xs: '90%', sm: '400px' }
             }}
           >
             <Typography 
@@ -451,7 +444,8 @@ const SudokuGame: React.FC = () => {
                 textAlign: 'center',
                 mb: 2,
                 fontWeight: 600,
-                animation: 'pulse 1s infinite'
+                animation: 'pulse 1s infinite',
+                fontSize: { xs: '1.5rem', sm: '2rem' }
               }}
             >
               Puzzle Complete
@@ -461,15 +455,16 @@ const SudokuGame: React.FC = () => {
               sx={{ 
                 color: 'text.secondary',
                 textAlign: 'center',
-                mb: 4
+                mb: 4,
+                fontSize: { xs: '1rem', sm: '1.25rem' }
               }}
             >
               Unlocking new sections...
             </Typography>
             <Box
               sx={{
-                width: 60,
-                height: 60,
+                width: { xs: 40, sm: 60 },
+                height: { xs: 40, sm: 60 },
                 borderRadius: '50%',
                 border: '3px solid',
                 borderColor: 'primary.main',
@@ -485,6 +480,7 @@ const SudokuGame: React.FC = () => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
+        style={{ width: '100%', maxWidth: '100%' }}
       >
         <Box
           sx={{
@@ -495,24 +491,28 @@ const SudokuGame: React.FC = () => {
             justifyContent: 'center',
             position: 'relative',
             overflow: 'hidden',
-            p: 3,
+            p: { xs: 1, sm: 3 },
+            width: '100%',
+            maxWidth: '100%'
           }}
         >
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
+            style={{ width: '100%', maxWidth: '100%' }}
           >
             <Paper
               elevation={3}
               sx={{
-                p: { xs: 2, sm: 3 },
+                p: { xs: 1, sm: 3 },
                 backgroundColor: 'rgba(255, 255, 255, 0.1)',
                 backdropFilter: 'blur(5px)',
                 border: '0.5px solid #ffffff',
                 borderRadius: '8px',
                 maxWidth: { xs: '100%', sm: '600px' },
                 margin: '0 auto',
+                width: '100%'
               }}
             >
               <Box sx={{ mb: 2 }}>
@@ -529,15 +529,16 @@ const SudokuGame: React.FC = () => {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: { xs: 2, sm: 3 },
+                  gap: { xs: 1, sm: 3 },
                   maxWidth: '600px',
                   margin: '0 auto',
                   backgroundColor: 'transparent',
+                  width: '100%'
                 }}
               >
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <Paper elevation={3} sx={{ p: { xs: 1, sm: 2 }, maxWidth: '600px', margin: '0 auto' }}>
+                    <Paper elevation={3} sx={{ p: { xs: 0.5, sm: 2 }, maxWidth: '600px', margin: '0 auto', width: '100%' }}>
                       <Box
                         sx={{
                           display: 'grid',
@@ -554,6 +555,8 @@ const SudokuGame: React.FC = () => {
                           '& > div:nth-child(n+19):nth-child(-n+27), & > div:nth-child(n+46):nth-child(-n+54)': {
                             borderBottom: '2px solid #000',
                           },
+                          width: '100%',
+                          aspectRatio: '1'
                         }}
                       >
                         {gameState.board.map((row, rowIndex) => (
@@ -581,7 +584,7 @@ const SudokuGame: React.FC = () => {
                                   fontWeight: 'bold',
                                   color: cell.isFixed ? 'text.primary' : 'primary.main',
                                   opacity: cell.value ? 1 : 0,
-                                  fontSize: { xs: '0.875rem', sm: '1.25rem' },
+                                  fontSize: { xs: '0.75rem', sm: '1.25rem' },
                                 }}
                               >
                                 {cell.value}

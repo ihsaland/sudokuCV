@@ -218,15 +218,19 @@ const App: React.FC = () => {
               display: 'flex', 
               flexDirection: 'column',
               pt: { xs: '56px', sm: '64px' },
-              overflow: 'auto',
-              position: 'relative'
+              position: 'relative',
+              width: '100%',
+              overflow: 'hidden'
             }}>
               <AppBar />
               <Box sx={{ 
                 flex: 1,
                 width: '100%',
                 overflow: 'auto',
-                pb: 4
+                pb: 4,
+                position: 'relative',
+                display: 'flex',
+                flexDirection: 'column'
               }}>
                 <Routes>
                   <Route path="/" element={<Home />} />
