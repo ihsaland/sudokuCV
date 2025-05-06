@@ -50,6 +50,10 @@ const SEO: React.FC<SEOProps> = ({
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
+      <meta name="author" content="Ian Salandy" />
+      <meta name="robots" content="index, follow" />
+      <meta name="language" content="English" />
+      <meta name="revisit-after" content="7 days" />
 
       {/* Open Graph Meta Tags */}
       <meta property="og:title" content={title} />
@@ -57,17 +61,21 @@ const SEO: React.FC<SEOProps> = ({
       <meta property="og:type" content={type} />
       <meta property="og:url" content={url} />
       <meta property="og:image" content={image} />
+      <meta property="og:site_name" content="Sudoku CV" />
+      <meta property="og:locale" content="en_US" />
 
       {/* Twitter Card Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
+      <meta name="twitter:creator" content="@ihsaland" />
 
       {/* Additional Meta Tags */}
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="theme-color" content="#000000" />
       <link rel="canonical" href={url} />
+      <link rel="alternate" href={url} hrefLang="en" />
 
       {/* Structured Data */}
       <script type="application/ld+json">
