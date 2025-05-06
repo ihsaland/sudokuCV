@@ -264,13 +264,14 @@ const SudokuGame: React.FC = () => {
         })
       );
 
-      if (isCorrect) {
+      if (isCorrect && !gameState.isComplete) {
+        // Set completion state
         setGameState(prev => ({
           ...prev,
           isComplete: true
         }));
 
-        // Unlock the corresponding CV section based on the current puzzle
+        // Unlock sections based on current puzzle
         switch (currentPuzzle) {
           case 1:
             unlockSection('professional-summary');
@@ -295,9 +296,9 @@ const SudokuGame: React.FC = () => {
           const nextDifficulty = difficultyOrder[currentIndex + 1];
           setTimeout(() => {
             setDifficulty(nextDifficulty);
-          }, 2000); // Wait 2 seconds before starting next level
+          }, 2000);
         }
-      } else {
+      } else if (!isCorrect) {
         // If the solution is incorrect, show an error message
         setGameState(prev => ({
           ...prev,
@@ -307,25 +308,36 @@ const SudokuGame: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    checkCompletion();
-  }, [gameState.board]);
+  const handleNextPuzzle = () => {
+    if (currentPuzzle < 5) {
+      const nextPuzzle = currentPuzzle + 1;
+      setCurrentPuzzle(nextPuzzle);
+      const nextDifficulty = difficultyOrder[nextPuzzle - 1];
+      setDifficulty(nextDifficulty);
+    } else {
+      navigate('/cv');
+    }
+  };
 
-  const startNewGame = (difficulty: Difficulty) => {
+  const setDifficulty = (difficulty: 'easy' | 'medium' | 'hard' | 'expert'): void => {
     const board = generatePuzzle(difficulty);
     const solution = JSON.parse(JSON.stringify(board));
     solveSudoku(solution);
     
-    setGameState({
+    setGameState(prev => ({
+      ...prev,
       board,
       solution,
       difficulty,
       selectedCell: null,
       mistakes: 0,
-      isComplete: false,
-      unlockedSections: gameState.unlockedSections
-    });
+      isComplete: false
+    }));
   };
+
+  useEffect(() => {
+    checkCompletion();
+  }, [gameState.board]);
 
   // Add keyboard event handler
   useEffect(() => {
@@ -374,58 +386,20 @@ const SudokuGame: React.FC = () => {
     return getCellHighlight(row, col);
   };
 
-  const handlePuzzleComplete = () => {
-    setGameState(prev => ({
-      ...prev,
-      isComplete: true
-    }));
-
-    // Unlock sections based on difficulty
-    if (gameState.difficulty === 'easy') {
-      unlockSection('professional-summary');
-      unlockSection('education');
-    } else if (gameState.difficulty === 'medium') {
-      unlockSection('work-experience');
-    } else if (gameState.difficulty === 'hard') {
-      unlockSection('skills');
-    } else if (gameState.difficulty === 'expert') {
-      unlockSection('projects');
-    }
-
-    // Progress to next difficulty level
-    const currentDifficultyIndex = difficultyOrder.indexOf(gameState.difficulty);
-    if (currentDifficultyIndex < difficultyOrder.length - 1) {
-      const nextDifficulty = difficultyOrder[currentDifficultyIndex + 1];
-      setTimeout(() => {
-        setDifficulty(nextDifficulty);
-      }, 2000);
-    }
-  };
-
-  const handleNextPuzzle = () => {
-    if (currentPuzzle < 5) {
-      setCurrentPuzzle(currentPuzzle + 1);
-      setGameState(prev => ({
-        ...prev,
-        isComplete: false
-      }));
-    } else {
-      navigate('/cv');
-    }
-  };
-
-  const setDifficulty = (difficulty: 'easy' | 'medium' | 'hard' | 'expert'): void => {
-    setGameState(prev => ({
-      ...prev,
+  const startNewGame = (difficulty: Difficulty) => {
+    const board = generatePuzzle(difficulty);
+    const solution = JSON.parse(JSON.stringify(board));
+    solveSudoku(solution);
+    
+    setGameState({
+      board,
+      solution,
       difficulty,
-      board: createEmptyBoard(),
-      solution: createEmptyBoard(),
       selectedCell: null,
       mistakes: 0,
       isComplete: false,
-      unlockedSections: prev.unlockedSections
-    }));
-    startNewGame(difficulty);
+      unlockedSections: gameState.unlockedSections
+    });
   };
 
   return (
@@ -697,18 +671,6 @@ const SudokuGame: React.FC = () => {
                   width: '100%',
                   justifyContent: 'center',
                 }}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handlePuzzleComplete}
-                    disabled={gameState.isComplete}
-                    sx={{ 
-                      width: { xs: '100%', sm: 'auto' },
-                      fontSize: { xs: '0.875rem', sm: '1rem' },
-                    }}
-                  >
-                    Complete Puzzle
-                  </Button>
                   {gameState.isComplete && (
                     <Button
                       variant="contained"

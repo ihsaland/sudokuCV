@@ -111,7 +111,6 @@ const theme = createTheme({
         },
         body: {
           height: '100%',
-          overflow: 'hidden',
           fontFamily: 'DS-DIGII !important',
           fontSize: '1rem',
           fontWeight: 700,
@@ -119,6 +118,8 @@ const theme = createTheme({
         },
         '#root': {
           height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
         },
         '& *': {
           fontFamily: 'DS-DIGII !important',
@@ -217,10 +218,16 @@ const App: React.FC = () => {
               display: 'flex', 
               flexDirection: 'column',
               pt: { xs: '56px', sm: '64px' },
-              overflow: 'auto'
+              overflow: 'auto',
+              position: 'relative'
             }}>
               <AppBar />
-              <Box sx={{ flex: 1 }}>
+              <Box sx={{ 
+                flex: 1,
+                width: '100%',
+                overflow: 'auto',
+                pb: 4
+              }}>
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/game" element={<SudokuGame />} />
