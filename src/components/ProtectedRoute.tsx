@@ -8,12 +8,17 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, section }) => {
-  const { unlockedSections } = useUnlockedSections();
+  const { isSectionUnlocked } = useUnlockedSections();
+  const isUnlocked = isSectionUnlocked(section);
 
-  if (!unlockedSections.includes(section)) {
+  console.log(`Checking access to section: ${section}, unlocked: ${isUnlocked}`);
+
+  if (!isUnlocked) {
+    console.log(`Access denied to section: ${section}, redirecting to game`);
     return <Navigate to="/game" replace />;
   }
 
+  console.log(`Access granted to section: ${section}`);
   return (
     <div style={{ 
       width: '100%', 

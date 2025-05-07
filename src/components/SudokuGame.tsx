@@ -171,11 +171,6 @@ const SudokuGame: React.FC = () => {
     return generateValidPuzzle(difficulty);
   };
 
-  // Start with an easy puzzle when component mounts
-  useEffect(() => {
-    startNewGame('easy');
-  }, []);
-
   const handleCellClick = (row: number, col: number) => {
     if (!gameState.board[row][col].isFixed) {
       setGameState(prev => ({
@@ -323,6 +318,7 @@ const SudokuGame: React.FC = () => {
   };
 
   const setDifficulty = (difficulty: Difficulty): void => {
+    console.log('Setting new difficulty:', difficulty);
     const board = generatePuzzle(difficulty);
     const solution = JSON.parse(JSON.stringify(board));
     solveSudoku(solution);
@@ -392,6 +388,7 @@ const SudokuGame: React.FC = () => {
   };
 
   const startNewGame = (difficulty: Difficulty) => {
+    console.log('Starting new game with difficulty:', difficulty);
     const board = generatePuzzle(difficulty);
     const solution = JSON.parse(JSON.stringify(board));
     solveSudoku(solution);
@@ -404,6 +401,12 @@ const SudokuGame: React.FC = () => {
       isComplete: false
     });
   };
+
+  // Start with an easy puzzle when component mounts
+  useEffect(() => {
+    console.log('Component mounted, starting with easy difficulty');
+    startNewGame('easy');
+  }, []);
 
   return (
     <Box sx={{ 
