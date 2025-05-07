@@ -242,6 +242,7 @@ const SudokuGame: React.FC = () => {
     );
 
     if (isComplete) {
+      console.log('All cells filled, checking solution...');
       // Verify the solution is correct
       const isCorrect = gameState.board.every((row, rowIndex) => 
         row.every((cell, colIndex) => {
@@ -257,7 +258,12 @@ const SudokuGame: React.FC = () => {
         })
       );
 
+      console.log('Solution check result:', isCorrect);
+      console.log('Current difficulty:', gameState.difficulty);
+      console.log('Current completion state:', gameState.isComplete);
+
       if (isCorrect && !gameState.isComplete) {
+        console.log('Puzzle completed correctly, unlocking sections...');
         // Track puzzle completion
         trackEvent('puzzle_complete', 'game', gameState.difficulty, currentPuzzle);
 
@@ -269,16 +275,20 @@ const SudokuGame: React.FC = () => {
 
         // Unlock sections based on current difficulty
         if (gameState.difficulty === 'easy') {
+          console.log('Unlocking easy sections...');
           unlockSection('professional-summary');
           unlockSection('education');
           trackEvent('section_unlock', 'cv', 'professional-summary,education', 1);
         } else if (gameState.difficulty === 'medium') {
+          console.log('Unlocking medium sections...');
           unlockSection('work-experience');
           trackEvent('section_unlock', 'cv', 'work-experience', 2);
         } else if (gameState.difficulty === 'hard') {
+          console.log('Unlocking hard sections...');
           unlockSection('skills');
           trackEvent('section_unlock', 'cv', 'skills', 3);
         } else if (gameState.difficulty === 'expert') {
+          console.log('Unlocking expert sections...');
           unlockSection('projects');
           trackEvent('section_unlock', 'cv', 'projects', 4);
         }
@@ -287,6 +297,7 @@ const SudokuGame: React.FC = () => {
         const currentIndex = difficultyOrder.indexOf(gameState.difficulty);
         if (currentIndex < difficultyOrder.length - 1) {
           const nextDifficulty = difficultyOrder[currentIndex + 1];
+          console.log('Progressing to next difficulty:', nextDifficulty);
           // Update current puzzle number
           setCurrentPuzzle(currentIndex + 2);
           // Track difficulty change
@@ -311,7 +322,7 @@ const SudokuGame: React.FC = () => {
     }
   };
 
-  const setDifficulty = (difficulty: 'easy' | 'medium' | 'hard' | 'expert'): void => {
+  const setDifficulty = (difficulty: Difficulty): void => {
     const board = generatePuzzle(difficulty);
     const solution = JSON.parse(JSON.stringify(board));
     solveSudoku(solution);
@@ -324,6 +335,9 @@ const SudokuGame: React.FC = () => {
       selectedCell: null,
       isComplete: false
     }));
+
+    // Clear history when starting a new puzzle
+    setHistory([]);
   };
 
   useEffect(() => {
