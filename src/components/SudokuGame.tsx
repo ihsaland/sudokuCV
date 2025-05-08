@@ -7,6 +7,7 @@ import { useUnlockedSections } from '../context/UnlockedSectionsContext';
 import { cache } from '../utils/cache';
 import { motion, AnimatePresence } from 'framer-motion';
 import { trackEvent } from './GoogleAnalytics';
+import AIHint from './AIHint';
 
 interface Cell {
   value: number | null;
@@ -262,12 +263,6 @@ const SudokuGame: React.FC = () => {
         // Track puzzle completion
         trackEvent('puzzle_complete', 'game', gameState.difficulty, currentPuzzle);
 
-        // Set completion state
-        setGameState(prev => ({
-          ...prev,
-          isComplete: true
-        }));
-
         // Unlock sections based on current difficulty
         if (gameState.difficulty === 'easy') {
           console.log('Unlocking easy sections...');
@@ -293,14 +288,35 @@ const SudokuGame: React.FC = () => {
         if (currentIndex < difficultyOrder.length - 1) {
           const nextDifficulty = difficultyOrder[currentIndex + 1];
           console.log('Progressing to next difficulty:', nextDifficulty);
+          
           // Update current puzzle number
           setCurrentPuzzle(currentIndex + 2);
+          
           // Track difficulty change
           trackEvent('difficulty_change', 'game', nextDifficulty, currentIndex + 2);
-          // Set new difficulty after a short delay
-          setTimeout(() => {
-            setDifficulty(nextDifficulty);
-          }, 2000);
+          
+          // Set completion state and new difficulty immediately
+          setGameState(prev => ({
+            ...prev,
+            isComplete: true,
+            difficulty: nextDifficulty,
+            board: generatePuzzle(nextDifficulty),
+            solution: (() => {
+              const solution = JSON.parse(JSON.stringify(generatePuzzle(nextDifficulty)));
+              solveSudoku(solution);
+              return solution;
+            })(),
+            selectedCell: null
+          }));
+
+          // Clear history for the new puzzle
+          setHistory([]);
+        } else {
+          // If we're at the last difficulty, just set completion state
+          setGameState(prev => ({
+            ...prev,
+            isComplete: true
+          }));
         }
       }
     }
@@ -704,6 +720,15 @@ const SudokuGame: React.FC = () => {
           </motion.div>
         </Box>
       </motion.div>
+      <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Typography variant="h6">
+          Difficulty: {gameState.difficulty.charAt(0).toUpperCase() + gameState.difficulty.slice(1)}
+        </Typography>
+        <AIHint 
+          board={gameState.board.map(row => row.map(cell => cell.value || 0))} 
+          difficulty={gameState.difficulty} 
+        />
+      </Box>
     </Box>
   );
 };
