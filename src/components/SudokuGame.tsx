@@ -7,7 +7,6 @@ import { useUnlockedSections } from '../context/UnlockedSectionsContext';
 import { cache } from '../utils/cache';
 import { motion, AnimatePresence } from 'framer-motion';
 import { trackEvent } from './GoogleAnalytics';
-import AIHint from './AIHint';
 
 interface Cell {
   value: number | null;
@@ -150,23 +149,37 @@ const createEmptyBoard = (): Board => {
 const SudokuGame: React.FC = () => {
   const { unlockSection } = useUnlockedSections();
   const [gameState, setGameState] = useState<GameState>(() => {
+    // Try to load cached state first
+    const cachedState = cache.get(CACHE_KEY);
+    if (cachedState) {
+      console.log('Loading cached game state:', cachedState);
+      return cachedState;
+    }
+    
+    // Initialize with empty board if no cache
+    console.log('Initializing new game state');
     const emptyBoard = createEmptyBoard();
     return {
       board: emptyBoard,
-      solution: createEmptyBoard(),
+      solution: emptyBoard,
       selectedCell: null,
       isComplete: false,
-      difficulty: 'easy'
+      difficulty: 'easy' as Difficulty
     };
   });
 
   const [history, setHistory] = useState<Board[]>([]);
   const navigate = useNavigate();
   const [currentPuzzle, setCurrentPuzzle] = useState<number>(1);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
+  // Cache game state changes
   useEffect(() => {
-    cache.set(CACHE_KEY, gameState);
-  }, [gameState]);
+    if (!isTransitioning) {
+      console.log('Caching game state:', gameState);
+      cache.set(CACHE_KEY, gameState);
+    }
+  }, [gameState, isTransitioning]);
 
   const generatePuzzle = (difficulty: Difficulty): Board => {
     return generateValidPuzzle(difficulty);
@@ -231,7 +244,64 @@ const SudokuGame: React.FC = () => {
     }));
   };
 
+  const progressToNextDifficulty = (currentDifficulty: Difficulty) => {
+    const currentIndex = difficultyOrder.indexOf(currentDifficulty);
+    if (currentIndex < difficultyOrder.length - 1) {
+      const nextDifficulty = difficultyOrder[currentIndex + 1];
+      console.log('Progressing to next difficulty:', nextDifficulty);
+      
+      // Generate new puzzle for next difficulty
+      const newBoard = generatePuzzle(nextDifficulty);
+      const newSolution = JSON.parse(JSON.stringify(newBoard));
+      solveSudoku(newSolution);
+      
+      // Update current puzzle number
+      const nextPuzzleNumber = currentIndex + 2;
+      console.log('Setting next puzzle number:', nextPuzzleNumber);
+      setCurrentPuzzle(nextPuzzleNumber);
+      
+      // Track difficulty change
+      trackEvent('difficulty_change', 'game', nextDifficulty, nextPuzzleNumber);
+      
+      // Set transitioning state
+      setIsTransitioning(true);
+      
+      // Update game state with new difficulty and puzzle
+      setGameState(prev => ({
+        ...prev,
+        isComplete: true,
+        difficulty: nextDifficulty,
+        board: newBoard,
+        solution: newSolution,
+        selectedCell: null
+      }));
+
+      // Clear history for the new puzzle
+      setHistory([]);
+      
+      // Cache the new game state
+      const newGameState = {
+        board: newBoard,
+        solution: newSolution,
+        selectedCell: null,
+        isComplete: true,
+        difficulty: nextDifficulty
+      };
+      cache.set(CACHE_KEY, newGameState);
+      
+      // Reset transitioning state after a short delay
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 1000);
+      
+      return true;
+    }
+    return false;
+  };
+
   const checkCompletion = () => {
+    if (isTransitioning) return;
+
     // First check if all cells are filled
     const isComplete = gameState.board.every(row => 
       row.every(cell => cell.value !== null)
@@ -260,6 +330,7 @@ const SudokuGame: React.FC = () => {
 
       if (isCorrect && !gameState.isComplete) {
         console.log('Puzzle completed correctly, unlocking sections...');
+        
         // Track puzzle completion
         trackEvent('puzzle_complete', 'game', gameState.difficulty, currentPuzzle);
 
@@ -283,36 +354,12 @@ const SudokuGame: React.FC = () => {
           trackEvent('section_unlock', 'cv', 'projects', 4);
         }
 
-        // Progress to next difficulty level
-        const currentIndex = difficultyOrder.indexOf(gameState.difficulty);
-        if (currentIndex < difficultyOrder.length - 1) {
-          const nextDifficulty = difficultyOrder[currentIndex + 1];
-          console.log('Progressing to next difficulty:', nextDifficulty);
-          
-          // Update current puzzle number
-          setCurrentPuzzle(currentIndex + 2);
-          
-          // Track difficulty change
-          trackEvent('difficulty_change', 'game', nextDifficulty, currentIndex + 2);
-          
-          // Set completion state and new difficulty immediately
-          setGameState(prev => ({
-            ...prev,
-            isComplete: true,
-            difficulty: nextDifficulty,
-            board: generatePuzzle(nextDifficulty),
-            solution: (() => {
-              const solution = JSON.parse(JSON.stringify(generatePuzzle(nextDifficulty)));
-              solveSudoku(solution);
-              return solution;
-            })(),
-            selectedCell: null
-          }));
-
-          // Clear history for the new puzzle
-          setHistory([]);
-        } else {
+        // Try to progress to next difficulty
+        const hasProgressed = progressToNextDifficulty(gameState.difficulty);
+        
+        if (!hasProgressed) {
           // If we're at the last difficulty, just set completion state
+          console.log('Reached final difficulty level');
           setGameState(prev => ({
             ...prev,
             isComplete: true
@@ -724,10 +771,6 @@ const SudokuGame: React.FC = () => {
         <Typography variant="h6">
           Difficulty: {gameState.difficulty.charAt(0).toUpperCase() + gameState.difficulty.slice(1)}
         </Typography>
-        <AIHint 
-          board={gameState.board.map(row => row.map(cell => cell.value || 0))} 
-          difficulty={gameState.difficulty} 
-        />
       </Box>
     </Box>
   );

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Typography, TextField, Button } from '@mui/material';
-import AICVAssistant from './AICVAssistant';
 
 interface Experience {
   company: string;
@@ -28,12 +27,6 @@ const WorkExperience: React.FC = () => {
         description: ''
       });
     }
-  };
-
-  const getFullContent = () => {
-    return experiences.map(exp => 
-      `${exp.position} at ${exp.company} (${exp.duration})\n${exp.description}`
-    ).join('\n\n');
   };
 
   return (
@@ -104,10 +97,6 @@ const WorkExperience: React.FC = () => {
           Add Experience
         </Button>
       </Box>
-
-      {experiences.length > 0 && (
-        <AICVAssistant cvContent={getFullContent()} />
-      )}
     </Box>
   );
 };
