@@ -195,7 +195,7 @@ const SudokuGame: React.FC = () => {
   useEffect(() => {
     if (!isTransitioning) {
       console.log('Caching game state:', gameState);
-      cache.set(CACHE_KEY, gameState);
+    cache.set(CACHE_KEY, gameState);
     }
   }, [gameState, isTransitioning]);
 
@@ -434,7 +434,7 @@ const SudokuGame: React.FC = () => {
 
       if (isCorrect && !gameState.isComplete) {
         console.log('Puzzle completed correctly, unlocking sections...');
-        
+
         // Track puzzle completion
         trackEvent('puzzle_complete', 'game', gameState.difficulty, currentPuzzle);
 
@@ -442,30 +442,30 @@ const SudokuGame: React.FC = () => {
         switch (gameState.difficulty) {
           case 'easy':
             console.log('Unlocking professional summary...');
-            unlockSection('professional-summary');
+              unlockSection('professional-summary');
             trackEvent('section_unlock', 'cv', 'professional-summary', 1);
-            break;
+              break;
           case 'medium':
             console.log('Unlocking education...');
-            unlockSection('education');
+              unlockSection('education');
             trackEvent('section_unlock', 'cv', 'education', 2);
-            break;
+              break;
           case 'hard':
             console.log('Unlocking work experience...');
-            unlockSection('work-experience');
+              unlockSection('work-experience');
             trackEvent('section_unlock', 'cv', 'work-experience', 3);
-            break;
+              break;
           case 'advanced':
             console.log('Unlocking skills...');
-            unlockSection('skills');
+              unlockSection('skills');
             trackEvent('section_unlock', 'cv', 'skills', 4);
-            break;
+              break;
           case 'expert':
             console.log('Unlocking projects...');
-            unlockSection('projects');
+              unlockSection('projects');
             trackEvent('section_unlock', 'cv', 'projects', 5);
-            break;
-        }
+              break;
+          }
 
         // Handle progression based on current state
         if (gameState.difficulty === 'expert' && currentPuzzle === 5) {
@@ -511,17 +511,17 @@ const SudokuGame: React.FC = () => {
               isComplete: false
             }));
           }, 2000);
-        } else {
+      } else {
           // Try to progress to next difficulty
           const hasProgressed = progressToNextDifficulty(gameState.difficulty);
           
           if (!hasProgressed) {
             // If we're at the last difficulty, just set completion state
             console.log('Reached final difficulty level');
-            setGameState(prev => ({
-              ...prev,
+        setGameState(prev => ({
+          ...prev,
               isComplete: true
-            }));
+        }));
           }
         }
       }
@@ -657,8 +657,8 @@ const SudokuGame: React.FC = () => {
       setShowCompletion(true);
       
       // Update game state for free play
-      setGameState(prev => ({
-        ...prev,
+    setGameState(prev => ({
+      ...prev,
         isComplete: true,
         difficulty: 'expert',
         board: newBoard,
@@ -683,20 +683,20 @@ const SudokuGame: React.FC = () => {
       setTimeout(() => {
         setShowCompletion(false);
         setIsTransitioning(false);
-        setGameState(prev => ({
-          ...prev,
-          isComplete: false
-        }));
+      setGameState(prev => ({
+        ...prev,
+        isComplete: false
+      }));
       }, 2000);
     } else {
       // Progress to next difficulty
       const hasProgressed = progressToNextDifficulty(difficulty);
       if (!hasProgressed) {
         console.log('Reached final difficulty level');
-        setGameState(prev => ({
-          ...prev,
+    setGameState(prev => ({
+      ...prev,
           isComplete: true
-        }));
+    }));
       }
     }
   };
@@ -771,23 +771,23 @@ const SudokuGame: React.FC = () => {
 
       <AnimatePresence>
         {showCompletion && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-          >
-            <Box
-              sx={{
+    >
+      <Box
+        sx={{
                 position: 'fixed',
                 top: 0,
                 left: 0,
                 right: 0,
                 bottom: 0,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
                 backgroundColor: 'rgba(0, 0, 0, 0.85)',
                 zIndex: 1000
               }}
@@ -857,33 +857,33 @@ const SudokuGame: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'flex-start',
-            position: 'relative',
+          position: 'relative',
             width: '100%',
             maxWidth: '100%',
             pb: 4
-          }}
-        >
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+        }}
+      >
+        <motion.div
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
             style={{ width: '100%', maxWidth: '100%' }}
-          >
-            <Paper
-              elevation={3}
-              sx={{
+        >
+          <Paper
+            elevation={3}
+            sx={{
                 p: { xs: 1, sm: 3 },
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(5px)',
-                border: '0.5px solid #ffffff',
-                borderRadius: '8px',
-                maxWidth: { xs: '100%', sm: '600px' },
-                margin: '0 auto',
+              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              backdropFilter: 'blur(5px)',
+              border: '0.5px solid #ffffff',
+              borderRadius: '8px',
+              maxWidth: { xs: '100%', sm: '600px' },
+              margin: '0 auto',
                 width: '100%'
-              }}
-            >
-              <Box sx={{ mb: 2 }}>
-                <Typography variant="body1" sx={{ color: '#ffffff', fontSize: { xs: '0.875rem', sm: '1rem' } }}>
+            }}
+          >
+            <Box sx={{ mb: 2 }}>
+              <Typography variant="body1" sx={{ color: '#ffffff', fontSize: { xs: '0.875rem', sm: '1rem' } }}>
                   {(() => {
                     const difficulty = gameState.difficulty;
                     switch (difficulty) {
@@ -901,178 +901,178 @@ const SudokuGame: React.FC = () => {
                         return `Level ${currentPuzzle} (${difficulty})`;
                     }
                   })()}
-                </Typography>
-              </Box>
+              </Typography>
+            </Box>
 
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
                   gap: { xs: 1, sm: 3 },
-                  maxWidth: '600px',
-                  margin: '0 auto',
-                  backgroundColor: 'transparent',
+                maxWidth: '600px',
+                margin: '0 auto',
+                backgroundColor: 'transparent',
                   width: '100%'
-                }}
-              >
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
+              }}
+            >
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
                     <Paper elevation={3} sx={{ p: { xs: 0.5, sm: 2 }, maxWidth: '600px', margin: '0 auto', width: '100%' }}>
-                      <Box
-                        sx={{
-                          display: 'grid',
-                          gridTemplateColumns: 'repeat(9, 1fr)',
-                          gap: '1px',
-                          backgroundColor: '#000',
-                          border: '2px solid #000',
-                          '& > div:nth-child(3n)': {
-                            borderRight: '2px solid #000',
-                          },
-                          '& > div:nth-child(9n)': {
-                            borderRight: 'none',
-                          },
-                          '& > div:nth-child(n+19):nth-child(-n+27), & > div:nth-child(n+46):nth-child(-n+54)': {
-                            borderBottom: '2px solid #000',
-                          },
+                    <Box
+                      sx={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(9, 1fr)',
+                        gap: '1px',
+                        backgroundColor: '#000',
+                        border: '2px solid #000',
+                        '& > div:nth-child(3n)': {
+                          borderRight: '2px solid #000',
+                        },
+                        '& > div:nth-child(9n)': {
+                          borderRight: 'none',
+                        },
+                        '& > div:nth-child(n+19):nth-child(-n+27), & > div:nth-child(n+46):nth-child(-n+54)': {
+                          borderBottom: '2px solid #000',
+                        },
                           width: '100%',
                           aspectRatio: '1'
-                        }}
-                      >
-                        {gameState.board.map((row, rowIndex) => (
-                          row.map((cell, colIndex) => (
-                            <Box
-                              key={`${rowIndex}-${colIndex}`}
-                              sx={{
-                                aspectRatio: '1',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                backgroundColor: getCellColor(rowIndex, colIndex),
-                                border: '1px solid #ccc',
-                                cursor: cell.isFixed ? 'default' : 'pointer',
-                                position: 'relative',
-                                '&:hover': {
-                                  backgroundColor: '#f5f5f5',
-                                },
-                              }}
-                              onClick={() => handleCellClick(rowIndex, colIndex)}
-                            >
-                              <Typography
-                                variant="h6"
-                                sx={{
-                                  fontWeight: 'bold',
-                                  color: cell.isFixed ? 'text.primary' : 'primary.main',
-                                  opacity: cell.value ? 1 : 0,
-                                  fontSize: { xs: '0.75rem', sm: '1.25rem' },
-                                }}
-                              >
-                                {cell.value}
-                              </Typography>
-                            </Box>
-                          ))
-                        ))}
-                      </Box>
-                    </Paper>
-
-                    {/* Number Pad - Optimized for mobile */}
-                    <Box sx={{ 
-                      mt: 2, 
-                      display: 'flex', 
-                      flexDirection: 'column', 
-                      alignItems: 'center', 
-                      gap: 1, 
-                      maxWidth: '600px', 
-                      margin: '0 auto',
-                      width: '100%',
-                    }}>
-                      <Box sx={{ 
-                        display: 'flex', 
-                        gap: 1,
-                        width: '100%',
-                        justifyContent: 'center',
-                      }}>
-                        <IconButton 
-                          onClick={handleUndo} 
-                          disabled={history.length === 0}
-                          title="Undo (Ctrl+Z)"
-                          sx={{ 
-                            p: { xs: 0.5, sm: 1 },
-                            '& .MuiSvgIcon-root': {
-                              fontSize: { xs: '1.25rem', sm: '1.5rem' }
-                            }
-                          }}
-                        >
-                          <UndoIcon />
-                        </IconButton>
-                        <IconButton 
-                          onClick={handleDelete} 
-                          disabled={!gameState.selectedCell}
-                          title="Delete (Backspace/Delete)"
-                          sx={{ 
-                            p: { xs: 0.5, sm: 1 },
-                            '& .MuiSvgIcon-root': {
-                              fontSize: { xs: '1.25rem', sm: '1.5rem' }
-                            }
-                          }}
-                        >
-                          <DeleteIcon />
-                        </IconButton>
-                      </Box>
-                      <Box sx={{ 
-                        display: 'flex', 
-                        gap: 1,
-                        width: '100%',
-                        justifyContent: 'center',
-                        flexWrap: 'wrap',
-                      }}>
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
-                          <Button
-                            key={num}
-                            variant="contained"
-                            onClick={() => handleNumberInput(num)}
-                            sx={{ 
-                              minWidth: { xs: '28px', sm: '40px' },
-                              height: { xs: '28px', sm: '40px' },
-                              fontSize: { xs: '0.75rem', sm: '0.875rem' },
-                              p: 0,
-                            }}
-                          >
-                            {num}
-                          </Button>
-                        ))}
-                      </Box>
-                    </Box>
-                  </Grid>
-                </Grid>
-
-                <Box sx={{ 
-                  mt: 4,
-                  display: 'flex',
-                  flexDirection: { xs: 'column', sm: 'row' },
-                  gap: { xs: 1, sm: 2 },
-                  width: '100%',
-                  justifyContent: 'center',
-                }}>
-                  {gameState.isComplete && (
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      onClick={handleNextPuzzle}
-                      sx={{ 
-                        width: { xs: '100%', sm: 'auto' },
-                        fontSize: { xs: '0.875rem', sm: '1rem' },
                       }}
                     >
-                      {currentPuzzle < 5 ? 'Next Puzzle' : 'View Complete CV'}
-                    </Button>
-                  )}
-                </Box>
+                      {gameState.board.map((row, rowIndex) => (
+                        row.map((cell, colIndex) => (
+                          <Box
+                            key={`${rowIndex}-${colIndex}`}
+                            sx={{
+                              aspectRatio: '1',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              backgroundColor: getCellColor(rowIndex, colIndex),
+                              border: '1px solid #ccc',
+                              cursor: cell.isFixed ? 'default' : 'pointer',
+                              position: 'relative',
+                              '&:hover': {
+                                backgroundColor: '#f5f5f5',
+                              },
+                            }}
+                            onClick={() => handleCellClick(rowIndex, colIndex)}
+                          >
+                            <Typography
+                              variant="h6"
+                              sx={{
+                                fontWeight: 'bold',
+                                color: cell.isFixed ? 'text.primary' : 'primary.main',
+                                opacity: cell.value ? 1 : 0,
+                                  fontSize: { xs: '0.75rem', sm: '1.25rem' },
+                              }}
+                            >
+                              {cell.value}
+                            </Typography>
+                          </Box>
+                        ))
+                      ))}
+                    </Box>
+                  </Paper>
+
+                    {/* Number Pad - Optimized for mobile */}
+                  <Box sx={{ 
+                    mt: 2, 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    alignItems: 'center', 
+                    gap: 1, 
+                    maxWidth: '600px', 
+                    margin: '0 auto',
+                    width: '100%',
+                  }}>
+                    <Box sx={{ 
+                      display: 'flex', 
+                      gap: 1,
+                      width: '100%',
+                      justifyContent: 'center',
+                    }}>
+                      <IconButton 
+                        onClick={handleUndo} 
+                        disabled={history.length === 0}
+                        title="Undo (Ctrl+Z)"
+                        sx={{ 
+                          p: { xs: 0.5, sm: 1 },
+                          '& .MuiSvgIcon-root': {
+                            fontSize: { xs: '1.25rem', sm: '1.5rem' }
+                          }
+                        }}
+                      >
+                        <UndoIcon />
+                      </IconButton>
+                      <IconButton 
+                        onClick={handleDelete} 
+                        disabled={!gameState.selectedCell}
+                        title="Delete (Backspace/Delete)"
+                        sx={{ 
+                          p: { xs: 0.5, sm: 1 },
+                          '& .MuiSvgIcon-root': {
+                            fontSize: { xs: '1.25rem', sm: '1.5rem' }
+                          }
+                        }}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </Box>
+                    <Box sx={{ 
+                      display: 'flex', 
+                      gap: 1,
+                      width: '100%',
+                      justifyContent: 'center',
+                      flexWrap: 'wrap',
+                    }}>
+                      {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+                        <Button
+                          key={num}
+                          variant="contained"
+                          onClick={() => handleNumberInput(num)}
+                          sx={{ 
+                            minWidth: { xs: '28px', sm: '40px' },
+                            height: { xs: '28px', sm: '40px' },
+                            fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                            p: 0,
+                          }}
+                        >
+                          {num}
+                        </Button>
+                      ))}
+                    </Box>
+                  </Box>
+                </Grid>
+              </Grid>
+
+              <Box sx={{ 
+                mt: 4,
+                display: 'flex',
+                flexDirection: { xs: 'column', sm: 'row' },
+                gap: { xs: 1, sm: 2 },
+                width: '100%',
+                justifyContent: 'center',
+              }}>
+                {gameState.isComplete && (
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={handleNextPuzzle}
+                    sx={{ 
+                      width: { xs: '100%', sm: 'auto' },
+                      fontSize: { xs: '0.875rem', sm: '1rem' },
+                    }}
+                  >
+                    {currentPuzzle < 5 ? 'Next Puzzle' : 'View Complete CV'}
+                  </Button>
+                )}
               </Box>
-            </Paper>
-          </motion.div>
-        </Box>
-      </motion.div>
+            </Box>
+          </Paper>
+        </motion.div>
+      </Box>
+    </motion.div>
       <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Typography variant="h6">
           Difficulty: {gameState.difficulty.charAt(0).toUpperCase() + gameState.difficulty.slice(1)}

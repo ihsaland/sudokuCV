@@ -183,7 +183,11 @@ const CompleteCV: React.FC = () => {
                               }
                             }}
                           >
-                            Complete the {section.difficulty} Sudoku puzzle to unlock this section.
+                            {section.title === "Education" ? "Complete the Medium Sudoku puzzle to unlock this section." :
+                             section.title === "Work Experience" ? "Complete the Hard Sudoku puzzle to unlock this section." :
+                             section.title === "Skills" ? "Complete the Advanced Sudoku puzzle to unlock this section." :
+                             section.title === "Projects" ? "Complete the Expert Sudoku puzzle to unlock this section." :
+                             `Complete the ${section.difficulty} Sudoku puzzle to unlock this section.`}
                           </Typography>
                         </motion.div>
                       )}

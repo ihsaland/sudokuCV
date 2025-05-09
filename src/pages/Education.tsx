@@ -19,50 +19,50 @@ const Education: React.FC = () => {
           flexDirection: 'column',
           justifyContent: 'center'
         }}>
-          <Paper 
+      <Paper 
             elevation={3}
-            sx={{ 
+        sx={{ 
               p: { xs: 3, sm: 5 },
               backgroundColor: 'rgba(255, 255, 255, 0.95)',
-              backdropFilter: 'blur(10px)',
+          backdropFilter: 'blur(10px)',
               borderRadius: 2,
               transition: 'all 0.3s ease-in-out',
-              '&:hover': {
-                transform: 'translateY(-4px)',
+          '&:hover': {
+            transform: 'translateY(-4px)',
                 boxShadow: (theme) => theme.shadows[8],
-              }
-            }}
-          >
-            <Typography 
+          }
+        }}
+      >
+        <Typography 
               variant="h3" 
-              gutterBottom 
-              sx={{ 
-                color: 'primary.main',
+          gutterBottom 
+          sx={{ 
+            color: 'primary.main',
                 fontWeight: 700,
                 mb: 4,
-                position: 'relative',
+            position: 'relative',
                 fontSize: { xs: '2rem', sm: '2.5rem' },
-                '&::after': {
-                  content: '""',
-                  position: 'absolute',
+            '&::after': {
+              content: '""',
+              position: 'absolute',
                   bottom: -12,
-                  left: 0,
+              left: 0,
                   width: '80px',
-                  height: '4px',
-                  backgroundColor: 'primary.main',
-                  borderRadius: '2px',
-                }
-              }}
-            >
-              Education
-            </Typography>
-            
+              height: '4px',
+              backgroundColor: 'primary.main',
+              borderRadius: '2px',
+            }
+          }}
+        >
+          Education
+        </Typography>
+        
             <Box sx={{ mb: { xs: 4, sm: 5 } }}>
-              <Typography 
+          <Typography 
                 variant="h5" 
-                gutterBottom
-                sx={{ 
-                  color: 'primary.main',
+            gutterBottom
+            sx={{ 
+              color: 'primary.main',
                   fontWeight: 600,
                   fontSize: { xs: '1.25rem', sm: '1.5rem' },
                 }}
@@ -73,20 +73,20 @@ const Education: React.FC = () => {
                 variant="h6" 
                 sx={{ 
                   color: 'text.primary',
-                  fontWeight: 500,
-                  fontSize: { xs: '1.1rem', sm: '1.25rem' },
-                }}
-              >
+              fontWeight: 500,
+              fontSize: { xs: '1.1rem', sm: '1.25rem' },
+            }}
+          >
                 North Carolina State University
-              </Typography>
-              <Typography 
-                variant="subtitle1" 
-                sx={{ 
+          </Typography>
+          <Typography 
+            variant="subtitle1" 
+            sx={{ 
                   color: 'text.secondary',
                   mb: 2,
-                  fontSize: { xs: '0.9rem', sm: '1rem' },
-                }}
-              >
+              fontSize: { xs: '0.9rem', sm: '1rem' },
+            }}
+          >
                 2004 - 2006
               </Typography>
               <Typography 
@@ -125,68 +125,68 @@ const Education: React.FC = () => {
                 }}
               >
                 Morehouse College
-              </Typography>
-              <Typography 
+          </Typography>
+          <Typography 
                 variant="subtitle1" 
-                sx={{ 
+            sx={{ 
                   color: 'text.secondary',
-                  mb: 2,
+              mb: 2,
                   fontSize: { xs: '0.9rem', sm: '1rem' },
-                }}
-              >
-                2000 - 2004
-              </Typography>
-              <Typography 
-                variant="body1" 
-                sx={{ 
-                  mt: 1,
+            }}
+          >
+            2000 - 2004
+          </Typography>
+          <Typography 
+            variant="body1" 
+            sx={{ 
+              mt: 1,
                   color: 'text.primary',
-                  lineHeight: 1.8,
+              lineHeight: 1.8,
                   fontSize: { xs: '1rem', sm: '1.1rem' },
-                }}
-              >
-                Studied computer science and engineering, focusing on software development and system architecture.
-              </Typography>
-            </Box>
+            }}
+          >
+            Studied computer science and engineering, focusing on software development and system architecture.
+          </Typography>
+        </Box>
 
             <Divider sx={{ my: 4 }} />
 
-            <Typography 
+        <Typography 
               variant="h5" 
-              gutterBottom
-              sx={{ 
-                color: 'primary.main',
+          gutterBottom
+          sx={{ 
+            color: 'primary.main',
                 fontWeight: 600,
                 mb: 3,
                 fontSize: { xs: '1.25rem', sm: '1.5rem' },
-              }}
-            >
-              Relevant Coursework
-            </Typography>
-            
-            <Box 
-              component="ul" 
-              sx={{ 
-                pl: 2,
-                '& li': {
+          }}
+        >
+          Relevant Coursework
+        </Typography>
+        
+        <Box 
+          component="ul" 
+          sx={{ 
+            pl: 2,
+            '& li': {
                   mb: 2,
                   color: 'text.primary',
                   fontSize: { xs: '1rem', sm: '1.1rem' },
                   lineHeight: 1.6,
-                  '&::marker': {
-                    color: 'primary.main',
+              '&::marker': {
+                color: 'primary.main',
                     fontWeight: 'bold',
-                  }
-                }
-              }}
-            >
-              <li>Computer Science Fundamentals</li>
-              <li>System Architecture and Design</li>
-              <li>Cloud Computing</li>
-              <li>Infrastructure Management</li>
-            </Box>
-          </Paper>
+              }
+            }
+          }}
+        >
+          <li>Computer Science Fundamentals</li>
+          <li>System Architecture and Design</li>
+          <li>Cloud Computing</li>
+          <li>Infrastructure Management</li>
         </Box>
+      </Paper>
+    </Box>
       </motion.div>
     </Container>
   );
