@@ -19,6 +19,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import GoogleAnalytics from './components/GoogleAnalytics';
 import SEO from './components/SEO';
 import TestGA from './pages/TestGA';
+import CodingProblem from './components/CodingProblem';
 
 const theme = createTheme({
   typography: {
@@ -250,6 +251,7 @@ const App: React.FC = () => {
                     <Route path="/work-experience" element={<ProtectedRoute section="work-experience"><WorkExperience /></ProtectedRoute>} />
                     <Route path="/skills" element={<ProtectedRoute section="skills"><Skills /></ProtectedRoute>} />
                     <Route path="/projects" element={<ProtectedRoute section="projects"><Projects /></ProtectedRoute>} />
+                    <Route path="/coding" element={<CodingProblem />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                   </Routes>
                 </Box>

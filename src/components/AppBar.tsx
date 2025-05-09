@@ -42,7 +42,10 @@ const AppBar: React.FC = () => {
             sx={{
               color: '#ffffff',
               fontWeight: 700,
-              fontSize: { xs: '0.875rem', sm: '1rem' }
+              fontSize: { xs: '0.875rem', sm: '1rem' },
+              '&:hover': {
+                color: '#ffff00'
+              }
             }}
           >
             {isMobile ? 'Home' : 'Home'}
@@ -54,7 +57,10 @@ const AppBar: React.FC = () => {
             sx={{
               color: '#ffffff',
               fontWeight: 700,
-              fontSize: { xs: '0.875rem', sm: '1rem' }
+              fontSize: { xs: '0.875rem', sm: '1rem' },
+              '&:hover': {
+                color: '#ffff00'
+              }
             }}
           >
             {isMobile ? 'Play' : 'Play Sudoku'}
@@ -66,7 +72,10 @@ const AppBar: React.FC = () => {
             sx={{
               color: '#ffffff',
               fontWeight: 700,
-              fontSize: { xs: '0.875rem', sm: '1rem' }
+              fontSize: { xs: '0.875rem', sm: '1rem' },
+              '&:hover': {
+                color: '#ffff00'
+              }
             }}
           >
             {isMobile ? 'CV' : 'View CV'}
@@ -78,10 +87,28 @@ const AppBar: React.FC = () => {
             sx={{
               color: '#ffffff',
               fontWeight: 700,
-              fontSize: { xs: '0.875rem', sm: '1rem' }
+              fontSize: { xs: '0.875rem', sm: '1rem' },
+              '&:hover': {
+                color: '#ffff00'
+              }
             }}
           >
             Contact Me
+          </Button>
+          <Button
+            color="inherit"
+            component={Link}
+            to="/coding"
+            sx={{
+              color: '#ff0000',
+              fontWeight: 700,
+              fontSize: { xs: '0.875rem', sm: '1rem' },
+              '&:hover': {
+                color: '#ffff00'
+              }
+            }}
+          >
+            {isMobile ? 'Code' : 'Test Your Might'}
           </Button>
         </Box>
       </Toolbar>
