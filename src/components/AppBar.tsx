@@ -105,10 +105,11 @@ const AppBar: React.FC = () => {
               fontSize: { xs: '0.875rem', sm: '1rem' },
               '&:hover': {
                 color: '#ffff00'
-              }
+              },
+              display: { xs: 'none', sm: 'block' }
             }}
           >
-            {isMobile ? 'Code' : 'Test Your Might'}
+            Test Your Might
           </Button>
         </Box>
       </Toolbar>
