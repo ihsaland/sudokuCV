@@ -7,6 +7,7 @@ import { useUnlockedSections } from '../context/UnlockedSectionsContext';
 import { cache } from '../utils/cache';
 import { motion, AnimatePresence } from 'framer-motion';
 import { trackEvent } from './GoogleAnalytics';
+import { Difficulty } from '../types/sudoku';
 
 interface Cell {
   value: number | null;
@@ -15,8 +16,6 @@ interface Cell {
 }
 
 type Board = Cell[][];
-
-type Difficulty = 'easy' | 'medium' | 'hard' | 'advanced' | 'expert';
 
 interface GameState {
   board: Cell[][];
@@ -154,19 +153,20 @@ const SudokuGame: React.FC = () => {
     const cachedState = cache.get(CACHE_KEY);
     if (cachedState) {
       console.log('Loading cached game state:', cachedState);
-      return cachedState;
+      return cachedState as GameState;
     }
     
     // Initialize with empty board if no cache
     console.log('Initializing new game state');
     const emptyBoard = createEmptyBoard();
-    return {
+    const initialState: GameState = {
       board: emptyBoard,
       solution: emptyBoard,
       selectedCell: null,
       isComplete: false,
-      difficulty: 'easy' as Difficulty
+      difficulty: 'easy'
     };
+    return initialState;
   });
 
   const [history, setHistory] = useState<Board[]>([]);
@@ -885,7 +885,8 @@ const SudokuGame: React.FC = () => {
               <Box sx={{ mb: 2 }}>
                 <Typography variant="body1" sx={{ color: '#ffffff', fontSize: { xs: '0.875rem', sm: '1rem' } }}>
                   {(() => {
-                    switch (gameState.difficulty) {
+                    const difficulty = gameState.difficulty;
+                    switch (difficulty) {
                       case 'easy':
                         return 'Level 1 (Easy): Professional Summary';
                       case 'medium':
@@ -897,7 +898,7 @@ const SudokuGame: React.FC = () => {
                       case 'expert':
                         return currentPuzzle > 5 ? 'CV Unlocked: Free Play' : 'Level 5 (Expert): Projects';
                       default:
-                        return `Level ${currentPuzzle} (${gameState.difficulty.charAt(0).toUpperCase() + gameState.difficulty.slice(1)})`;
+                        return `Level ${currentPuzzle} (${difficulty})`;
                     }
                   })()}
                 </Typography>

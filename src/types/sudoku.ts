@@ -1,4 +1,4 @@
-export type Difficulty = 'easy' | 'medium' | 'hard' | 'expert';
+export type Difficulty = 'easy' | 'medium' | 'hard' | 'advanced' | 'expert';
 
 export interface Cell {
   value: number | null;
