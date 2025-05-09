@@ -20,6 +20,9 @@ export const UnlockedSectionsProvider: React.FC<{ children: React.ReactNode }> =
     return cached || [];
   });
 
+  const [notification, setNotification] = useState<{ message: string; type: string } | null>(null);
+  const notificationTimeout = React.useRef<NodeJS.Timeout | null>(null);
+
   useEffect(() => {
     console.log('Saving unlocked sections to cache:', unlockedSections);
     cache.set(CACHE_KEY, unlockedSections);
@@ -27,16 +30,46 @@ export const UnlockedSectionsProvider: React.FC<{ children: React.ReactNode }> =
 
   const unlockSection = (section: string) => {
     console.log('Attempting to unlock section:', section);
-    setUnlockedSections(prev => {
-      if (!prev.includes(section)) {
-        console.log('Section unlocked:', section);
-        trackEvent('section_unlock', 'cv', section, prev.length + 1);
-        return [...prev, section];
+    if (!unlockedSections.includes(section)) {
+      console.log('Section not previously unlocked, adding to unlocked sections');
+      const newUnlockedSections = [...unlockedSections, section];
+      setUnlockedSections(newUnlockedSections);
+      localStorage.setItem('unlockedSections', JSON.stringify(newUnlockedSections));
+      
+      // Set notification with proper cleanup
+      setNotification({
+        message: `New CV section unlocked: ${section.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}`,
+        type: 'success'
+      });
+      
+      // Clear any existing timeout
+      if (notificationTimeout.current) {
+        clearTimeout(notificationTimeout.current);
       }
+      
+      // Set new timeout
+      notificationTimeout.current = setTimeout(() => {
+        console.log('Clearing notification after timeout');
+        setNotification(null);
+        notificationTimeout.current = null;
+      }, 5000);
+      
+      // Track the unlock event
+      trackEvent('section_unlock', 'cv', section, newUnlockedSections.length);
+    } else {
       console.log('Section already unlocked:', section);
-      return prev;
-    });
+    }
   };
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (notificationTimeout.current) {
+        console.log('Cleaning up notification timeout');
+        clearTimeout(notificationTimeout.current);
+      }
+    };
+  }, []);
 
   const isSectionUnlocked = (section: string) => {
     const isUnlocked = unlockedSections.includes(section);

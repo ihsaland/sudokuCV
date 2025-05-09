@@ -16,7 +16,7 @@ interface Cell {
 
 type Board = Cell[][];
 
-type Difficulty = 'easy' | 'medium' | 'hard' | 'expert';
+type Difficulty = 'easy' | 'medium' | 'hard' | 'advanced' | 'expert';
 
 interface GameState {
   board: Cell[][];
@@ -26,7 +26,7 @@ interface GameState {
   difficulty: Difficulty;
 }
 
-const difficultyOrder: Difficulty[] = ['easy', 'medium', 'hard', 'expert'];
+const difficultyOrder: Difficulty[] = ['easy', 'medium', 'hard', 'advanced', 'expert'];
 
 const isValidPlacement = (board: Board, row: number, col: number, num: number): boolean => {
   // Check row
@@ -101,6 +101,7 @@ const generateValidPuzzle = (difficulty: Difficulty): Board => {
     easy: 30,
     medium: 40,
     hard: 50,
+    advanced: 55,
     expert: 60
   };
 
@@ -170,8 +171,25 @@ const SudokuGame: React.FC = () => {
 
   const [history, setHistory] = useState<Board[]>([]);
   const navigate = useNavigate();
-  const [currentPuzzle, setCurrentPuzzle] = useState<number>(1);
+  const [currentPuzzle, setCurrentPuzzle] = useState<number>(() => {
+    // Try to load cached puzzle number
+    const cachedPuzzle = localStorage.getItem('current_puzzle');
+    if (cachedPuzzle) {
+      console.log('Loading cached puzzle number:', cachedPuzzle);
+      return parseInt(cachedPuzzle, 10);
+    }
+    return 1;
+  });
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [showCompletion, setShowCompletion] = useState(false);
+  const [showDebug, setShowDebug] = useState(false);
+  const isDevelopment = process.env.NODE_ENV === 'development';
+
+  // Cache current puzzle number
+  useEffect(() => {
+    console.log('Caching current puzzle number:', currentPuzzle);
+    localStorage.setItem('current_puzzle', currentPuzzle.toString());
+  }, [currentPuzzle]);
 
   // Cache game state changes
   useEffect(() => {
@@ -180,6 +198,38 @@ const SudokuGame: React.FC = () => {
       cache.set(CACHE_KEY, gameState);
     }
   }, [gameState, isTransitioning]);
+
+  // Start with the appropriate puzzle when component mounts
+  useEffect(() => {
+    console.log('Component mounted, starting with difficulty:', gameState.difficulty);
+    const board = generatePuzzle(gameState.difficulty);
+    const solution = JSON.parse(JSON.stringify(board));
+    solveSudoku(solution);
+    
+    setGameState(prev => ({
+      ...prev,
+      board,
+      solution,
+      selectedCell: null,
+      isComplete: false
+    }));
+  }, []);
+
+  // Add keyboard event handler for desktop
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key >= '1' && e.key <= '9') {
+        handleNumberInput(parseInt(e.key));
+      } else if (e.key === 'Backspace' || e.key === 'Delete') {
+        handleDelete();
+      } else if (e.key === 'z' && e.ctrlKey) {
+        handleUndo();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [gameState.selectedCell]);
 
   const generatePuzzle = (difficulty: Difficulty): Board => {
     return generateValidPuzzle(difficulty);
@@ -263,8 +313,9 @@ const SudokuGame: React.FC = () => {
       // Track difficulty change
       trackEvent('difficulty_change', 'game', nextDifficulty, nextPuzzleNumber);
       
-      // Set transitioning state
+      // Set transitioning state and show completion
       setIsTransitioning(true);
+      setShowCompletion(true);
       
       // Update game state with new difficulty and puzzle
       setGameState(prev => ({
@@ -289,10 +340,62 @@ const SudokuGame: React.FC = () => {
       };
       cache.set(CACHE_KEY, newGameState);
       
-      // Reset transitioning state after a short delay
+      // Hide completion overlay and reset states after delay
       setTimeout(() => {
+        setShowCompletion(false);
         setIsTransitioning(false);
-      }, 1000);
+        setGameState(prev => ({
+          ...prev,
+          isComplete: false
+        }));
+      }, 2000);
+      
+      return true;
+    } else if (currentDifficulty === 'expert' && currentPuzzle === 5) {
+      // Only enter free play mode after completing the expert level puzzle
+      console.log('Entering free play mode after completing expert level');
+      
+      // Generate new expert puzzle
+      const newBoard = generatePuzzle('expert');
+      const newSolution = JSON.parse(JSON.stringify(newBoard));
+      solveSudoku(newSolution);
+      
+      // Set transitioning state and show completion
+      setIsTransitioning(true);
+      setShowCompletion(true);
+      
+      // Update game state for free play
+      setGameState(prev => ({
+        ...prev,
+        isComplete: true,
+        difficulty: 'expert',
+        board: newBoard,
+        solution: newSolution,
+        selectedCell: null
+      }));
+
+      // Clear history for the new puzzle
+      setHistory([]);
+      
+      // Cache the new game state
+      const newGameState = {
+        board: newBoard,
+        solution: newSolution,
+        selectedCell: null,
+        isComplete: true,
+        difficulty: 'expert'
+      };
+      cache.set(CACHE_KEY, newGameState);
+      
+      // Hide completion overlay and reset states after delay
+      setTimeout(() => {
+        setShowCompletion(false);
+        setIsTransitioning(false);
+        setGameState(prev => ({
+          ...prev,
+          isComplete: false
+        }));
+      }, 2000);
       
       return true;
     }
@@ -327,6 +430,7 @@ const SudokuGame: React.FC = () => {
       console.log('Solution check result:', isCorrect);
       console.log('Current difficulty:', gameState.difficulty);
       console.log('Current completion state:', gameState.isComplete);
+      console.log('Current puzzle number:', currentPuzzle);
 
       if (isCorrect && !gameState.isComplete) {
         console.log('Puzzle completed correctly, unlocking sections...');
@@ -335,35 +439,90 @@ const SudokuGame: React.FC = () => {
         trackEvent('puzzle_complete', 'game', gameState.difficulty, currentPuzzle);
 
         // Unlock sections based on current difficulty
-        if (gameState.difficulty === 'easy') {
-          console.log('Unlocking easy sections...');
-          unlockSection('professional-summary');
-          unlockSection('education');
-          trackEvent('section_unlock', 'cv', 'professional-summary,education', 1);
-        } else if (gameState.difficulty === 'medium') {
-          console.log('Unlocking medium sections...');
-          unlockSection('work-experience');
-          trackEvent('section_unlock', 'cv', 'work-experience', 2);
-        } else if (gameState.difficulty === 'hard') {
-          console.log('Unlocking hard sections...');
-          unlockSection('skills');
-          trackEvent('section_unlock', 'cv', 'skills', 3);
-        } else if (gameState.difficulty === 'expert') {
-          console.log('Unlocking expert sections...');
-          unlockSection('projects');
-          trackEvent('section_unlock', 'cv', 'projects', 4);
+        switch (gameState.difficulty) {
+          case 'easy':
+            console.log('Unlocking professional summary...');
+            unlockSection('professional-summary');
+            trackEvent('section_unlock', 'cv', 'professional-summary', 1);
+            break;
+          case 'medium':
+            console.log('Unlocking education...');
+            unlockSection('education');
+            trackEvent('section_unlock', 'cv', 'education', 2);
+            break;
+          case 'hard':
+            console.log('Unlocking work experience...');
+            unlockSection('work-experience');
+            trackEvent('section_unlock', 'cv', 'work-experience', 3);
+            break;
+          case 'advanced':
+            console.log('Unlocking skills...');
+            unlockSection('skills');
+            trackEvent('section_unlock', 'cv', 'skills', 4);
+            break;
+          case 'expert':
+            console.log('Unlocking projects...');
+            unlockSection('projects');
+            trackEvent('section_unlock', 'cv', 'projects', 5);
+            break;
         }
 
-        // Try to progress to next difficulty
-        const hasProgressed = progressToNextDifficulty(gameState.difficulty);
-        
-        if (!hasProgressed) {
-          // If we're at the last difficulty, just set completion state
-          console.log('Reached final difficulty level');
+        // Handle progression based on current state
+        if (gameState.difficulty === 'expert' && currentPuzzle === 5) {
+          console.log('Completing expert level, entering free play mode');
+          // Generate new expert puzzle for free play
+          const newBoard = generatePuzzle('expert');
+          const newSolution = JSON.parse(JSON.stringify(newBoard));
+          solveSudoku(newSolution);
+          
+          // Set transitioning state and show completion
+          setIsTransitioning(true);
+          setShowCompletion(true);
+          
+          // Update game state for free play
           setGameState(prev => ({
             ...prev,
-            isComplete: true
+            isComplete: true,
+            difficulty: 'expert',
+            board: newBoard,
+            solution: newSolution,
+            selectedCell: null
           }));
+
+          // Clear history for the new puzzle
+          setHistory([]);
+          
+          // Cache the new game state
+          const newGameState = {
+            board: newBoard,
+            solution: newSolution,
+            selectedCell: null,
+            isComplete: true,
+            difficulty: 'expert'
+          };
+          cache.set(CACHE_KEY, newGameState);
+          
+          // Hide completion overlay and reset states after delay
+          setTimeout(() => {
+            setShowCompletion(false);
+            setIsTransitioning(false);
+            setGameState(prev => ({
+              ...prev,
+              isComplete: false
+            }));
+          }, 2000);
+        } else {
+          // Try to progress to next difficulty
+          const hasProgressed = progressToNextDifficulty(gameState.difficulty);
+          
+          if (!hasProgressed) {
+            // If we're at the last difficulty, just set completion state
+            console.log('Reached final difficulty level');
+            setGameState(prev => ({
+              ...prev,
+              isComplete: true
+            }));
+          }
         }
       }
     }
@@ -402,22 +561,6 @@ const SudokuGame: React.FC = () => {
   useEffect(() => {
     checkCompletion();
   }, [gameState.board]);
-
-  // Add keyboard event handler
-  useEffect(() => {
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key >= '1' && e.key <= '9') {
-        handleNumberInput(parseInt(e.key));
-      } else if (e.key === 'Backspace' || e.key === 'Delete') {
-        handleDelete();
-      } else if (e.key === 'z' && e.ctrlKey) {
-        handleUndo();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [gameState.selectedCell]);
 
   const getCellHighlight = (row: number, col: number) => {
     if (!gameState.selectedCell) return 'white';
@@ -465,11 +608,98 @@ const SudokuGame: React.FC = () => {
     });
   };
 
-  // Start with an easy puzzle when component mounts
-  useEffect(() => {
-    console.log('Component mounted, starting with easy difficulty');
-    startNewGame('easy');
-  }, []);
+  // Debug function to test progression
+  const testProgression = (difficulty: Difficulty) => {
+    console.log('Testing progression for difficulty:', difficulty);
+    
+    // Track puzzle completion
+    trackEvent('puzzle_complete', 'game', difficulty, currentPuzzle);
+
+    // Unlock sections based on difficulty
+    switch (difficulty) {
+      case 'easy':
+        console.log('Unlocking professional summary...');
+        unlockSection('professional-summary');
+        trackEvent('section_unlock', 'cv', 'professional-summary', 1);
+        break;
+      case 'medium':
+        console.log('Unlocking education...');
+        unlockSection('education');
+        trackEvent('section_unlock', 'cv', 'education', 2);
+        break;
+      case 'hard':
+        console.log('Unlocking work experience...');
+        unlockSection('work-experience');
+        trackEvent('section_unlock', 'cv', 'work-experience', 3);
+        break;
+      case 'advanced':
+        console.log('Unlocking skills...');
+        unlockSection('skills');
+        trackEvent('section_unlock', 'cv', 'skills', 4);
+        break;
+      case 'expert':
+        console.log('Unlocking projects...');
+        unlockSection('projects');
+        trackEvent('section_unlock', 'cv', 'projects', 5);
+        break;
+    }
+
+    // Handle progression based on difficulty
+    if (difficulty === 'expert' && currentPuzzle === 5) {
+      console.log('Completing expert level, entering free play mode');
+      // Generate new expert puzzle for free play
+      const newBoard = generatePuzzle('expert');
+      const newSolution = JSON.parse(JSON.stringify(newBoard));
+      solveSudoku(newSolution);
+      
+      // Set transitioning state and show completion
+      setIsTransitioning(true);
+      setShowCompletion(true);
+      
+      // Update game state for free play
+      setGameState(prev => ({
+        ...prev,
+        isComplete: true,
+        difficulty: 'expert',
+        board: newBoard,
+        solution: newSolution,
+        selectedCell: null
+      }));
+
+      // Clear history for the new puzzle
+      setHistory([]);
+      
+      // Cache the new game state
+      const newGameState = {
+        board: newBoard,
+        solution: newSolution,
+        selectedCell: null,
+        isComplete: true,
+        difficulty: 'expert'
+      };
+      cache.set(CACHE_KEY, newGameState);
+      
+      // Hide completion overlay and reset states after delay
+      setTimeout(() => {
+        setShowCompletion(false);
+        setIsTransitioning(false);
+        setGameState(prev => ({
+          ...prev,
+          isComplete: false
+        }));
+      }, 2000);
+    } else {
+      // Progress to next difficulty
+      const hasProgressed = progressToNextDifficulty(difficulty);
+      if (!hasProgressed) {
+        console.log('Reached final difficulty level');
+        setGameState(prev => ({
+          ...prev,
+          isComplete: true
+        }));
+      }
+    }
+  };
 
   return (
     <Box sx={{ 
@@ -486,74 +716,134 @@ const SudokuGame: React.FC = () => {
       maxWidth: '100vw',
       overflow: 'auto'
     }}>
-      {gameState.isComplete && (
-        <Box
-          sx={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: 'rgba(0, 0, 0, 0.85)',
-            zIndex: 1000,
-            animation: 'fadeIn 0.5s ease-in-out'
-          }}
-        >
-          <Paper
-            elevation={24}
-            sx={{
-              p: { xs: 2, sm: 4 },
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              backgroundColor: 'rgba(255, 255, 255, 0.95)',
-              borderRadius: 2,
-              maxWidth: '90%',
-              width: { xs: '90%', sm: '400px' }
-            }}
+      {/* Debug Controls - Only visible in development mode */}
+      {isDevelopment && (
+        <Box sx={{ 
+          position: 'fixed', 
+          bottom: 16, 
+          right: 16, 
+          zIndex: 1000,
+          display: { xs: 'none', sm: 'flex' },
+          flexDirection: 'column',
+          gap: 1
+        }}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => setShowDebug(!showDebug)}
+            sx={{ minWidth: 'auto', p: 1 }}
           >
-            <Typography 
-              variant="h3" 
-              sx={{ 
-                color: 'text.primary',
-                textAlign: 'center',
-                mb: 2,
-                fontWeight: 600,
-                animation: 'pulse 1s infinite',
-                fontSize: { xs: '1.5rem', sm: '2rem' }
-              }}
-            >
-              Puzzle Complete
-            </Typography>
-            <Typography 
-              variant="h6" 
-              sx={{ 
-                color: 'text.secondary',
-                textAlign: 'center',
-                mb: 4,
-                fontSize: { xs: '1rem', sm: '1.25rem' }
-              }}
-            >
-              Unlocking new sections...
-            </Typography>
-            <Box
-              sx={{
-                width: { xs: 40, sm: 60 },
-                height: { xs: 40, sm: 60 },
-                borderRadius: '50%',
-                border: '3px solid',
-                borderColor: 'primary.main',
-                borderTopColor: 'transparent',
-                animation: 'spin 1s linear infinite'
-              }}
-            />
-          </Paper>
+            {showDebug ? 'Hide Debug' : 'Show Debug'}
+          </Button>
+          
+          {showDebug && (
+            <Box sx={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              gap: 1,
+              backgroundColor: 'rgba(0, 0, 0, 0.8)',
+              p: 2,
+              borderRadius: 1
+            }}>
+              <Typography variant="body2" sx={{ color: 'white', mb: 1 }}>
+                Test Progression
+              </Typography>
+              {difficultyOrder.map((diff) => (
+                <Button
+                  key={diff}
+                  variant="contained"
+                  size="small"
+                  onClick={() => testProgression(diff)}
+                  sx={{ 
+                    backgroundColor: gameState.difficulty === diff ? 'primary.main' : 'grey.700',
+                    '&:hover': {
+                      backgroundColor: gameState.difficulty === diff ? 'primary.dark' : 'grey.600'
+                    }
+                  }}
+                >
+                  Test {diff}
+                </Button>
+              ))}
+            </Box>
+          )}
         </Box>
       )}
+
+      <AnimatePresence>
+        {showCompletion && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Box
+              sx={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: 'rgba(0, 0, 0, 0.85)',
+                zIndex: 1000
+              }}
+            >
+              <Paper
+                elevation={24}
+                sx={{
+                  p: { xs: 2, sm: 4 },
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                  borderRadius: 2,
+                  maxWidth: '90%',
+                  width: { xs: '90%', sm: '400px' }
+                }}
+              >
+                <Typography 
+                  variant="h4" 
+                  sx={{ 
+                    color: 'text.primary',
+                    textAlign: 'center',
+                    mb: 2,
+                    fontWeight: 500,
+                    fontSize: { xs: '1.5rem', sm: '2rem' }
+                  }}
+                >
+                  Puzzle Complete
+                </Typography>
+                <Typography 
+                  variant="body1" 
+                  sx={{ 
+                    color: 'text.secondary',
+                    textAlign: 'center',
+                    mb: 3,
+                    fontSize: { xs: '0.875rem', sm: '1rem' }
+                  }}
+                >
+                  {currentPuzzle > 5 ? 'CV Unlocked: Free Play' : 'Unlocking new sections...'}
+                </Typography>
+                <Box
+                  sx={{
+                    width: { xs: 32, sm: 40 },
+                    height: { xs: 32, sm: 40 },
+                    borderRadius: '50%',
+                    border: '2px solid',
+                    borderColor: 'primary.main',
+                    borderTopColor: 'transparent',
+                    animation: 'spin 1s linear infinite'
+                  }}
+                />
+              </Paper>
+            </Box>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -594,7 +884,22 @@ const SudokuGame: React.FC = () => {
             >
               <Box sx={{ mb: 2 }}>
                 <Typography variant="body1" sx={{ color: '#ffffff', fontSize: { xs: '0.875rem', sm: '1rem' } }}>
-                  Difficulty: {gameState.difficulty.charAt(0).toUpperCase() + gameState.difficulty.slice(1)}
+                  {(() => {
+                    switch (gameState.difficulty) {
+                      case 'easy':
+                        return 'Level 1 (Easy): Professional Summary';
+                      case 'medium':
+                        return 'Level 2 (Medium): Education';
+                      case 'hard':
+                        return 'Level 3 (Hard): Work Experience';
+                      case 'advanced':
+                        return 'Level 4 (Advanced): Skills';
+                      case 'expert':
+                        return currentPuzzle > 5 ? 'CV Unlocked: Free Play' : 'Level 5 (Expert): Projects';
+                      default:
+                        return `Level ${currentPuzzle} (${gameState.difficulty.charAt(0).toUpperCase() + gameState.difficulty.slice(1)})`;
+                    }
+                  })()}
                 </Typography>
               </Box>
 
@@ -669,7 +974,7 @@ const SudokuGame: React.FC = () => {
                       </Box>
                     </Paper>
 
-                    {/* Add number pad and controls */}
+                    {/* Number Pad - Optimized for mobile */}
                     <Box sx={{ 
                       mt: 2, 
                       display: 'flex', 
