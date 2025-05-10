@@ -9,7 +9,7 @@ interface SEOProps {
   type?: string;
 }
 
-const defaultTitle = 'Sudoku CV - Interactive Resume Game';
+const defaultTitle = 'Sudoku CV';
 const defaultDescription = 'Play Sudoku to unlock sections of my CV. A unique and interactive way to explore my professional experience, skills, and projects.';
 const defaultKeywords = 'sudoku, cv, resume, interactive resume, portfolio, game, professional experience, skills, projects';
 const defaultImage = 'https://iansalandy.com/og-image.png';
