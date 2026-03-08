@@ -8,7 +8,7 @@ const WorkExperience: React.FC = () => {
         variant="outlined"
         sx={{ 
           p: { xs: 2, sm: 4 },
-          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          backgroundColor: 'rgba(255, 255, 255, 0.98)',
           backdropFilter: 'blur(10px)',
           transition: 'transform 0.2s ease-in-out',
           '&:hover': {

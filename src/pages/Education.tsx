@@ -23,7 +23,7 @@ const Education: React.FC = () => {
             elevation={3}
         sx={{ 
               p: { xs: 3, sm: 5 },
-              backgroundColor: 'rgba(255, 255, 255, 0.95)',
+              backgroundColor: 'rgba(255, 255, 255, 0.98)',
           backdropFilter: 'blur(10px)',
               borderRadius: 2,
               transition: 'all 0.3s ease-in-out',

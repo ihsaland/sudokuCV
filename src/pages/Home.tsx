@@ -10,10 +10,10 @@ const Home: React.FC = () => {
 
   const sectionStyle = {
     p: 3,
-    border: '0.5px solid rgba(255,255,255,0.4)',
+    border: '0.5px solid rgba(255,255,255,0.5)',
     borderRadius: '8px',
-    backgroundColor: 'rgba(0, 0, 0, 0.25)',
-    backdropFilter: 'blur(5px)',
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    backdropFilter: 'blur(8px)',
     maxWidth: '800px',
     margin: '0 auto',
     mb: 4,
@@ -75,7 +75,7 @@ const Home: React.FC = () => {
               </Typography>
               <Typography
                 sx={{
-                  color: 'rgba(255,255,255,0.95)',
+                  color: '#ffffff',
                   fontSize: { xs: '0.95rem', sm: '1.05rem' },
                   textAlign: 'center',
                   mt: 2,
@@ -141,7 +141,7 @@ const Home: React.FC = () => {
                 component="ul"
                 sx={{
                   pl: 2.5,
-                  color: 'rgba(255,255,255,0.95)',
+                  color: '#ffffff',
                   fontSize: { xs: '0.9rem', sm: '1rem' },
                   lineHeight: 1.8,
                   '& li': { mb: 1 },
@@ -178,7 +178,7 @@ const Home: React.FC = () => {
                 component="ul"
                 sx={{
                   pl: 2.5,
-                  color: 'rgba(255,255,255,0.95)',
+                  color: '#ffffff',
                   fontSize: { xs: '0.9rem', sm: '1rem' },
                   lineHeight: 1.8,
                   '& li': { mb: 1 },
@@ -212,7 +212,7 @@ const Home: React.FC = () => {
               </Typography>
               <Typography
                 sx={{
-                  color: 'rgba(255,255,255,0.95)',
+                  color: '#ffffff',
                   fontSize: { xs: '0.9rem', sm: '1rem' },
                   textAlign: 'center',
                   mb: 2,
@@ -223,7 +223,7 @@ const Home: React.FC = () => {
               </Typography>
               <Box sx={{ textAlign: 'center' }}>
                 <Link
-                  href="https://kpi99.com"
+                  href="https://kpi99.co"
                   target="_blank"
                   rel="noopener noreferrer"
                   sx={{
@@ -259,7 +259,7 @@ const Home: React.FC = () => {
               </Typography>
               <Typography
                 sx={{
-                  color: 'rgba(255,255,255,0.9)',
+                  color: '#ffffff',
                   fontSize: { xs: '0.9rem', sm: '1rem' },
                   textAlign: 'center',
                   mb: 2,

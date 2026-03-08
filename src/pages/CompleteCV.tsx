@@ -100,13 +100,13 @@ const CompleteCV: React.FC = () => {
                       p: 3,
                       height: '100%',
                       backgroundColor: unlockedSections.includes(section.section)
-                        ? 'rgba(0, 0, 0, 0.3)'
-                        : 'rgba(0, 0, 0, 0.2)',
-                      backdropFilter: 'blur(5px)',
+                        ? 'rgba(0, 0, 0, 0.6)'
+                        : 'rgba(0, 0, 0, 0.5)',
+                      backdropFilter: 'blur(8px)',
                       borderWidth: '0.5px',
                       borderColor: unlockedSections.includes(section.section)
                         ? '#ffffff'
-                        : 'rgba(255, 255, 255, 0.3)',
+                        : 'rgba(255, 255, 255, 0.5)',
                       borderRadius: '8px',
                       transition: 'all 0.3s ease',
                       cursor: 'pointer',
@@ -119,10 +119,10 @@ const CompleteCV: React.FC = () => {
                           : 'none',
                         borderColor: unlockedSections.includes(section.section)
                           ? '#ffff00'
-                          : 'rgba(255, 255, 255, 0.3)',
+                          : 'rgba(255, 255, 255, 0.5)',
                         backgroundColor: unlockedSections.includes(section.section)
-                          ? 'rgba(0, 0, 0, 0.4)'
-                          : 'rgba(0, 0, 0, 0.25)'
+                          ? 'rgba(0, 0, 0, 0.7)'
+                          : 'rgba(0, 0, 0, 0.6)'
                       }
                     }}
                   >
@@ -135,7 +135,7 @@ const CompleteCV: React.FC = () => {
                         gutterBottom
                         sx={{
                           color: '#ffffff',
-                          opacity: unlockedSections.includes(section.section) ? 1 : 0.7,
+                          opacity: unlockedSections.includes(section.section) ? 1 : 0.95,
                           transition: 'all 0.3s ease',
                           '&:hover': {
                             opacity: 1,
@@ -160,7 +160,7 @@ const CompleteCV: React.FC = () => {
                             variant="body1"
                             sx={{
                               color: '#ffffff',
-                              opacity: 0.9
+                              opacity: 1
                             }}
                           >
                             {section.content}
@@ -175,7 +175,7 @@ const CompleteCV: React.FC = () => {
                             variant="body1"
                             sx={{
                               color: '#ffffff',
-                              opacity: 0.7,
+                              opacity: 0.95,
                               transition: 'all 0.3s ease',
                               '&:hover': {
                                 opacity: 1,

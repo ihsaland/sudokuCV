@@ -21,7 +21,7 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%)',
+          background: 'linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 100%)',
           position: 'relative',
           overflow: 'hidden',
           '&::before': {

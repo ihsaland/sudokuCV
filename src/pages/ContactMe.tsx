@@ -10,8 +10,8 @@ import { motion } from 'framer-motion';
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(4),
   margin: theme.spacing(2),
-  backgroundColor: 'rgba(0, 0, 0, 0.3)',
-  backdropFilter: 'blur(5px)',
+  backgroundColor: 'rgba(0, 0, 0, 0.6)',
+  backdropFilter: 'blur(8px)',
   borderRadius: '8px',
   borderWidth: '0.5px',
   borderColor: '#ffffff',
@@ -114,12 +114,12 @@ const ContactMe: React.FC = () => {
                       onClick={() => handleCopy('ihsaland@gmail.com')}
                       size="small"
                       sx={{ 
-                        color: 'rgba(255, 255, 255, 0.7)',
+                        color: '#ffffff',
                         padding: '4px',
                         '&:hover': {
                           color: '#ffff00',
                           transform: 'scale(1.1)',
-                          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                          backgroundColor: 'rgba(255, 255, 255, 0.15)',
                         },
                         transition: 'all 0.2s ease'
                       }}
@@ -146,12 +146,12 @@ const ContactMe: React.FC = () => {
                       onClick={() => handleCopy('linkedin.com/in/isalandy')}
                       size="small"
                       sx={{ 
-                        color: 'rgba(255, 255, 255, 0.7)',
+                        color: '#ffffff',
                         padding: '4px',
                         '&:hover': {
                           color: '#ffff00',
                           transform: 'scale(1.1)',
-                          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                          backgroundColor: 'rgba(255, 255, 255, 0.15)',
                         },
                         transition: 'all 0.2s ease'
                       }}
@@ -178,12 +178,12 @@ const ContactMe: React.FC = () => {
                       onClick={() => handleCopy('github.com/ihsaland')}
                       size="small"
                       sx={{ 
-                        color: 'rgba(255, 255, 255, 0.7)',
+                        color: '#ffffff',
                         padding: '4px',
                         '&:hover': {
                           color: '#ffff00',
                           transform: 'scale(1.1)',
-                          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                          backgroundColor: 'rgba(255, 255, 255, 0.15)',
                         },
                         transition: 'all 0.2s ease'
                       }}

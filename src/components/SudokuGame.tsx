@@ -741,7 +741,7 @@ const SudokuGame: React.FC = () => {
               display: 'flex', 
               flexDirection: 'column', 
               gap: 1,
-              backgroundColor: 'rgba(0, 0, 0, 0.8)',
+              backgroundColor: 'rgba(0, 0, 0, 0.92)',
               p: 2,
               borderRadius: 1
             }}>
@@ -788,7 +788,7 @@ const SudokuGame: React.FC = () => {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-                backgroundColor: 'rgba(0, 0, 0, 0.85)',
+                backgroundColor: 'rgba(0, 0, 0, 0.92)',
                 zIndex: 1000
               }}
             >
@@ -799,7 +799,7 @@ const SudokuGame: React.FC = () => {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.98)',
                   borderRadius: 2,
                   maxWidth: '90%',
                   width: { xs: '90%', sm: '400px' }
@@ -873,8 +873,8 @@ const SudokuGame: React.FC = () => {
             elevation={3}
             sx={{
                 p: { xs: 1, sm: 3 },
-              backgroundColor: 'rgba(255, 255, 255, 0.1)',
-              backdropFilter: 'blur(5px)',
+              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+              backdropFilter: 'blur(8px)',
               border: '0.5px solid #ffffff',
               borderRadius: '8px',
               maxWidth: { xs: '100%', sm: '600px' },

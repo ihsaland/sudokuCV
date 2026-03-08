@@ -22,7 +22,7 @@ const AppBar: React.FC = () => {
       position="fixed"
       elevation={0}
       sx={{
-        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        backgroundColor: 'rgba(0, 0, 0, 0.95)',
         backdropFilter: 'blur(10px)',
         borderBottom: '0.5px solid #ffffff',
         zIndex: (theme) => theme.zIndex.drawer + 1,

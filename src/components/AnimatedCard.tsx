@@ -36,7 +36,7 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
           flexDirection: 'column',
           alignItems: 'center',
           textAlign: 'center',
-          background: 'rgba(255, 255, 255, 0.95)',
+          background: 'rgba(255, 255, 255, 0.98)',
           backdropFilter: 'blur(10px)',
           border: `2px solid ${color}`,
           borderRadius: 2,
