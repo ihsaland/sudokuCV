@@ -44,6 +44,21 @@ const ContactMe: React.FC = () => {
         pt: { xs: 8, sm: 10 }
       }}>
         <StyledPaper variant="outlined">
+          <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+            <Box
+              component="img"
+              src="/images/ian-salandy-headshot.png"
+              alt="Ian Salandy"
+              sx={{
+                width: { xs: 120, sm: 150 },
+                height: { xs: 120, sm: 150 },
+                borderRadius: '50%',
+                objectFit: 'cover',
+                border: '3px solid rgba(255,255,255,0.6)',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
+              }}
+            />
+          </Box>
           <Typography 
             variant="h4" 
             component="h1" 

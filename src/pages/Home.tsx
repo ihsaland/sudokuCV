@@ -48,6 +48,21 @@ const Home: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <Box sx={sectionStyle}>
+              <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+                <Box
+                  component="img"
+                  src="/images/ian-salandy.png"
+                  alt="Ian Salandy"
+                  sx={{
+                    width: { xs: 120, sm: 160 },
+                    height: { xs: 120, sm: 160 },
+                    borderRadius: '50%',
+                    objectFit: 'cover',
+                    border: '3px solid rgba(255,255,255,0.6)',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+                  }}
+                />
+              </Box>
               <Typography
                 variant="h1"
                 sx={{
@@ -71,7 +86,7 @@ const Home: React.FC = () => {
                   mt: 1,
                 }}
               >
-                Principal / Staff Engineer — Distributed Systems & Performance Engineering
+                Principal Performance Architect
               </Typography>
               <Typography
                 sx={{
@@ -83,7 +98,18 @@ const Home: React.FC = () => {
                   mx: 'auto',
                 }}
               >
-                Principal / Staff-level software engineer with 15+ years of experience designing and optimizing large-scale distributed systems, high-throughput data platforms, and backend infrastructure for multi-tenant cloud environments. Deep expertise in performance engineering, distributed compute platforms, and infrastructure scalability for systems processing billions of events annually. Proven ability to improve throughput, reliability, and cost efficiency through architectural design, telemetry-driven diagnostics, predictive workload modeling, and platform optimization.
+                Diagnosing and optimizing large-scale distributed systems.
+              </Typography>
+              <Typography
+                sx={{
+                  color: '#ffffff',
+                  fontSize: { xs: '0.85rem', sm: '0.95rem' },
+                  textAlign: 'center',
+                  mt: 1.5,
+                  opacity: 0.95,
+                }}
+              >
+                JVM • Spark • Distributed Systems • Cost-to-Serve Engineering
               </Typography>
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'center', mt: 3 }}>
                 <Button
@@ -184,6 +210,12 @@ const Home: React.FC = () => {
                   '& li': { mb: 1 },
                 }}
               >
+                <li>
+                  <Link href="https://kpi99.co/en/ppi-framework.html" target="_blank" rel="noopener noreferrer" sx={{ color: '#ffff00', fontWeight: 600, '&:hover': { color: '#ffffff', textDecoration: 'underline' } }}>
+                    PPI-F™ — Performance Pressure Index Framework
+                  </Link>
+                  — System-level pressure analysis for distributed systems
+                </li>
                 <li>Where Distributed Systems Fail at Scale</li>
                 <li>The Hidden Cost of Cloud Abstraction</li>
                 <li>Performance Engineering in AI Infrastructure</li>
@@ -219,9 +251,10 @@ const Home: React.FC = () => {
                 }}
               >
                 Architecture advisory and performance engineering for distributed systems and SaaS platforms. 
-                Systems I've optimized span enterprise SaaS, real-time trading, and large-scale data pipelines.
+                Systems I've optimized span enterprise SaaS, real-time trading, and large-scale data pipelines. 
+                Consulting and methodology are delivered through KPI99, including the PPI-F™ (Performance Pressure Index) framework.
               </Typography>
-              <Box sx={{ textAlign: 'center' }}>
+              <Box sx={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
                 <Link
                   href="https://kpi99.co"
                   target="_blank"
@@ -234,6 +267,162 @@ const Home: React.FC = () => {
                 >
                   KPI99
                 </Link>
+                <Link
+                  href="https://kpi99.co/en/ppi-framework.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    color: '#ffff00',
+                    fontWeight: 600,
+                    fontSize: '0.95rem',
+                    '&:hover': { color: '#ffffff', textDecoration: 'underline' },
+                  }}
+                >
+                  PPI-F™ Framework
+                </Link>
+              </Box>
+            </Box>
+          </motion.div>
+
+          {/* PPI-F Framework — Methodology reference */}
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <Box sx={sectionStyle}>
+              <Typography
+                variant="h4"
+                sx={{
+                  color: '#ffffff',
+                  fontWeight: 700,
+                  fontSize: { xs: '1.35rem', sm: '1.5rem' },
+                  textAlign: 'center',
+                  mb: 2,
+                }}
+              >
+                PPI-F™ — Performance Pressure Index Framework
+              </Typography>
+              <Typography
+                sx={{
+                  color: '#ffffff',
+                  fontSize: { xs: '0.9rem', sm: '1rem' },
+                  textAlign: 'center',
+                  mb: 2,
+                  fontStyle: 'italic',
+                }}
+              >
+                Performance is pressure, not latency. A structured methodology for understanding how pressure propagates through distributed systems.
+              </Typography>
+              <Box
+                component="ul"
+                sx={{
+                  pl: 2.5,
+                  color: '#ffffff',
+                  fontSize: { xs: '0.85rem', sm: '0.95rem' },
+                  lineHeight: 1.8,
+                  '& li': { mb: 0.5 },
+                }}
+              >
+                <li><strong>Pressure Sources</strong> — Where load, latency, and resource constraints originate</li>
+                <li><strong>Propagation Paths</strong> — How pressure flows through system boundaries and dependencies</li>
+                <li><strong>System Invariants</strong> — Performance guarantees that must hold under all conditions</li>
+                <li><strong>Failure Modes</strong> — How and where systems degrade under stress</li>
+                <li><strong>Optimization Levers</strong> — Highest-impact interventions for risk mitigation</li>
+              </Box>
+              <Typography
+                sx={{
+                  color: '#ffffff',
+                  fontSize: { xs: '0.85rem', sm: '0.95rem' },
+                  textAlign: 'center',
+                  mt: 2,
+                }}
+              >
+                Key metrics: Pressure Index, Latency Elasticity, Failure Velocity, Recovery Friction, Cost-to-Serve. 
+                Applied with KPI99 for prioritized interventions, risk mitigation plans, and alignment with FinOps and SRE.
+              </Typography>
+              <Box sx={{ textAlign: 'center', mt: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+                <Link
+                  component="button"
+                  type="button"
+                  variant="body1"
+                  onClick={() => navigate('/ppi-framework')}
+                  sx={{
+                    color: '#ffff00',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    background: 'none',
+                    border: 'none',
+                    padding: 0,
+                    '&:hover': { color: '#ffffff', textDecoration: 'underline' },
+                  }}
+                >
+                  PPI-F™ Framework (details, formula, whitepaper)
+                </Link>
+                <Link
+                  href="https://kpi99.co/en/ppi-framework.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    color: '#ffff00',
+                    fontWeight: 600,
+                    fontSize: '0.9rem',
+                    '&:hover': { color: '#ffffff', textDecoration: 'underline' },
+                  }}
+                >
+                  PPI-F™ at KPI99
+                </Link>
+              </Box>
+            </Box>
+          </motion.div>
+
+          {/* Research / Tools */}
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.65 }}
+          >
+            <Box sx={sectionStyle}>
+              <Typography
+                variant="h4"
+                sx={{
+                  color: '#ffffff',
+                  fontWeight: 700,
+                  fontSize: { xs: '1.25rem', sm: '1.4rem' },
+                  textAlign: 'center',
+                  mb: 2,
+                }}
+              >
+                Research / Tools
+              </Typography>
+              <Typography
+                sx={{
+                  color: '#ffffff',
+                  fontSize: { xs: '0.9rem', sm: '1rem' },
+                  textAlign: 'center',
+                  mb: 2,
+                }}
+              >
+                PPI Diagnostic Tool, System Cost Modeling (ICEA), and Performance Analysis Checklists. Artifacts and methodology I build and use.
+              </Typography>
+              <Box sx={{ textAlign: 'center' }}>
+                <Link
+                  component="button"
+                  type="button"
+                  variant="body1"
+                  onClick={() => navigate('/research')}
+                  sx={{
+                    color: '#ffff00',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    background: 'none',
+                    border: 'none',
+                    padding: 0,
+                    '&:hover': { color: '#ffffff', textDecoration: 'underline' },
+                  }}
+                >
+                  Research — details
+                </Link>
               </Box>
             </Box>
           </motion.div>
@@ -242,7 +431,7 @@ const Home: React.FC = () => {
           <motion.div
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.65 }}
+            transition={{ duration: 0.6, delay: 0.75 }}
           >
             <Box sx={sectionStyle}>
               <Typography

@@ -20,6 +20,13 @@ import GoogleAnalytics from './components/GoogleAnalytics';
 import SEO from './components/SEO';
 import TestGA from './pages/TestGA';
 import CodingProblem from './components/CodingProblem';
+import PPIFramework from './pages/PPIFramework';
+import ResearchTools from './pages/ResearchTools';
+import About from './pages/About';
+import Frameworks from './pages/Frameworks';
+import CaseStudies from './pages/CaseStudies';
+import Articles from './pages/Articles';
+import Consulting from './pages/Consulting';
 
 const theme = createTheme({
   typography: {
@@ -242,6 +249,12 @@ const App: React.FC = () => {
                 }}>
                   <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/frameworks" element={<Frameworks />} />
+                    <Route path="/case-studies" element={<CaseStudies />} />
+                    <Route path="/articles" element={<Articles />} />
+                    <Route path="/research" element={<ResearchTools />} />
+                    <Route path="/consulting" element={<Consulting />} />
                     <Route path="/game" element={<SudokuGame />} />
                     <Route path="/cv" element={<CompleteCV />} />
                     <Route path="/contact" element={<ContactMe />} />
@@ -252,6 +265,8 @@ const App: React.FC = () => {
                     <Route path="/skills" element={<ProtectedRoute section="skills"><Skills /></ProtectedRoute>} />
                     <Route path="/projects" element={<ProtectedRoute section="projects"><Projects /></ProtectedRoute>} />
                     <Route path="/coding" element={<CodingProblem />} />
+                    <Route path="/ppi-framework" element={<PPIFramework />} />
+                    <Route path="/research-tools" element={<ResearchTools />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                   </Routes>
                 </Box>

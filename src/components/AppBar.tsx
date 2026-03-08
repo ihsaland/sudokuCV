@@ -1,21 +1,40 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import {
   AppBar as MuiAppBar,
   Toolbar,
-  IconButton,
   Button,
   Box,
+  Menu,
+  MenuItem,
   useTheme,
   useMediaQuery,
 } from '@mui/material';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+
+const moreMenuItems: { to: string; label: string }[] = [
+  { to: '/frameworks', label: 'Frameworks' },
+  { to: '/case-studies', label: 'Case Studies' },
+  { to: '/articles', label: 'Articles' },
+  { to: '/research', label: 'Research' },
+  { to: '/consulting', label: 'Consulting' },
+];
 
 const AppBar: React.FC = () => {
-  const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const navigate = useNavigate();
+
+  const handleOpen = (e: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(e.currentTarget);
+  };
+  const handleClose = () => setAnchorEl(null);
+  const handleItemClick = (to: string) => {
+    navigate(to);
+    handleClose();
+  };
 
   return (
     <MuiAppBar
@@ -29,12 +48,7 @@ const AppBar: React.FC = () => {
       }}
     >
       <Toolbar>
-        <Box
-          sx={{
-            display: 'flex',
-            gap: 2,
-          }}
-        >
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 1 }}>
           <Button
             color="inherit"
             component={Link}
@@ -42,29 +56,76 @@ const AppBar: React.FC = () => {
             sx={{
               color: '#ffffff',
               fontWeight: 700,
-              fontSize: { xs: '0.875rem', sm: '1rem' },
-              '&:hover': {
-                color: '#ffff00'
-              }
+              fontSize: { xs: '0.8rem', sm: '0.875rem', md: '1rem' },
+              minWidth: 0,
+              px: { xs: 1, sm: 1.5 },
+              '&:hover': { color: '#ffff00' },
             }}
           >
-            {isMobile ? 'Home' : 'Home'}
+            Home
           </Button>
           <Button
             color="inherit"
             component={Link}
-            to="/game"
+            to="/about"
             sx={{
               color: '#ffffff',
               fontWeight: 700,
-              fontSize: { xs: '0.875rem', sm: '1rem' },
-              '&:hover': {
-                color: '#ffff00'
-              }
+              fontSize: { xs: '0.8rem', sm: '0.875rem', md: '1rem' },
+              minWidth: 0,
+              px: { xs: 1, sm: 1.5 },
+              '&:hover': { color: '#ffff00' },
             }}
           >
-            {isMobile ? 'Play' : 'Play Sudoku'}
+            About
           </Button>
+          <Button
+            color="inherit"
+            endIcon={<KeyboardArrowDownIcon />}
+            onClick={handleOpen}
+            aria-controls={open ? 'more-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            sx={{
+              color: '#ffffff',
+              fontWeight: 700,
+              fontSize: { xs: '0.8rem', sm: '0.875rem', md: '1rem' },
+              minWidth: 0,
+              px: { xs: 1, sm: 1.5 },
+              '&:hover': { color: '#ffff00' },
+            }}
+          >
+            More
+          </Button>
+          <Menu
+            id="more-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{ 'aria-labelledby': 'more-button' }}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+            transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+            sx={{
+              '& .MuiPaper-root': {
+                backgroundColor: 'rgba(0, 0, 0, 0.95)',
+                border: '0.5px solid rgba(255,255,255,0.3)',
+              },
+            }}
+          >
+            {moreMenuItems.map(({ to, label }) => (
+              <MenuItem
+                key={to}
+                onClick={() => handleItemClick(to)}
+                sx={{
+                  color: '#ffffff',
+                  fontWeight: 600,
+                  '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.1)', color: '#ffff00' },
+                }}
+              >
+                {label}
+              </MenuItem>
+            ))}
+          </Menu>
           <Button
             color="inherit"
             component={Link}
@@ -72,10 +133,10 @@ const AppBar: React.FC = () => {
             sx={{
               color: '#ffffff',
               fontWeight: 700,
-              fontSize: { xs: '0.875rem', sm: '1rem' },
-              '&:hover': {
-                color: '#ffff00'
-              }
+              fontSize: { xs: '0.8rem', sm: '0.875rem', md: '1rem' },
+              minWidth: 0,
+              px: { xs: 1, sm: 1.5 },
+              '&:hover': { color: '#ffff00' },
             }}
           >
             {isMobile ? 'CV' : 'View CV'}
@@ -87,13 +148,13 @@ const AppBar: React.FC = () => {
             sx={{
               color: '#ffffff',
               fontWeight: 700,
-              fontSize: { xs: '0.875rem', sm: '1rem' },
-              '&:hover': {
-                color: '#ffff00'
-              }
+              fontSize: { xs: '0.8rem', sm: '0.875rem', md: '1rem' },
+              minWidth: 0,
+              px: { xs: 1, sm: 1.5 },
+              '&:hover': { color: '#ffff00' },
             }}
           >
-            Contact Me
+            Contact
           </Button>
           <Button
             color="inherit"
@@ -102,11 +163,11 @@ const AppBar: React.FC = () => {
             sx={{
               color: '#ff0000',
               fontWeight: 700,
-              fontSize: { xs: '0.875rem', sm: '1rem' },
-              '&:hover': {
-                color: '#ffff00'
-              },
-              display: { xs: 'none', sm: 'block' }
+              fontSize: { xs: '0.8rem', sm: '0.875rem', md: '1rem' },
+              minWidth: 0,
+              px: { xs: 1, sm: 1.5 },
+              '&:hover': { color: '#ffff00' },
+              display: { xs: 'none', sm: 'block' },
             }}
           >
             Test Your Might
@@ -117,4 +178,4 @@ const AppBar: React.FC = () => {
   );
 };
 
-export default AppBar; 
+export default AppBar;

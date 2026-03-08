@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Paper, Typography, Grid, Chip } from '@mui/material';
+import { Box, Paper, Typography, Grid, Chip, Link } from '@mui/material';
 
 const Skills: React.FC = () => {
   const coreStrengths = [
@@ -96,6 +96,27 @@ const Skills: React.FC = () => {
             <Chip key={skill} label={skill} variant="outlined" />
           ))}
         </Box>
+
+        <Typography 
+          variant="h6" 
+          gutterBottom
+          sx={{ 
+            color: 'primary.main',
+            fontWeight: 500,
+            mb: 1,
+            mt: 2,
+            fontSize: { xs: '1.1rem', sm: '1.25rem' },
+          }}
+        >
+          Methodology
+        </Typography>
+        <Typography sx={{ mb: 2, color: 'text.secondary', fontSize: { xs: '0.95rem', sm: '1rem' } }}>
+          Application of the{' '}
+          <Link href="https://kpi99.co/en/ppi-framework.html" target="_blank" rel="noopener noreferrer" sx={{ fontWeight: 600 }}>
+            PPI-F™ (Performance Pressure Index) Framework
+          </Link>
+          {' '}— pressure sources, propagation paths, system invariants, failure modes, and optimization levers — for system-level performance analysis and risk mitigation.
+        </Typography>
 
         <Typography 
           variant="h6" 
