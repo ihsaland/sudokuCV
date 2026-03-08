@@ -1,44 +1,33 @@
 import React from 'react';
-import { Box, Paper, Typography, Grid, Card, CardContent, CardActions, Button } from '@mui/material';
+import { Box, Paper, Typography, Grid, Card, CardContent } from '@mui/material';
 
 const Projects: React.FC = () => {
   const projects = [
     {
-      title: 'Enterprise Performance Framework',
-      description: 'Led the development of standardized performance engineering frameworks across core SaaS products, integrating end-to-end PE solutions into CI/CD pipelines. Improved system responsiveness by 40% and reduced resource consumption.',
-      technologies: ['Performance Engineering', 'CI/CD', 'System Architecture', 'JVM Tuning'],
-      link: '#'
+      title: 'Distributed Ingestion & Backend Infrastructure',
+      description: 'Architected and optimized distributed ingestion pipelines and backend infrastructure processing billions of telemetry and billing events annually. Improved distributed query performance by 35% and reduced infrastructure cost exposure by 25% through telemetry-driven optimization.',
+      technologies: ['Spark', 'Trino', 'Telemetry', 'High-Throughput', 'Multi-tenant'],
     },
     {
-      title: 'ML-Powered Performance Modeling',
-      description: 'Designed and deployed scalable infrastructure performance models using machine learning for scenario-based workload simulations and predictive analysis. Enabled accurate capacity forecasting and proactive scaling.',
-      technologies: ['Machine Learning', 'Performance Modeling', 'Capacity Planning', 'Cloud Infrastructure'],
-      link: '#'
+      title: 'Predictive Workload Modeling',
+      description: 'Developed predictive workload modeling frameworks to forecast system scaling limits and infrastructure capacity requirements. Built predictive scaling models evaluating throughput limits and infrastructure needs for distributed enterprise data platforms.',
+      technologies: ['Capacity Planning', 'Workload Modeling', 'Scaling', 'Forecasting'],
     },
     {
-      title: 'Cross-Platform Query Optimization',
-      description: 'Architected and implemented query optimization strategies for Trino, Oracle, and SDB, enhancing throughput and reducing latency. Improved query performance by 60% across distributed systems.',
-      technologies: ['Database Optimization', 'Query Tuning', 'Distributed Systems', 'Performance Testing'],
-      link: '#'
+      title: 'Diagnostic & Observability Platforms',
+      description: 'Built internal diagnostic platforms identifying performance regressions and architectural bottlenecks across distributed services. Developed automated profiling pipelines enabling rapid root-cause diagnostics for platform performance regressions.',
+      technologies: ['Observability', 'Telemetry', 'Diagnostics', 'Regression Detection'],
     },
     {
-      title: 'Real-Time Trading Platform',
-      description: 'Led architectural validation and tuning strategies for real-time trading applications, ensuring performance compliance with technical and business requirements. Achieved sub-millisecond latency.',
-      technologies: ['Low-latency Optimization', 'System Architecture', 'Performance Testing', 'Real-time Systems'],
-      link: '#'
+      title: 'Kubernetes & Platform Reliability',
+      description: 'Designed Kubernetes resource allocation strategies improving cluster utilization and platform reliability. Led cross-team architectural initiatives improving telemetry pipelines, observability systems, and platform diagnostics.',
+      technologies: ['Kubernetes', 'AWS', 'EMR', 'EKS', 'Resource Optimization'],
     },
     {
-      title: 'Developer Enablement Program',
-      description: 'Championed developer enablement through VTO-led initiatives, including HackerRank training and internal performance engineering courses. Established standards for profiling and tuning.',
-      technologies: ['Technical Training', 'Performance Best Practices', 'Developer Tools', 'Knowledge Sharing'],
-      link: '#'
+      title: 'Selected Impact',
+      description: 'Improved distributed data platform throughput by 35% through system-level performance optimization. Reduced infrastructure cost exposure by more than $750K annually. Enabled scalable processing of billions of distributed events across multi-tenant cloud platforms. Improved system reliability through predictive workload modeling and infrastructure diagnostics.',
+      technologies: ['Throughput', 'Cost Optimization', 'Scale', 'Reliability'],
     },
-    {
-      title: 'Global Performance Testing Framework',
-      description: 'Managed global delivery of performance test solutions, overseeing teams responsible for scripting, scenario execution, and results analysis. Standardized testing practices across distributed teams.',
-      technologies: ['Performance Testing', 'Test Automation', 'Global Delivery', 'Quality Assurance'],
-      link: '#'
-    }
   ];
 
   return (
@@ -142,21 +131,6 @@ const Projects: React.FC = () => {
                     ))}
                   </Box>
                 </CardContent>
-                <CardActions>
-                  <Button 
-                    size="small" 
-                    color="primary"
-                    sx={{ 
-                      fontWeight: 500,
-                      fontSize: { xs: '0.75rem', sm: '0.875rem' },
-                      '&:hover': {
-                        backgroundColor: 'rgba(25, 118, 210, 0.1)',
-                      }
-                    }}
-                  >
-                    View Project
-                  </Button>
-                </CardActions>
               </Card>
             </Grid>
           ))}

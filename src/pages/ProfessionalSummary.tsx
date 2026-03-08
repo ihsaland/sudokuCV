@@ -68,7 +68,7 @@ const ProfessionalSummary: React.FC = () => {
                 fontWeight: 400,
           }}
         >
-          Seasoned Performance Architect with a proven track record in software engineering, SaaS optimization, and enterprise-scale product development. Expertise spans performance tuning, capacity planning, system profiling, and architectural process improvement. Known for designing and leading strategic initiatives that elevate application performance, scalability, and operational efficiency across complex, distributed systems.
+          Principal / Staff-level software engineer with 15+ years of experience designing and optimizing large-scale distributed systems, high-throughput data platforms, and backend infrastructure supporting multi-tenant cloud environments. Deep expertise in performance engineering, distributed compute platforms, and infrastructure scalability for systems processing billions of events annually. Proven ability to improve system throughput, reliability, and cost efficiency through architectural design, telemetry-driven diagnostics, predictive workload modeling, and platform optimization. Experienced leading cross-team technical initiatives and developing internal frameworks that identify scaling limits, detect performance regressions, and improve distributed system efficiency.
         </Typography>
 
             <Divider sx={{ my: 4 }} />
@@ -83,7 +83,7 @@ const ProfessionalSummary: React.FC = () => {
                 fontSize: { xs: '1.25rem', sm: '1.5rem' },
           }}
         >
-          Key Strengths
+          Core Technical Strengths
         </Typography>
         
         <Box 
@@ -102,12 +102,10 @@ const ProfessionalSummary: React.FC = () => {
             }
           }}
         >
-          <li>Architected scalable performance frameworks at Salesforce to optimize JVM behavior, database efficiency, and startup sequencing across globalized SaaS platforms including Platform Services, Digital Wallet, and Data Cloud.</li>
-          <li>Led end-to-end capacity planning and performance tuning initiatives, identifying bottlenecks and forecasting inflection points across high-volume services like Agentforce and UCP to support sustainable infrastructure growth.</li>
-          <li>Designed and implemented cross-stack performance strategies using Trino, Oracle, and SDB, achieving significant reductions in query latency and improving system throughput under production loads.</li>
-          <li>Standardized CICD-integrated performance engineering processes at IBM, enabling repeatable, automated evaluations of system health using machine learning-enhanced scenario models.</li>
-          <li>Collaborated across engineering, product, and infrastructure teams to architect solutions that reduced resource consumption, optimized transformation pipelines, and improved latency in mission-critical systems.</li>
-          <li>Championed continuous improvement through training and mentoring, leading initiatives on performance profiling, workload development, and global delivery of scalable performance testing architectures.</li>
+          <li>Distributed Systems Architecture · High-Throughput Event Processing · Backend Platform Engineering</li>
+          <li>Distributed Data Platforms (Spark, Trino) · Cloud Infrastructure (AWS, Kubernetes) · Performance Engineering</li>
+          <li>Capacity Planning & Workload Modeling · Telemetry & Observability Platforms · Infrastructure Optimization</li>
+          <li>JVM Performance Optimization · Scalability Diagnostics · Synthetic Workload Simulation</li>
         </Box>
       </Paper>
     </Box>

@@ -67,7 +67,7 @@ const Education: React.FC = () => {
                   fontSize: { xs: '1.25rem', sm: '1.5rem' },
                 }}
               >
-                Master's Degree
+                M.S. Computer Science
               </Typography>
               <Typography 
                 variant="h6" 
@@ -114,7 +114,7 @@ const Education: React.FC = () => {
                   fontSize: { xs: '1.25rem', sm: '1.5rem' },
                 }}
               >
-                Bachelor's Degree
+                B.S. Computer Science
               </Typography>
               <Typography 
                 variant="h6" 

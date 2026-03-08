@@ -37,7 +37,7 @@ const WorkExperience: React.FC = () => {
             }
           }}
         >
-          Work Experience
+          Professional Experience
         </Typography>
         
         <Box sx={{ mb: { xs: 3, sm: 4 } }}>
@@ -50,17 +50,7 @@ const WorkExperience: React.FC = () => {
               fontSize: { xs: '1.1rem', sm: '1.25rem' },
             }}
           >
-            Principal Performance Architect
-          </Typography>
-          <Typography 
-            variant="subtitle1" 
-            color="text.secondary"
-            sx={{ 
-              fontWeight: 500,
-              fontSize: { xs: '0.9rem', sm: '1rem' },
-            }}
-          >
-            Salesforce | Atlanta, Georgia
+            Principal Performance Engineer / Acting Principal Architect — Cloud Data Platform
           </Typography>
           <Typography 
             variant="body2" 
@@ -70,7 +60,7 @@ const WorkExperience: React.FC = () => {
               fontSize: { xs: '0.8rem', sm: '0.875rem' },
             }}
           >
-            Feb 2021 – Present
+            2021 – Present
           </Typography>
           <Box 
             component="ul" 
@@ -86,13 +76,13 @@ const WorkExperience: React.FC = () => {
               }
             }}
           >
-            <li>Spearheaded architectural design and execution of performance frameworks across core SaaS products including Platform Services, Globalization, Digital Wallet, and Data Cloud</li>
-            <li>Directed JVM-level analysis of language definitions and motif sets to identify startup sequence inefficiencies and optimize application launch time</li>
-            <li>Led system-wide capacity modeling and forecasting to accommodate scaling demands from Agentforce, UCP, and other high-volume services</li>
-            <li>Architected and implemented cross-platform query optimization strategies for Trino, Oracle, and SDB, enhancing throughput and reducing latency</li>
-            <li>Evaluated and refined ingestion, transformation, and pub/sub pipelines to improve resource efficiency and system responsiveness</li>
-            <li>Conducted architectural performance reviews and provided technical leadership to engineering teams, establishing standards for profiling and tuning</li>
-            <li>Championed developer enablement through VTO-led initiatives, including HackerRank training and internal performance engineering courses</li>
+            <li>Architected and optimized distributed ingestion pipelines and backend infrastructure processing billions of telemetry and billing events annually.</li>
+            <li>Designed large-scale distributed analytics workflows using Spark and Trino supporting high-throughput operational workloads.</li>
+            <li>Improved distributed query performance by 35% and reduced infrastructure cost exposure by 25% through telemetry-driven optimization.</li>
+            <li>Developed predictive workload modeling frameworks to forecast system scaling limits and infrastructure capacity requirements.</li>
+            <li>Built internal diagnostic platforms identifying performance regressions and architectural bottlenecks across distributed services.</li>
+            <li>Designed Kubernetes resource allocation strategies improving cluster utilization and platform reliability.</li>
+            <li>Led cross-team architectural initiatives improving telemetry pipelines, observability systems, and platform diagnostics.</li>
           </Box>
         </Box>
 
@@ -108,17 +98,7 @@ const WorkExperience: React.FC = () => {
               fontSize: { xs: '1.1rem', sm: '1.25rem' },
             }}
           >
-            Principal Performance Architect
-          </Typography>
-          <Typography 
-            variant="subtitle1" 
-            color="text.secondary"
-            sx={{ 
-              fontWeight: 500,
-              fontSize: { xs: '0.9rem', sm: '1rem' },
-            }}
-          >
-            IBM | Atlanta, Georgia
+            Principal Performance and Capacity Engineer — Distributed Enterprise Platforms
           </Typography>
           <Typography 
             variant="body2" 
@@ -128,7 +108,7 @@ const WorkExperience: React.FC = () => {
               fontSize: { xs: '0.8rem', sm: '0.875rem' },
             }}
           >
-            Jul 2016 – Feb 2021
+            2016 – 2021
           </Typography>
           <Box 
             component="ul" 
@@ -144,13 +124,10 @@ const WorkExperience: React.FC = () => {
               }
             }}
           >
-            <li>Led the architectural development of standardized performance engineering frameworks, integrating end-to-end PE solutions into CI/CD pipelines</li>
-            <li>Designed and deployed scalable infrastructure performance models using machine learning for scenario-based workload simulations and predictive analysis</li>
-            <li>Partnered cross-functionally with Product, Infrastructure, and Data Engineering teams to establish performance strategies that guided system design, deployment, and scaling decisions</li>
-            <li>Created and institutionalized capacity management processes that enabled continuous delivery of high-performance system components</li>
-            <li>Collaborated with software developers to architect performance-driven code enhancements, resulting in improved responsiveness and reduced resource consumption</li>
-            <li>Diagnosed and resolved complex server performance issues, architecting solutions that removed bottlenecks and enhanced user experience across multiple product lines</li>
-            <li>Served as a strategic technical advisor for performance architecture across multiple teams, aligning system health initiatives with long-term business and technical objectives</li>
+            <li>Designed performance engineering and capacity planning frameworks for distributed enterprise data platforms.</li>
+            <li>Built predictive scaling models evaluating system throughput limits and infrastructure requirements.</li>
+            <li>Developed automated profiling pipelines enabling rapid root-cause diagnostics for platform performance regressions.</li>
+            <li>Optimized JVM-based backend services supporting large-scale enterprise workloads.</li>
           </Box>
         </Box>
 
@@ -166,17 +143,7 @@ const WorkExperience: React.FC = () => {
               fontSize: { xs: '1.1rem', sm: '1.25rem' },
             }}
           >
-            Principal Performance Architect
-          </Typography>
-          <Typography 
-            variant="subtitle1" 
-            color="text.secondary"
-            sx={{ 
-              fontWeight: 500,
-              fontSize: { xs: '0.9rem', sm: '1rem' },
-            }}
-          >
-            Accenture | Greater Atlanta Area
+            Lead Performance Engineer — Enterprise Application Platforms
           </Typography>
           <Typography 
             variant="body2" 
@@ -186,7 +153,7 @@ const WorkExperience: React.FC = () => {
               fontSize: { xs: '0.8rem', sm: '0.875rem' },
             }}
           >
-            Jan 2009 – Jul 2016
+            2009 – 2016
           </Typography>
           <Box 
             component="ul" 
@@ -202,68 +169,9 @@ const WorkExperience: React.FC = () => {
               }
             }}
           >
-            <li>Delivered architectural leadership and performance engineering expertise for enterprise-scale financial platforms, including First Data Holdings</li>
-            <li>Partnered with application and technical architecture teams to define and validate system performance across the full software lifecycle—unit, integration, UAT, and operational acceptance testing</li>
-            <li>Led architectural validation and tuning strategies to support performance compliance with both technical and business requirements for real-time trading applications</li>
-            <li>Managed global delivery of performance test solutions, overseeing teams responsible for scripting, scenario execution, test documentation, and results analysis</li>
-            <li>Designed and implemented testing frameworks that ensured scalability, responsiveness, and reliability across complex, distributed systems</li>
-            <li>Mentored junior engineers and technical staff on application performance principles, promoting knowledge sharing and adoption of best practices within cross-functional teams</li>
-          </Box>
-        </Box>
-
-        <Divider sx={{ my: { xs: 2, sm: 3 } }} />
-
-        <Box sx={{ mb: { xs: 3, sm: 4 } }}>
-          <Typography 
-            variant="h6" 
-            gutterBottom
-            sx={{ 
-              color: 'primary.main',
-              fontWeight: 500,
-              fontSize: { xs: '1.1rem', sm: '1.25rem' },
-            }}
-          >
-            Performance Architect
-          </Typography>
-          <Typography 
-            variant="subtitle1" 
-            color="text.secondary"
-            sx={{ 
-              fontWeight: 500,
-              fontSize: { xs: '0.9rem', sm: '1rem' },
-            }}
-          >
-            IBM | Raleigh-Durham, NC
-          </Typography>
-          <Typography 
-            variant="body2" 
-            color="text.secondary"
-            sx={{ 
-              mb: 2,
-              fontSize: { xs: '0.8rem', sm: '0.875rem' },
-            }}
-          >
-            Apr 2005 – Jan 2009
-          </Typography>
-          <Box 
-            component="ul" 
-            sx={{ 
-              pl: 2,
-              '& li': {
-                mb: 1.5,
-                color: 'text.secondary',
-                fontSize: { xs: '0.9rem', sm: '1rem' },
-                '&::marker': {
-                  color: 'primary.main',
-                }
-              }
-            }}
-          >
-            <li>Led architecture-aligned performance test planning and execution across assembly, product, and system phases in Agile SDLC environments</li>
-            <li>Served as Subject Matter Expert in distributed performance testing, driving end-to-end strategy across test design, scripting, scenario execution, and results interpretation</li>
-            <li>Evaluated and recommended optimal architectures, technologies, and system components to meet evolving scalability and throughput goals</li>
-            <li>Developed reusable test frameworks to validate architectural choices, enabling performance-driven development practices across cross-functional teams</li>
-            <li>Championed collaboration between architecture and QA teams to ensure that system designs aligned with performance objectives from inception through delivery</li>
+            <li>Led performance engineering initiatives for large-scale backend systems and distributed enterprise platforms.</li>
+            <li>Designed workload simulation frameworks validating system scalability under high concurrency conditions.</li>
+            <li>Built regression detection and performance monitoring pipelines improving platform reliability.</li>
           </Box>
         </Box>
       </Paper>
@@ -271,4 +179,4 @@ const WorkExperience: React.FC = () => {
   );
 };
 
-export default WorkExperience; 
+export default WorkExperience;

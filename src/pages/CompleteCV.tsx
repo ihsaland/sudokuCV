@@ -11,35 +11,35 @@ const CompleteCV: React.FC = () => {
   const sections = [
     {
       title: "Professional Summary",
-      content: "Seasoned Performance Architect with a proven track record in software engineering, SaaS optimization, and enterprise-scale product development. Expertise spans performance tuning, capacity planning, system profiling, and architectural process improvement. Known for designing and leading strategic initiatives that elevate application performance, scalability, and operational efficiency across complex, distributed systems.",
+      content: "Principal / Staff-level software engineer with 15+ years designing and optimizing large-scale distributed systems, high-throughput data platforms, and backend infrastructure. Deep expertise in performance engineering, distributed compute platforms, and infrastructure scalability for systems processing billions of events annually.",
       section: "professional-summary",
       difficulty: "Easy",
       path: "/professional-summary"
     },
     {
       title: "Education",
-      content: "Bachelor's Degree in Computer Science from Morehouse College, Master's Degree from North Carolina State University",
+      content: "B.S. Computer Science from Morehouse College, M.S. Computer Science from North Carolina State University",
       section: "education",
-      difficulty: "Easy",
+      difficulty: "Medium",
       path: "/education"
     },
     {
       title: "Work Experience",
-      content: "Principal Performance Architect at Salesforce (2021-Present), IBM (2016-2021), Accenture (2009-2016), and IBM (2005-2009)",
+      content: "Principal Performance Engineer / Acting Principal Architect — Cloud Data Platform (2021–Present). Principal Performance and Capacity Engineer — Distributed Enterprise Platforms (2016–2021). Lead Performance Engineer — Enterprise Application Platforms (2009–2016).",
       section: "work-experience",
-      difficulty: "Medium",
+      difficulty: "Hard",
       path: "/work-experience"
     },
     {
       title: "Skills",
-      content: "Performance Engineering, System Architecture, JVM Tuning, Database Optimization, Machine Learning, Cloud Infrastructure",
+      content: "Distributed systems architecture, Spark/Trino, AWS/Kubernetes, performance engineering, capacity planning, JVM optimization, telemetry & observability. Languages: Java, Python, SQL.",
       section: "skills",
-      difficulty: "Hard",
+      difficulty: "Advanced",
       path: "/skills"
     },
     {
       title: "Projects",
-      content: "Led development of enterprise performance frameworks, ML-powered performance modeling, and cross-platform query optimization strategies",
+      content: "Distributed ingestion pipelines, Spark/Trino analytics workflows, predictive workload modeling, diagnostic platforms, Kubernetes resource strategies. 35% query performance improvement; $750K+ annual cost exposure reduction.",
       section: "projects",
       difficulty: "Expert",
       path: "/projects"
