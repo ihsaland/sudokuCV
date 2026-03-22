@@ -51,7 +51,7 @@ const Home: React.FC = () => {
               <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
                 <Box
                   component="img"
-                  src="/images/ian-salandy.png"
+                  src="/images/animePic.jpeg"
                   alt="Ian Salandy"
                   sx={{
                     width: { xs: 120, sm: 160 },
