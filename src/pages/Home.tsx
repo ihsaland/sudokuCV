@@ -115,7 +115,7 @@ const Home: React.FC = () => {
                 <Button
                   variant="contained"
                   color="primary"
-                  href="/Ian_Salandy_Principal_Staff_Distributed_Systems.pdf"
+                  href="/Ian_Salandy.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   startIcon={<GetApp />}
