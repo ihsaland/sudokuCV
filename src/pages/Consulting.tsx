@@ -41,7 +41,7 @@ const Consulting: React.FC = () => {
               Consulting
             </Typography>
             <Typography sx={{ color: 'text.primary', mb: 2 }}>
-              Architecture advisory and performance engineering for distributed systems and SaaS platforms. Consulting and methodology are delivered through KPI99, including the PPI-F™ framework and ICEA.
+              Principal Software Architect–level advisory: distributed systems, scalability, cost-to-serve, and performance engineering for data platforms and SaaS. Consulting and methodology through KPI99, including the PPI-F™ framework and ICEA.
             </Typography>
             <Typography sx={{ color: 'text.secondary', mb: 2 }}>
               Services include performance health audits, scale and latency optimization, executive retainers, and incident support. Systems I've optimized span enterprise SaaS, real-time trading, and large-scale data pipelines.

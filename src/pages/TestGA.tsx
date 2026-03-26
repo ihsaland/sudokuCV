@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Box, Button, Typography } from '@mui/material';
-import { trackEvent } from '../components/GoogleAnalytics';
+import { trackEvent } from '../utils/googleAnalytics';
 
 const TestGA: React.FC = () => {
   useEffect(() => {

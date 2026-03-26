@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Grid, Paper, Typography, Dialog, DialogTitle, DialogContent, Button, IconButton, Link } from '@mui/material';
+import React, { useState, useEffect, useRef } from 'react';
+import { Box, Grid, Paper, Typography, Button, IconButton } from '@mui/material';
 import UndoIcon from '@mui/icons-material/Undo';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
 import { useUnlockedSections } from '../context/UnlockedSectionsContext';
 import { cache } from '../utils/cache';
 import { motion, AnimatePresence } from 'framer-motion';
-import { trackEvent } from './GoogleAnalytics';
+import { trackEvent } from '../utils/googleAnalytics';
 import { Difficulty } from '../types/sudoku';
 
 interface Cell {
@@ -213,23 +213,8 @@ const SudokuGame: React.FC = () => {
       selectedCell: null,
       isComplete: false
     }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- mount-only initial puzzle; difficulty changes use setDifficulty
   }, []);
-
-  // Add keyboard event handler for desktop
-  useEffect(() => {
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key >= '1' && e.key <= '9') {
-        handleNumberInput(parseInt(e.key));
-      } else if (e.key === 'Backspace' || e.key === 'Delete') {
-        handleDelete();
-      } else if (e.key === 'z' && e.ctrlKey) {
-        handleUndo();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [gameState.selectedCell]);
 
   const generatePuzzle = (difficulty: Difficulty): Board => {
     return generateValidPuzzle(difficulty);
@@ -293,6 +278,36 @@ const SudokuGame: React.FC = () => {
       board: previousBoard
     }));
   };
+
+  type KeyboardHandlersRef = {
+    handleNumberInput: (num: number) => void;
+    handleDelete: () => void;
+    handleUndo: () => void;
+  };
+
+  const keyboardHandlersRef = useRef<KeyboardHandlersRef>({
+    handleNumberInput,
+    handleDelete,
+    handleUndo,
+  });
+  keyboardHandlersRef.current = { handleNumberInput, handleDelete, handleUndo };
+
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      const { handleNumberInput: onNum, handleDelete: onDel, handleUndo: onUndo } =
+        keyboardHandlersRef.current;
+      if (e.key >= '1' && e.key <= '9') {
+        onNum(parseInt(e.key, 10));
+      } else if (e.key === 'Backspace' || e.key === 'Delete') {
+        onDel();
+      } else if (e.key === 'z' && e.ctrlKey) {
+        onUndo();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, []);
 
   const progressToNextDifficulty = (currentDifficulty: Difficulty) => {
     const currentIndex = difficultyOrder.indexOf(currentDifficulty);
@@ -558,8 +573,11 @@ const SudokuGame: React.FC = () => {
     setHistory([]);
   };
 
+  const checkCompletionRef = useRef(checkCompletion);
+  checkCompletionRef.current = checkCompletion;
+
   useEffect(() => {
-    checkCompletion();
+    checkCompletionRef.current();
   }, [gameState.board]);
 
   const getCellHighlight = (row: number, col: number) => {
@@ -591,21 +609,6 @@ const SudokuGame: React.FC = () => {
     }
     
     return getCellHighlight(row, col);
-  };
-
-  const startNewGame = (difficulty: Difficulty) => {
-    console.log('Starting new game with difficulty:', difficulty);
-    const board = generatePuzzle(difficulty);
-    const solution = JSON.parse(JSON.stringify(board));
-    solveSudoku(solution);
-    
-    setGameState({
-      board,
-      solution,
-      difficulty,
-      selectedCell: null,
-      isComplete: false
-    });
   };
 
   // Debug function to test progression

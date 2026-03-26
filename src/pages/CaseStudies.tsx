@@ -22,19 +22,19 @@ const CaseStudies: React.FC = () => {
               Case Studies
             </Typography>
             <Typography sx={{ color: 'text.secondary', mb: 2 }}>
-              Selected impact: system-level performance optimization, cost reduction, and scalability outcomes.
+              Selected architectural impact aligned with recent platform work: scale, throughput, cost, and predictive modeling.
             </Typography>
             <Paper variant="outlined" sx={{ p: 2, mb: 2, textAlign: 'left' }}>
-              <Typography variant="subtitle1" sx={{ color: 'primary.main', fontWeight: 600 }}>Distributed data platform</Typography>
-              <Typography sx={{ color: 'text.secondary' }}>Improved throughput by 35% through system-level performance optimization; reduced infrastructure cost exposure by more than $750K annually through telemetry-driven resource optimization.</Typography>
+              <Typography variant="subtitle1" sx={{ color: 'primary.main', fontWeight: 600 }}>Billions-of-events architectures</Typography>
+              <Typography sx={{ color: 'text.secondary' }}>Defined scalability architecture for distributed data platforms at multi-billion annual event scale.</Typography>
             </Paper>
             <Paper variant="outlined" sx={{ p: 2, mb: 2, textAlign: 'left' }}>
-              <Typography variant="subtitle1" sx={{ color: 'primary.main', fontWeight: 600 }}>Cloud data platform — ingestion & analytics</Typography>
-              <Typography sx={{ color: 'text.secondary' }}>Architected pipelines processing billions of telemetry and billing events annually; improved distributed query performance by 35% and reduced cost exposure by 25%.</Typography>
+              <Typography variant="subtitle1" sx={{ color: 'primary.main', fontWeight: 600 }}>Throughput &amp; cost</Typography>
+              <Typography sx={{ color: 'text.secondary' }}>System-level scaling strategies improving throughput by 35%; cost-to-serve modeling reducing infrastructure cost by ~$750K annually (25%).</Typography>
             </Paper>
             <Paper variant="outlined" sx={{ p: 2, textAlign: 'left' }}>
-              <Typography variant="subtitle1" sx={{ color: 'primary.main', fontWeight: 600 }}>Enterprise performance & capacity</Typography>
-              <Typography sx={{ color: 'text.secondary' }}>Predictive scaling models and automated profiling pipelines for distributed enterprise data platforms; JVM-based backend optimization for large-scale workloads.</Typography>
+              <Typography variant="subtitle1" sx={{ color: 'primary.main', fontWeight: 600 }}>Predictive scaling &amp; diagnostics</Typography>
+              <Typography sx={{ color: 'text.secondary' }}>Workload models for 2x–10x growth scenarios; diagnostics frameworks, performance automation, and benchmarking / regression governance for release stability.</Typography>
             </Paper>
           </Paper>
         </Container>

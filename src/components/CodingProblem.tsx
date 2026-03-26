@@ -148,10 +148,11 @@ const CodingProblem: React.FC = () => {
             passed,
             message: `Test case ${index + 1}: ${passed ? 'Passed' : 'Failed'}\nExpected: ${testCase.output}\nGot: ${JSON.stringify(result)}`
           });
-        } catch (error: any) {
+        } catch (error: unknown) {
+          const msg = error instanceof Error ? error.message : String(error);
           results.push({
             passed: false,
-            message: `Test case ${index + 1}: Error - ${error.message}`
+            message: `Test case ${index + 1}: Error - ${msg}`
           });
         }
       });
@@ -160,8 +161,9 @@ const CodingProblem: React.FC = () => {
       const allPassed = results.every(r => r.passed);
       setAlertMessage(allPassed ? 'All tests passed! 🎉' : 'Some tests failed. Try again!');
       setShowAlert(true);
-    } catch (error: any) {
-      setAlertMessage(`Error: ${error.message}`);
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : String(error);
+      setAlertMessage(`Error: ${msg}`);
       setShowAlert(true);
     }
   };

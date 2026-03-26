@@ -68,7 +68,7 @@ const ProfessionalSummary: React.FC = () => {
                 fontWeight: 400,
           }}
         >
-          Principal / Staff-level software engineer with 15+ years of experience designing and optimizing large-scale distributed systems, high-throughput data platforms, and backend infrastructure supporting multi-tenant cloud environments. Deep expertise in performance engineering, distributed compute platforms, and infrastructure scalability for systems processing billions of events annually. Proven ability to improve system throughput, reliability, and cost efficiency through architectural design, telemetry-driven diagnostics, predictive workload modeling, and platform optimization. Experienced leading cross-team technical initiatives and developing internal frameworks that identify scaling limits, detect performance regressions, and improve distributed system efficiency. Methodology includes application of the PPI-F™ (Performance Pressure Index) framework for system-level pressure analysis and risk mitigation via KPI99.
+          Principal Software Architect with 15+ years of experience defining and scaling distributed systems architectures for high-throughput data platforms. Expert in capacity planning, cost-to-serve modeling, and system-level performance engineering across multi-billion event workloads. Proven ability to design architectures that scale predictably, reduce infrastructure cost, and improve reliability. Trusted advisor to engineering leadership for system risk, scalability strategy, and infrastructure investment decisions. Methodology includes the PPI-F™ (Performance Pressure Index) framework for system-level pressure analysis and KPI99 consulting where applicable.
         </Typography>
 
             <Divider sx={{ my: 4 }} />
@@ -83,7 +83,7 @@ const ProfessionalSummary: React.FC = () => {
                 fontSize: { xs: '1.25rem', sm: '1.5rem' },
           }}
         >
-          Core Technical Strengths
+          Architecture &amp; Technical Leadership
         </Typography>
         
         <Box 
@@ -102,10 +102,15 @@ const ProfessionalSummary: React.FC = () => {
             }
           }}
         >
-          <li>Distributed Systems Architecture · High-Throughput Event Processing · Backend Platform Engineering</li>
-          <li>Distributed Data Platforms (Spark, Trino) · Cloud Infrastructure (AWS, Kubernetes) · Performance Engineering</li>
-          <li>Capacity Planning & Workload Modeling · Telemetry & Observability Platforms · Infrastructure Optimization</li>
-          <li>JVM Performance Optimization · Scalability Diagnostics · Synthetic Workload Simulation</li>
+          <li>Distributed Systems Architecture &amp; Design</li>
+          <li>Scalability Strategy &amp; Capacity Planning</li>
+          <li>Cost-to-Serve &amp; Infrastructure Efficiency Modeling</li>
+          <li>Performance Engineering &amp; System Diagnostics</li>
+          <li>AI / Data Workload Performance Architecture</li>
+          <li>Benchmarking, Regression Governance &amp; Standards</li>
+          <li>Performance Tooling &amp; Platform Enablement</li>
+          <li>Cross-Team Architecture Leadership &amp; Influence</li>
+          <li>Executive Communication &amp; Risk Modeling</li>
         </Box>
       </Paper>
     </Box>

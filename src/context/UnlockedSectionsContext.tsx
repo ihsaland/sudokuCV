@@ -1,6 +1,7 @@
+/* eslint-disable react-refresh/only-export-components -- context module exports Provider + hook */
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { cache } from '../utils/cache';
-import { trackEvent } from '../components/GoogleAnalytics';
+import { trackEvent } from '../utils/googleAnalytics';
 
 interface UnlockedSectionsContextType {
   unlockedSections: string[];
@@ -20,7 +21,7 @@ export const UnlockedSectionsProvider: React.FC<{ children: React.ReactNode }> =
     return cached || [];
   });
 
-  const [notification, setNotification] = useState<{ message: string; type: string } | null>(null);
+  const [, setNotification] = useState<{ message: string; type: string } | null>(null);
   const notificationTimeout = React.useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {

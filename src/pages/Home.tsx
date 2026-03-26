@@ -86,7 +86,20 @@ const Home: React.FC = () => {
                   mt: 1,
                 }}
               >
-                Principal Performance Architect
+                Principal Software Architect
+              </Typography>
+              <Typography
+                sx={{
+                  color: '#ffffff',
+                  fontSize: { xs: '0.9rem', sm: '1rem' },
+                  textAlign: 'center',
+                  mt: 0.5,
+                  maxWidth: '640px',
+                  mx: 'auto',
+                  opacity: 0.95,
+                }}
+              >
+                Distributed Systems, Performance &amp; Reliability
               </Typography>
               <Typography
                 sx={{
@@ -98,7 +111,7 @@ const Home: React.FC = () => {
                   mx: 'auto',
                 }}
               >
-                Diagnosing and optimizing large-scale distributed systems.
+                Defining and scaling distributed systems architectures for high-throughput data platforms — capacity planning, cost-to-serve modeling, and system-level performance engineering.
               </Typography>
               <Typography
                 sx={{
@@ -109,7 +122,7 @@ const Home: React.FC = () => {
                   opacity: 0.95,
                 }}
               >
-                JVM • Spark • Distributed Systems • Cost-to-Serve Engineering
+                Java • Python • Spark • Kafka • Kubernetes • AWS • Cost-to-Serve
               </Typography>
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'center', mt: 3 }}>
                 <Button
@@ -173,10 +186,10 @@ const Home: React.FC = () => {
                   '& li': { mb: 1 },
                 }}
               >
-                <li>Improved distributed data platform throughput by 35% through system-level performance optimization.</li>
-                <li>Reduced infrastructure cost exposure by more than $750K annually through telemetry-driven resource optimization.</li>
-                <li>Enabled scalable processing of billions of distributed events across multi-tenant cloud platforms.</li>
-                <li>Improved system reliability and scalability through predictive workload modeling and infrastructure diagnostics.</li>
+                <li>Defined architectures supporting billions of events across distributed systems.</li>
+                <li>Improved system throughput by 35% through architectural optimization.</li>
+                <li>Reduced infrastructure cost by $750K+ annually via efficiency modeling.</li>
+                <li>Enabled predictive scaling and failure prevention through workload modeling.</li>
               </Box>
             </Box>
           </motion.div>
@@ -357,7 +370,7 @@ const Home: React.FC = () => {
                     '&:hover': { color: '#ffffff', textDecoration: 'underline' },
                   }}
                 >
-                  PPI-F™ Framework (details, formula, whitepaper)
+                  PPI-F™ Framework (details, formula, KPI99 methodology)
                 </Link>
                 <Link
                   href="https://kpi99.co/en/ppi-framework.html"

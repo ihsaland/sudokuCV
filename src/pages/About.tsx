@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Container, Paper, Button, Link } from '@mui/material';
+import { Box, Typography, Container, Paper, Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import BackgroundPattern from '../components/BackgroundPattern';
 import { useNavigate } from 'react-router-dom';
@@ -41,13 +41,13 @@ const About: React.FC = () => {
               About
             </Typography>
             <Typography sx={{ color: 'text.primary', mb: 2 }}>
-              Ian Salandy — Principal Performance Architect. Diagnosing and optimizing large-scale distributed systems.
+              Ian Salandy — Principal Software Architect. Distributed systems, performance &amp; reliability.
             </Typography>
             <Typography sx={{ color: 'text.secondary', mb: 2 }}>
-              Principal / Staff-level software engineer with 15+ years designing and optimizing large-scale distributed systems, high-throughput data platforms, and backend infrastructure. Deep expertise in performance engineering, distributed compute platforms, and infrastructure scalability for systems processing billions of events annually.
+              15+ years defining and scaling distributed systems architectures for high-throughput data platforms — capacity planning, cost-to-serve modeling, and system-level performance engineering. Trusted advisor to leadership on system risk, scalability strategy, and infrastructure investment.
             </Typography>
             <Typography sx={{ color: 'text.secondary', mb: 2 }}>
-              JVM • Spark • Distributed Systems • Cost-to-Serve Engineering. Methodology includes the PPI-F™ framework and ICEA for evidence-based performance and cost decisions. Consulting and advisory delivered through KPI99.
+              Java • Python • Spark • Kafka • Kubernetes • AWS. Methodology includes the PPI-F™ framework; consulting and advisory through KPI99 where applicable.
             </Typography>
             <Button variant="outlined" color="primary" onClick={() => navigate('/cv')} sx={{ mr: 1 }}>
               View CV

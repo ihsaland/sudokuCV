@@ -50,7 +50,7 @@ const WorkExperience: React.FC = () => {
               fontSize: { xs: '1.1rem', sm: '1.25rem' },
             }}
           >
-            Principal Performance Engineer / Acting Principal Architect — Cloud Data Platform
+            Salesforce — Acting Principal Architect / Staff Performance Engineer
           </Typography>
           <Typography 
             variant="body2" 
@@ -76,13 +76,14 @@ const WorkExperience: React.FC = () => {
               }
             }}
           >
-            <li>Architected and optimized distributed ingestion pipelines and backend infrastructure processing billions of telemetry and billing events annually.</li>
-            <li>Designed large-scale distributed analytics workflows using Spark and Trino supporting high-throughput operational workloads.</li>
-            <li>Improved distributed query performance by 35% and reduced infrastructure cost exposure by 25% through telemetry-driven optimization.</li>
-            <li>Developed predictive workload modeling frameworks to forecast system scaling limits and infrastructure capacity requirements.</li>
-            <li>Built internal diagnostic platforms identifying performance regressions and architectural bottlenecks across distributed services.</li>
-            <li>Designed Kubernetes resource allocation strategies improving cluster utilization and platform reliability.</li>
-            <li>Led cross-team architectural initiatives improving telemetry pipelines, observability systems, and platform diagnostics.</li>
+            <li>Defined scalability architecture for distributed data platforms processing billions of events annually.</li>
+            <li>Designed system-level scaling strategies across compute, storage, and query layers improving throughput by 35%.</li>
+            <li>Developed cost-to-serve models reducing infrastructure cost by 25% (~$750K annually).</li>
+            <li>Built predictive workload models forecasting system behavior under 2x–10x growth scenarios.</li>
+            <li>Established performance diagnostics frameworks for cross-system bottleneck identification.</li>
+            <li>Designed performance automation tooling enabling repeatable large-scale system validation.</li>
+            <li>Led benchmarking and regression governance initiatives ensuring system stability across releases.</li>
+            <li>Presented system risk, scaling constraints, and architectural recommendations to senior leadership.</li>
           </Box>
         </Box>
 
@@ -98,7 +99,7 @@ const WorkExperience: React.FC = () => {
               fontSize: { xs: '1.1rem', sm: '1.25rem' },
             }}
           >
-            Principal Performance and Capacity Engineer — Distributed Enterprise Platforms
+            IBM — Principal Performance &amp; Capacity Engineer
           </Typography>
           <Typography 
             variant="body2" 
@@ -124,10 +125,10 @@ const WorkExperience: React.FC = () => {
               }
             }}
           >
-            <li>Designed performance engineering and capacity planning frameworks for distributed enterprise data platforms.</li>
-            <li>Built predictive scaling models evaluating system throughput limits and infrastructure requirements.</li>
-            <li>Developed automated profiling pipelines enabling rapid root-cause diagnostics for platform performance regressions.</li>
-            <li>Optimized JVM-based backend services supporting large-scale enterprise workloads.</li>
+            <li>Defined capacity planning and scalability strategies for enterprise distributed systems.</li>
+            <li>Designed diagnostics frameworks to analyze system behavior under load.</li>
+            <li>Developed infrastructure efficiency models to optimize cost and performance.</li>
+            <li>Led JVM and backend optimization improving system latency and reliability.</li>
           </Box>
         </Box>
 
@@ -143,7 +144,7 @@ const WorkExperience: React.FC = () => {
               fontSize: { xs: '1.1rem', sm: '1.25rem' },
             }}
           >
-            Lead Performance Engineer — Enterprise Application Platforms
+            Accenture — Lead Performance Engineer
           </Typography>
           <Typography 
             variant="body2" 
@@ -169,9 +170,9 @@ const WorkExperience: React.FC = () => {
               }
             }}
           >
-            <li>Led performance engineering initiatives for large-scale backend systems and distributed enterprise platforms.</li>
-            <li>Designed workload simulation frameworks validating system scalability under high concurrency conditions.</li>
-            <li>Built regression detection and performance monitoring pipelines improving platform reliability.</li>
+            <li>Led performance architecture initiatives for large-scale enterprise systems.</li>
+            <li>Designed load simulation frameworks to validate system scalability under peak conditions.</li>
+            <li>Diagnosed and resolved distributed system bottlenecks impacting production reliability.</li>
           </Box>
         </Box>
       </Paper>

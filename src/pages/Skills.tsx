@@ -3,25 +3,22 @@ import { Box, Paper, Typography, Grid, Chip, Link } from '@mui/material';
 
 const Skills: React.FC = () => {
   const coreStrengths = [
-    'Distributed Systems Architecture',
-    'High-Throughput Event Processing',
-    'Backend Platform Engineering',
-    'Distributed Data Platforms (Spark, Trino)',
-    'Cloud Infrastructure (AWS, Kubernetes)',
-    'Performance Engineering',
-    'Capacity Planning & Workload Modeling',
-    'Telemetry & Observability Platforms',
-    'Infrastructure Optimization',
-    'JVM Performance Optimization',
-    'Scalability Diagnostics',
-    'Synthetic Workload Simulation',
+    'Distributed Systems Architecture & Design',
+    'Scalability Strategy & Capacity Planning',
+    'Cost-to-Serve & Infrastructure Efficiency Modeling',
+    'Performance Engineering & System Diagnostics',
+    'AI / Data Workload Performance Architecture',
+    'Benchmarking, Regression Governance & Standards',
+    'Performance Tooling & Platform Enablement',
+    'Cross-Team Architecture Leadership & Influence',
+    'Executive Communication & Risk Modeling',
   ];
 
   const technologies = {
     'Languages': ['Java', 'Python', 'SQL'],
     'Platforms': ['Spark', 'Trino/Presto', 'Kafka', 'Kubernetes', 'EMR', 'EKS'],
-    'Infrastructure': ['AWS', 'Distributed data platforms', 'Telemetry pipelines'],
-    'Performance': ['JVM tuning', 'Distributed query optimization', 'Workload modeling', 'Capacity planning'],
+    'Infrastructure': ['AWS', 'Distributed systems design', 'Telemetry pipelines'],
+    'Performance': ['Workload modeling', 'Performance optimization', 'Capacity planning', 'JVM tuning'],
   };
 
   return (
@@ -72,7 +69,7 @@ const Skills: React.FC = () => {
             fontSize: { xs: '1.1rem', sm: '1.25rem' },
           }}
         >
-          Core Technical Strengths
+          Architecture &amp; Technical Leadership
         </Typography>
         <Box 
           sx={{ 

@@ -12,9 +12,11 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import { GetApp } from '@mui/icons-material';
+import { OpenInNew } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import BackgroundPattern from '../components/BackgroundPattern';
+
+const PPI_F_METHODOLOGY_URL = 'https://kpi99.co/en/ppi-framework.html';
 
 const PPIFramework: React.FC = () => {
   const sectionStyle = {
@@ -49,13 +51,13 @@ const PPIFramework: React.FC = () => {
               <Button
                 variant="contained"
                 color="primary"
-                href="/PPI-F-Whitepaper.pdf"
+                href={PPI_F_METHODOLOGY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                startIcon={<GetApp />}
+                startIcon={<OpenInNew />}
                 sx={{ fontWeight: 700 }}
               >
-                Download Whitepaper
+                Open PPI-F methodology (KPI99)
               </Button>
             </Box>
           </Paper>
@@ -217,7 +219,7 @@ const PPIFramework: React.FC = () => {
             </Box>
           </Paper>
 
-          {/* CTA + whitepaper + KPI99 */}
+          {/* CTA + KPI99 methodology */}
           <Paper variant="outlined" sx={{ ...sectionStyle, textAlign: 'center' }}>
             <Typography sx={{ color: 'text.primary', mb: 2 }}>
               Apply PPI-F with KPI99 for prioritized interventions, risk mitigation plans, and alignment with FinOps and SRE.
@@ -225,16 +227,16 @@ const PPIFramework: React.FC = () => {
             <Button
               variant="contained"
               color="primary"
-              href="/PPI-F-Whitepaper.pdf"
+              href={PPI_F_METHODOLOGY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              startIcon={<GetApp />}
+              startIcon={<OpenInNew />}
               sx={{ mr: 1, mb: 1, fontWeight: 700 }}
             >
-              Download Whitepaper
+              Open PPI-F methodology (KPI99)
             </Button>
             <Link
-              href="https://kpi99.co/en/ppi-framework.html"
+              href={PPI_F_METHODOLOGY_URL}
               target="_blank"
               rel="noopener noreferrer"
               sx={{ display: 'inline-block', fontWeight: 700, mt: 1 }}

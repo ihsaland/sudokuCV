@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Paper, Grid, Container } from '@mui/material';
+import { Typography, Paper, Grid, Container } from '@mui/material';
 import { useUnlockedSections } from '../context/UnlockedSectionsContext';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +11,7 @@ const CompleteCV: React.FC = () => {
   const sections = [
     {
       title: "Professional Summary",
-      content: "Principal / Staff-level software engineer with 15+ years designing and optimizing large-scale distributed systems, high-throughput data platforms, and backend infrastructure. Deep expertise in performance engineering, distributed compute platforms, and infrastructure scalability for systems processing billions of events annually.",
+      content: "Principal Software Architect with 15+ years defining and scaling distributed systems for high-throughput data platforms. Capacity planning, cost-to-serve modeling, and system-level performance engineering across multi-billion event workloads.",
       section: "professional-summary",
       difficulty: "Easy",
       path: "/professional-summary"
@@ -25,21 +25,21 @@ const CompleteCV: React.FC = () => {
     },
     {
       title: "Work Experience",
-      content: "Principal Performance Engineer / Acting Principal Architect — Cloud Data Platform (2021–Present). Principal Performance and Capacity Engineer — Distributed Enterprise Platforms (2016–2021). Lead Performance Engineer — Enterprise Application Platforms (2009–2016).",
+      content: "Salesforce — Acting Principal Architect / Staff Performance Engineer (2021–Present). IBM — Principal Performance & Capacity Engineer (2016–2021). Accenture — Lead Performance Engineer (2009–2016).",
       section: "work-experience",
       difficulty: "Hard",
       path: "/work-experience"
     },
     {
       title: "Skills",
-      content: "Distributed systems architecture, Spark/Trino, AWS/Kubernetes, performance engineering, capacity planning, JVM optimization, telemetry & observability. Languages: Java, Python, SQL.",
+      content: "Distributed systems design, scalability strategy, cost-to-serve modeling, performance engineering & diagnostics. Spark, Trino/Presto, Kafka, Kubernetes, AWS (EMR, EKS). Java, Python, SQL.",
       section: "skills",
       difficulty: "Advanced",
       path: "/skills"
     },
     {
       title: "Projects",
-      content: "Distributed ingestion pipelines, Spark/Trino analytics workflows, predictive workload modeling, diagnostic platforms, Kubernetes resource strategies. 35% query performance improvement; $750K+ annual cost exposure reduction.",
+      content: "Billions-of-events architectures; 35% throughput improvement; ~$750K annual cost reduction via efficiency modeling; predictive 2x–10x growth modeling; diagnostics, automation, and regression governance.",
       section: "projects",
       difficulty: "Expert",
       path: "/projects"
@@ -91,7 +91,7 @@ const CompleteCV: React.FC = () => {
           animate="visible"
         >
           <Grid container spacing={3}>
-            {sections.map((section, index) => (
+            {sections.map((section) => (
               <Grid item xs={12} md={6} key={section.title}>
                 <motion.div variants={itemVariants}>
                   <Paper

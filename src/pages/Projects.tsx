@@ -4,29 +4,29 @@ import { Box, Paper, Typography, Grid, Card, CardContent } from '@mui/material';
 const Projects: React.FC = () => {
   const projects = [
     {
-      title: 'Distributed Ingestion & Backend Infrastructure',
-      description: 'Architected and optimized distributed ingestion pipelines and backend infrastructure processing billions of telemetry and billing events annually. Improved distributed query performance by 35% and reduced infrastructure cost exposure by 25% through telemetry-driven optimization.',
-      technologies: ['Spark', 'Trino', 'Telemetry', 'High-Throughput', 'Multi-tenant'],
+      title: 'Scalability Architecture — Billions of Events',
+      description: 'Defined scalability architecture for distributed data platforms processing billions of events annually. Designed system-level scaling across compute, storage, and query layers, improving throughput by 35%.',
+      technologies: ['Spark', 'Kafka', 'Distributed systems', 'High throughput'],
     },
     {
-      title: 'Predictive Workload Modeling',
-      description: 'Developed predictive workload modeling frameworks to forecast system scaling limits and infrastructure capacity requirements. Built predictive scaling models evaluating throughput limits and infrastructure needs for distributed enterprise data platforms.',
-      technologies: ['Capacity Planning', 'Workload Modeling', 'Scaling', 'Forecasting'],
+      title: 'Cost-to-Serve & Efficiency Modeling',
+      description: 'Developed cost-to-serve models that reduced infrastructure cost by 25% (~$750K annually). Combined telemetry-driven analysis with capacity and efficiency modeling.',
+      technologies: ['Cost-to-serve', 'AWS', 'Capacity planning'],
     },
     {
-      title: 'Diagnostic & Observability Platforms',
-      description: 'Built internal diagnostic platforms identifying performance regressions and architectural bottlenecks across distributed services. Developed automated profiling pipelines enabling rapid root-cause diagnostics for platform performance regressions.',
-      technologies: ['Observability', 'Telemetry', 'Diagnostics', 'Regression Detection'],
+      title: 'Predictive Workload Modeling (2x–10x Growth)',
+      description: 'Built predictive workload models forecasting system behavior under 2x–10x growth scenarios — enabling proactive scaling and failure prevention.',
+      technologies: ['Workload modeling', 'Forecasting', 'Scaling'],
     },
     {
-      title: 'Kubernetes & Platform Reliability',
-      description: 'Designed Kubernetes resource allocation strategies improving cluster utilization and platform reliability. Led cross-team architectural initiatives improving telemetry pipelines, observability systems, and platform diagnostics.',
-      technologies: ['Kubernetes', 'AWS', 'EMR', 'EKS', 'Resource Optimization'],
+      title: 'Diagnostics, Automation & Governance',
+      description: 'Established performance diagnostics frameworks for cross-system bottleneck identification; designed performance automation for large-scale validation; led benchmarking and regression governance across releases.',
+      technologies: ['Diagnostics', 'Automation', 'Benchmarking', 'Governance'],
     },
     {
-      title: 'Selected Impact',
-      description: 'Improved distributed data platform throughput by 35% through system-level performance optimization. Reduced infrastructure cost exposure by more than $750K annually. Enabled scalable processing of billions of distributed events across multi-tenant cloud platforms. Improved system reliability through predictive workload modeling and infrastructure diagnostics.',
-      technologies: ['Throughput', 'Cost Optimization', 'Scale', 'Reliability'],
+      title: 'Leadership & Executive Communication',
+      description: 'Presented system risk, scaling constraints, and architectural recommendations to senior leadership. Cross-team architecture leadership on platform stability and investment decisions.',
+      technologies: ['Architecture', 'Risk modeling', 'Leadership'],
     },
   ];
 
