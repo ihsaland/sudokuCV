@@ -409,7 +409,7 @@ Pipelines are the foundation of stream processing, ETL workflows, and middleware
       {
         description: 'Single function pipeline',
         run: (fn) => {
-          const result = (fn as (...f: Function[]) => (x: number) => number)(x => x * 2)(5);
+          const result = (fn as (...f: Function[]) => (x: number) => number)((x: number) => x * 2)(5);
           return { result, expected: 10, passed: result === 10 };
         },
       },
