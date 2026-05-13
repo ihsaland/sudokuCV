@@ -145,3 +145,16 @@ button:focus-visible {
   height: 100vh;
   background-color: #07070f;
 }
+
+@media print {
+  header,
+  footer,
+  nav {
+    display: none !important;
+  }
+  body,
+  #root {
+    background-color: #fff !important;
+    height: auto !important;
+  }
+}
