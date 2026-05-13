@@ -1,183 +1,109 @@
 import React from 'react';
-import { Box, Paper, Typography, Divider } from '@mui/material';
+import { Box, Typography, Container, Divider } from '@mui/material';
+import { motion } from 'framer-motion';
+import BackgroundPattern from '../components/BackgroundPattern';
+import {
+  cardSx, pageBox, containerSx, pageTitleSx,
+  bodyTextSx, sectionHeadingSx, fadeUp, inView,
+  GOLD, GOLD_BORDER, TEXT_BODY, TEXT_MUTED,
+} from '../styles/pageStyles';
 
-const WorkExperience: React.FC = () => {
-  return (
-    <Box sx={{ p: { xs: 2, sm: 3 }, maxWidth: 800, mx: 'auto' }}>
-      <Paper 
-        variant="outlined"
-        sx={{ 
-          p: { xs: 2, sm: 4 },
-          backgroundColor: 'rgba(255, 255, 255, 0.98)',
-          backdropFilter: 'blur(10px)',
-          transition: 'transform 0.2s ease-in-out',
-          '&:hover': {
-            transform: 'translateY(-4px)',
-          }
-        }}
-      >
-        <Typography 
-          variant="h4" 
-          gutterBottom 
-          sx={{ 
-            color: 'primary.main',
-            fontWeight: 600,
-            mb: 3,
-            position: 'relative',
-            fontSize: { xs: '1.75rem', sm: '2rem' },
-            '&::after': {
-              content: '""',
-              position: 'absolute',
-              bottom: -8,
-              left: 0,
-              width: '60px',
-              height: '4px',
-              backgroundColor: 'primary.main',
-              borderRadius: '2px',
-            }
-          }}
-        >
-          Professional Experience
-        </Typography>
-        
-        <Box sx={{ mb: { xs: 3, sm: 4 } }}>
-          <Typography 
-            variant="h6" 
-            gutterBottom
-            sx={{ 
-              color: 'primary.main',
-              fontWeight: 500,
-              fontSize: { xs: '1.1rem', sm: '1.25rem' },
-            }}
-          >
-            Salesforce — Acting Principal Architect / Staff Performance Engineer
-          </Typography>
-          <Typography 
-            variant="body2" 
-            color="text.secondary"
-            sx={{ 
-              mb: 2,
-              fontSize: { xs: '0.8rem', sm: '0.875rem' },
-            }}
-          >
-            2021 – Present
-          </Typography>
-          <Box 
-            component="ul" 
-            sx={{ 
-              pl: 2,
-              '& li': {
-                mb: 1.5,
-                color: 'text.secondary',
-                fontSize: { xs: '0.9rem', sm: '1rem' },
-                '&::marker': {
-                  color: 'primary.main',
-                }
-              }
-            }}
-          >
-            <li>Defined scalability architecture for distributed data platforms processing billions of events annually.</li>
-            <li>Designed system-level scaling strategies across compute, storage, and query layers improving throughput by 35%.</li>
-            <li>Developed cost-to-serve models reducing infrastructure cost by 25% (~$750K annually).</li>
-            <li>Built predictive workload models forecasting system behavior under 2x–10x growth scenarios.</li>
-            <li>Established performance diagnostics frameworks for cross-system bottleneck identification.</li>
-            <li>Designed performance automation tooling enabling repeatable large-scale system validation.</li>
-            <li>Led benchmarking and regression governance initiatives ensuring system stability across releases.</li>
-            <li>Presented system risk, scaling constraints, and architectural recommendations to senior leadership.</li>
-          </Box>
-        </Box>
+interface RoleProps {
+  company: string;
+  title: string;
+  period: string;
+  bullets: string[];
+}
 
-        <Divider sx={{ my: { xs: 2, sm: 3 } }} />
-
-        <Box sx={{ mb: { xs: 3, sm: 4 } }}>
-          <Typography 
-            variant="h6" 
-            gutterBottom
-            sx={{ 
-              color: 'primary.main',
-              fontWeight: 500,
-              fontSize: { xs: '1.1rem', sm: '1.25rem' },
-            }}
-          >
-            IBM — Principal Performance &amp; Capacity Engineer
-          </Typography>
-          <Typography 
-            variant="body2" 
-            color="text.secondary"
-            sx={{ 
-              mb: 2,
-              fontSize: { xs: '0.8rem', sm: '0.875rem' },
-            }}
-          >
-            2016 – 2021
-          </Typography>
-          <Box 
-            component="ul" 
-            sx={{ 
-              pl: 2,
-              '& li': {
-                mb: 1.5,
-                color: 'text.secondary',
-                fontSize: { xs: '0.9rem', sm: '1rem' },
-                '&::marker': {
-                  color: 'primary.main',
-                }
-              }
-            }}
-          >
-            <li>Defined capacity planning and scalability strategies for enterprise distributed systems.</li>
-            <li>Designed diagnostics frameworks to analyze system behavior under load.</li>
-            <li>Developed infrastructure efficiency models to optimize cost and performance.</li>
-            <li>Led JVM and backend optimization improving system latency and reliability.</li>
-          </Box>
-        </Box>
-
-        <Divider sx={{ my: { xs: 2, sm: 3 } }} />
-
-        <Box sx={{ mb: { xs: 3, sm: 4 } }}>
-          <Typography 
-            variant="h6" 
-            gutterBottom
-            sx={{ 
-              color: 'primary.main',
-              fontWeight: 500,
-              fontSize: { xs: '1.1rem', sm: '1.25rem' },
-            }}
-          >
-            Accenture — Lead Performance Engineer
-          </Typography>
-          <Typography 
-            variant="body2" 
-            color="text.secondary"
-            sx={{ 
-              mb: 2,
-              fontSize: { xs: '0.8rem', sm: '0.875rem' },
-            }}
-          >
-            2009 – 2016
-          </Typography>
-          <Box 
-            component="ul" 
-            sx={{ 
-              pl: 2,
-              '& li': {
-                mb: 1.5,
-                color: 'text.secondary',
-                fontSize: { xs: '0.9rem', sm: '1rem' },
-                '&::marker': {
-                  color: 'primary.main',
-                }
-              }
-            }}
-          >
-            <li>Led performance architecture initiatives for large-scale enterprise systems.</li>
-            <li>Designed load simulation frameworks to validate system scalability under peak conditions.</li>
-            <li>Diagnosed and resolved distributed system bottlenecks impacting production reliability.</li>
-          </Box>
-        </Box>
-      </Paper>
+const Role: React.FC<RoleProps> = ({ company, title, period, bullets }) => (
+  <Box sx={{ mb: 4 }}>
+    <Typography sx={{ ...sectionHeadingSx, fontSize: { xs: '1rem', sm: '1.1rem' } }}>
+      {company}
+    </Typography>
+    <Typography sx={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600, fontSize: { xs: '0.9rem', sm: '0.95rem' }, mb: 0.5 }}>
+      {title}
+    </Typography>
+    <Typography sx={{ color: TEXT_MUTED, fontSize: { xs: '0.78rem', sm: '0.82rem' }, mb: 1.5, fontFamily: 'DS-DIGII, monospace', letterSpacing: '0.04em' }}>
+      {period}
+    </Typography>
+    <Box component="ul" sx={{ pl: 2.5, m: 0, '& li': { ...bodyTextSx, mb: 1, '&::marker': { color: GOLD } } }}>
+      {bullets.map((b, i) => <li key={i}>{b}</li>)}
     </Box>
-  );
-};
+  </Box>
+);
+
+const WorkExperience: React.FC = () => (
+  <motion.div {...fadeUp}>
+    <Box sx={pageBox}>
+      <BackgroundPattern />
+      <Container maxWidth="md" sx={containerSx}>
+
+        <motion.div {...inView} transition={{ duration: 0.5 }}>
+          <Box sx={{ textAlign: 'center', mb: 5 }}>
+            <Typography sx={pageTitleSx}>Professional Experience</Typography>
+            <Box sx={{ height: '1px', width: 60, background: `linear-gradient(90deg, transparent, ${GOLD}, transparent)`, mx: 'auto', mt: 2 }} />
+          </Box>
+        </motion.div>
+
+        {/* Salesforce */}
+        <motion.div {...inView} transition={{ duration: 0.5, delay: 0.1 }}>
+          <Box sx={cardSx}>
+            <Role
+              company="Salesforce"
+              title="Acting Principal Architect / Staff Performance Engineer"
+              period="2021 – Present"
+              bullets={[
+                'Defined scalability architecture for distributed data platforms processing billions of events annually across multi-region deployments.',
+                'Designed system-level scaling strategies across compute, storage, and query layers improving throughput by 35% under production-equivalent load.',
+                'Built cost-to-serve models that informed infrastructure consolidation, reducing annual spend by ~$750K without degrading SLAs.',
+                'Developed predictive workload models forecasting system behavior under 2×–10× growth scenarios, informing capacity investment decisions.',
+                'Established performance diagnostics frameworks enabling cross-system bottleneck identification across heterogeneous data stacks (Spark, Trino, Kafka).',
+                'Designed performance automation tooling enabling repeatable large-scale validation across releases and infrastructure changes.',
+                'Led benchmarking and regression governance initiatives, setting org-wide quality gates ensuring stability across quarterly releases.',
+                'Presented system risk, scaling constraints, and architectural recommendations to VP and C-suite stakeholders.',
+              ]}
+            />
+          </Box>
+        </motion.div>
+
+        {/* IBM */}
+        <motion.div {...inView} transition={{ duration: 0.5, delay: 0.15 }}>
+          <Box sx={cardSx}>
+            <Role
+              company="IBM"
+              title="Principal Performance & Capacity Engineer"
+              period="2016 – 2021"
+              bullets={[
+                'Defined capacity planning and scalability strategies for enterprise distributed systems supporting millions of daily transactions.',
+                'Designed diagnostics frameworks to systematically analyze system behavior under sustained and peak load conditions.',
+                'Built infrastructure efficiency models aligning compute and storage allocation to actual workload demand, reducing waste by 20%+.',
+                'Led JVM and backend optimization initiatives reducing p99 latency and improving system reliability under variable load.',
+                'Operated as internal performance architect across multiple product lines, standardizing performance criteria and escalation paths.',
+              ]}
+            />
+          </Box>
+        </motion.div>
+
+        {/* Accenture */}
+        <motion.div {...inView} transition={{ duration: 0.5, delay: 0.2 }}>
+          <Box sx={cardSx}>
+            <Role
+              company="Accenture"
+              title="Lead Performance Engineer"
+              period="2009 – 2016"
+              bullets={[
+                'Led performance architecture initiatives for large-scale enterprise systems across financial services, retail, and public sector clients.',
+                'Designed load simulation and capacity stress frameworks to validate scalability ahead of peak seasonal events.',
+                'Diagnosed and resolved distributed system bottlenecks impacting production reliability and SLA attainment.',
+                'Delivered performance readiness assessments and executive briefings for go-live decisions on multi-million-dollar programs.',
+              ]}
+            />
+          </Box>
+        </motion.div>
+
+      </Container>
+    </Box>
+  </motion.div>
+);
 
 export default WorkExperience;

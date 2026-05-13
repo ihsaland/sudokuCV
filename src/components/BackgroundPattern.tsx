@@ -1,37 +1,135 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-const BackgroundPattern: React.FC = () => {
-  return (
+/**
+ * Noise gradient mesh — five slowly-drifting colour blobs composited
+ * with screen blend mode over a near-black base. Each blob is a
+ * CSS radial-gradient whose position is driven by a unique keyframe
+ * animation so they never repeat in sync.
+ */
+const BackgroundPattern: React.FC = () => (
+  <>
+    {/* Dark base */}
     <Box
       sx={{
         position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        zIndex: -1,
-        opacity: 0.05,
-        backgroundImage: `
-          radial-gradient(circle at 50% 50%, #dc004e 1px, transparent 1px),
-          radial-gradient(circle at 50% 50%, #dc004e 1px, transparent 1px)
-        `,
-        backgroundSize: '40px 40px',
-        backgroundPosition: '0 0, 20px 20px',
+        inset: 0,
+        zIndex: -3,
+        backgroundColor: '#07070f',
         pointerEvents: 'none',
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'radial-gradient(circle at 50% 50%, rgba(220,0,78,0.1) 0%, transparent 50%)',
-          zIndex: -1,
-        },
       }}
     />
-  );
-};
 
-export default BackgroundPattern; 
+    {/* Mesh node 1 — gold, top-centre */}
+    <Box
+      sx={{
+        position: 'fixed',
+        zIndex: -2,
+        pointerEvents: 'none',
+        width: '80vw',
+        height: '80vw',
+        maxWidth: 900,
+        maxHeight: 900,
+        borderRadius: '50%',
+        background: 'radial-gradient(circle at center, rgba(212,175,55,0.28) 0%, transparent 70%)',
+        filter: 'blur(60px)',
+        top: '-15%',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        animation: 'mesh-drift-1 26s ease-in-out infinite',
+      }}
+    />
+
+    {/* Mesh node 2 — deep violet, upper-right */}
+    <Box
+      sx={{
+        position: 'fixed',
+        zIndex: -2,
+        pointerEvents: 'none',
+        width: '65vw',
+        height: '65vw',
+        maxWidth: 780,
+        maxHeight: 780,
+        borderRadius: '50%',
+        background: 'radial-gradient(circle at center, rgba(110,50,200,0.26) 0%, transparent 70%)',
+        filter: 'blur(70px)',
+        top: '0%',
+        right: '-10%',
+        animation: 'mesh-drift-2 34s ease-in-out infinite',
+      }}
+    />
+
+    {/* Mesh node 3 — cobalt blue, mid-left */}
+    <Box
+      sx={{
+        position: 'fixed',
+        zIndex: -2,
+        pointerEvents: 'none',
+        width: '70vw',
+        height: '70vw',
+        maxWidth: 820,
+        maxHeight: 820,
+        borderRadius: '50%',
+        background: 'radial-gradient(circle at center, rgba(30,60,200,0.22) 0%, transparent 70%)',
+        filter: 'blur(80px)',
+        top: '35%',
+        left: '-12%',
+        animation: 'mesh-drift-3 22s ease-in-out infinite',
+      }}
+    />
+
+    {/* Mesh node 4 — teal, lower-right */}
+    <Box
+      sx={{
+        position: 'fixed',
+        zIndex: -2,
+        pointerEvents: 'none',
+        width: '55vw',
+        height: '55vw',
+        maxWidth: 680,
+        maxHeight: 680,
+        borderRadius: '50%',
+        background: 'radial-gradient(circle at center, rgba(20,120,110,0.2) 0%, transparent 70%)',
+        filter: 'blur(72px)',
+        bottom: '-5%',
+        right: '5%',
+        animation: 'mesh-drift-4 29s ease-in-out infinite',
+      }}
+    />
+
+    {/* Mesh node 5 — warm rose, lower-left */}
+    <Box
+      sx={{
+        position: 'fixed',
+        zIndex: -2,
+        pointerEvents: 'none',
+        width: '50vw',
+        height: '50vw',
+        maxWidth: 620,
+        maxHeight: 620,
+        borderRadius: '50%',
+        background: 'radial-gradient(circle at center, rgba(160,40,80,0.18) 0%, transparent 70%)',
+        filter: 'blur(65px)',
+        bottom: '10%',
+        left: '5%',
+        animation: 'mesh-drift-5 38s ease-in-out infinite',
+      }}
+    />
+
+    {/* Noise grain overlay — breaks up banding and adds organic texture */}
+    <Box
+      sx={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: -1,
+        pointerEvents: 'none',
+        opacity: 0.06,
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+        backgroundRepeat: 'repeat',
+        backgroundSize: '200px 200px',
+      }}
+    />
+  </>
+);
+
+export default BackgroundPattern;

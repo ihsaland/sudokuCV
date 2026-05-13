@@ -1,59 +1,72 @@
 import React from 'react';
-import { Box, Typography, Container, Paper, Button, Link } from '@mui/material';
+import { Box, Typography, Container, Button, Link } from '@mui/material';
 import { motion } from 'framer-motion';
 import BackgroundPattern from '../components/BackgroundPattern';
 import { useNavigate } from 'react-router-dom';
+import {
+  GOLD, cardSx, pageBox, containerSx, pageTitleSx, pageSubtitleSx,
+  sectionHeadingSx, bodyTextSx, goldOutlinedBtn, fadeUp, inView,
+} from '../styles/pageStyles';
 
-const sectionStyle = {
-  p: { xs: 2, sm: 3 },
-  borderRadius: 2,
-  backgroundColor: 'rgba(255, 255, 255, 0.98)',
-  backdropFilter: 'blur(10px)',
-  mb: 4,
-};
+const services = [
+  'Performance health audits & PPI diagnostic reviews',
+  'Scale and latency optimisation',
+  'Cost-to-serve modelling and FinOps alignment',
+  'Executive advisory retainers',
+  'Incident support and post-mortem analysis',
+];
 
 const Consulting: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-      <Box sx={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
+    <motion.div {...fadeUp}>
+      <Box sx={pageBox}>
         <BackgroundPattern />
-        <Container maxWidth="md" sx={{ position: 'relative', zIndex: 1, py: 4 }}>
-          <Paper variant="outlined" sx={{ ...sectionStyle, textAlign: 'center' }}>
-            <Box
-              component="img"
-              src="/images/ian-salandy-headshot.png"
-              alt="Ian Salandy"
-              sx={{
-                width: { xs: 140, sm: 180 },
-                height: { xs: 140, sm: 180 },
-                borderRadius: '50%',
-                objectFit: 'cover',
-                border: '3px solid',
-                borderColor: 'primary.main',
-                mb: 2,
-                display: 'block',
-                mx: 'auto',
-              }}
-            />
-            <Typography variant="h4" sx={{ color: 'primary.main', fontWeight: 700, mb: 2 }}>
-              Consulting
-            </Typography>
-            <Typography sx={{ color: 'text.primary', mb: 2 }}>
-              Principal Software Architect–level advisory: distributed systems, scalability, cost-to-serve, and performance engineering for data platforms and SaaS. Consulting and methodology through KPI99, including the PPI-F™ framework and ICEA.
-            </Typography>
-            <Typography sx={{ color: 'text.secondary', mb: 2 }}>
-              Services include performance health audits, scale and latency optimization, executive retainers, and incident support. Systems I've optimized span enterprise SaaS, real-time trading, and large-scale data pipelines.
-            </Typography>
-            <Link href="https://kpi99.co" target="_blank" rel="noopener noreferrer" sx={{ fontWeight: 700, display: 'inline-block', mb: 2 }}>
-              KPI99
-            </Link>
-            <Typography sx={{ color: 'text.secondary', mb: 2 }}>For direct contact:</Typography>
-            <Button variant="outlined" color="primary" onClick={() => navigate('/contact')}>
-              Contact Me
-            </Button>
-          </Paper>
+        <Container maxWidth="md" sx={containerSx}>
+
+          <Typography sx={pageTitleSx}>Pressure Intelligence</Typography>
+          <Typography sx={pageSubtitleSx}>
+            Systems Pressure Architect–level advisory on distributed systems, scalability, cost-to-serve, and performance engineering for data platforms and SaaS.
+          </Typography>
+
+          {/* What I do */}
+          <motion.div {...inView} transition={{ duration: 0.6 }}>
+            <Box sx={cardSx}>
+              <Typography sx={sectionHeadingSx}>Services</Typography>
+              <Typography sx={bodyTextSx}>
+                Methodology and consulting through KPI99, including the PPI-F™ framework and ICEA. Systems I've optimised span enterprise SaaS, real-time trading, and large-scale data pipelines.
+              </Typography>
+              <Box component="ul" sx={{ pl: 2.5, mt: 1, mb: 0, '& li': { color: 'rgba(255,255,255,0.75)', fontSize: { xs: '0.9rem', sm: '0.95rem' }, mb: 1, lineHeight: 1.6 } }}>
+                {services.map((s) => <li key={s}>{s}</li>)}
+              </Box>
+            </Box>
+          </motion.div>
+
+          {/* KPI99 CTA */}
+          <motion.div {...inView} transition={{ duration: 0.6, delay: 0.08 }}>
+            <Box sx={{ ...cardSx, textAlign: 'center' }}>
+              <Typography sx={{ color: GOLD, fontFamily: 'DS-DIGII, monospace', fontWeight: 700, fontSize: { xs: '1rem', sm: '1.15rem' }, mb: 1, letterSpacing: '0.04em' }}>
+                KPI99
+              </Typography>
+              <Typography sx={{ ...bodyTextSx, mb: 2 }}>
+                Advisory and methodology practice. Diagnostic tools, PPI-F™ framework, and ICEA cost modelling available at KPI99.
+              </Typography>
+              <Link
+                href="https://kpi99.co"
+                target="_blank"
+                rel="noopener noreferrer"
+                underline="none"
+                sx={{ color: GOLD, fontWeight: 700, fontSize: '0.95rem', '&:hover': { color: '#ffffff' }, mr: 3 }}
+              >
+                kpi99.co →
+              </Link>
+              <Button variant="outlined" onClick={() => navigate('/contact')} sx={goldOutlinedBtn}>
+                Contact Me
+              </Button>
+            </Box>
+          </motion.div>
+
         </Container>
       </Box>
     </motion.div>

@@ -10,7 +10,7 @@ interface SEOProps {
 }
 
 const defaultTitle = 'Sudoku CV';
-const defaultDescription = 'Play Sudoku to unlock sections of my CV. A unique and interactive way to explore my professional experience, skills, and projects.';
+const defaultDescription = 'Ian Salandy — Systems Pressure Architect. Distributed systems, performance engineering, and cost-to-serve modelling at scale. Unlock the full CV by solving Sudoku.';
 const defaultKeywords = 'sudoku, cv, resume, interactive resume, portfolio, game, professional experience, skills, projects';
 const defaultImage = 'https://iansalandy.com/og-image.png';
 const defaultUrl = 'https://iansalandy.com';

@@ -1,284 +1,236 @@
 import React, { useState } from 'react';
 import {
-  Box,
-  Typography,
-  Container,
-  Paper,
-  Link,
-  Button,
-  TextField,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
+  Box, Typography, Container, Button, TextField, Link,
+  Table, TableBody, TableCell, TableHead, TableRow,
+  List, ListItem, ListItemIcon, ListItemText,
 } from '@mui/material';
 import { CheckBoxOutlineBlank } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import BackgroundPattern from '../components/BackgroundPattern';
+import {
+  GOLD, cardSx, pageBox, containerSx, pageTitleSx, pageSubtitleSx,
+  sectionHeadingSx, bodyTextSx, goldOutlinedBtn, fadeUp, inView, TEXT_MUTED,
+} from '../styles/pageStyles';
+
+// Shared dark styles for MUI form/table overrides
+const inputSx = {
+  '& .MuiOutlinedInput-root': {
+    color: 'rgba(255,255,255,0.85)',
+    '& fieldset': { borderColor: 'rgba(255,255,255,0.15)' },
+    '&:hover fieldset': { borderColor: GOLD },
+    '&.Mui-focused fieldset': { borderColor: GOLD },
+  },
+  '& .MuiInputLabel-root': { color: 'rgba(255,255,255,0.5)' },
+  '& .MuiInputLabel-root.Mui-focused': { color: GOLD },
+};
+
+const tableCellSx = {
+  color: 'rgba(255,255,255,0.78)',
+  borderColor: 'rgba(255,255,255,0.08)',
+  fontSize: { xs: '0.82rem', sm: '0.88rem' },
+};
+
+const prelaunch = [
+  'Baseline metrics and SLOs defined',
+  'Load and stress tests run with target profile',
+  'Pressure sources and propagation paths documented',
+  'Failure modes and rollback criteria agreed',
+  'Observability (metrics, traces, logs) in place',
+];
+
+const capacity = [
+  'Current utilisation and saturation measured',
+  'Growth and peak demand forecasted',
+  'PPI or equivalent pressure index reviewed',
+  'Cost-to-serve and efficiency trends tracked',
+  'Scaling triggers and limits documented',
+];
+
+const incident = [
+  'Timeline and symptom data collected',
+  'Pressure propagation and root cause mapped',
+  'Invariants that were violated identified',
+  'Detection and response gaps documented',
+  'Remediation and prevention actions prioritised',
+];
+
+const finops = [
+  'Resource usage and cost attribution clear',
+  'Waste and optimisation levers identified',
+  'Right-sizing and reservation options evaluated',
+  'PPI or ICEA-style efficiency evidence used',
+  'Actions tied to business and SRE goals',
+];
+
+const CheckList: React.FC<{ items: string[] }> = ({ items }) => (
+  <List dense disablePadding>
+    {items.map((item) => (
+      <ListItem key={item} disablePadding sx={{ py: 0.35 }}>
+        <ListItemIcon sx={{ minWidth: 28 }}>
+          <CheckBoxOutlineBlank sx={{ fontSize: 16, color: GOLD }} />
+        </ListItemIcon>
+        <ListItemText
+          primary={item}
+          primaryTypographyProps={{ sx: { color: 'rgba(255,255,255,0.75)', fontSize: { xs: '0.88rem', sm: '0.93rem' }, lineHeight: 1.6 } }}
+        />
+      </ListItem>
+    ))}
+  </List>
+);
 
 const ResearchTools: React.FC = () => {
-  const [nodes, setNodes] = useState(10);
-  const [hourlyCost, setHourlyCost] = useState(0.92);
-  const [jobsPerDay, setJobsPerDay] = useState(100);
+  const [nodes, setNodes]               = useState(10);
+  const [hourlyCost, setHourlyCost]     = useState(0.92);
+  const [jobsPerDay, setJobsPerDay]     = useState(100);
   const [avgRuntimeMin, setAvgRuntimeMin] = useState(15);
-  const [wastePct, setWastePct] = useState(25);
+  const [wastePct, setWastePct]         = useState(25);
 
   const hourlyCluster = nodes * hourlyCost;
-  const dailyCost = hourlyCluster * (avgRuntimeMin / 60) * jobsPerDay;
-  const monthlyCost = dailyCost * 30;
-  const wasteMonthly = monthlyCost * (wastePct / 100);
-
-  const sectionStyle = {
-    p: { xs: 2, sm: 3 },
-    borderRadius: 2,
-    backgroundColor: 'rgba(255, 255, 255, 0.98)',
-    backdropFilter: 'blur(10px)',
-    mb: 4,
-  };
+  const dailyCost     = hourlyCluster * (avgRuntimeMin / 60) * jobsPerDay;
+  const monthlyCost   = dailyCost * 30;
+  const wasteMonthly  = monthlyCost * (wastePct / 100);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <Box sx={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
+    <motion.div {...fadeUp}>
+      <Box sx={pageBox}>
         <BackgroundPattern />
-        <Container maxWidth="md" sx={{ position: 'relative', zIndex: 1, py: 4 }}>
-          {/* Hero */}
-          <Paper variant="outlined" sx={{ ...sectionStyle, textAlign: 'center' }}>
-            <Typography variant="h4" sx={{ color: 'primary.main', fontWeight: 700, mb: 1 }}>
-              Research / Tools
-            </Typography>
-            <Typography variant="h6" sx={{ color: 'text.secondary', fontWeight: 500 }}>
-              Artifacts I build — diagnostics, cost modeling, and engineering methodology.
-            </Typography>
-          </Paper>
+        <Container maxWidth="md" sx={containerSx}>
 
-          {/* 1. PPI Diagnostic Tool */}
-          <Paper variant="outlined" sx={sectionStyle}>
-            <Typography variant="h6" sx={{ color: 'primary.main', fontWeight: 700, mb: 1 }}>
-              PPI Diagnostic Tool
-            </Typography>
-            <Typography sx={{ color: 'text.secondary', fontSize: '0.9rem', mb: 2 }}>
-              KPI99 Diagnostic applies the PPI-F™ framework to your system and produces evidence-based findings.
-            </Typography>
-            <Typography sx={{ color: 'text.primary', mb: 1.5 }}>
-              <strong>How it works:</strong>
-            </Typography>
-            <Box component="ul" sx={{ pl: 2.5, mb: 2, '& li': { mb: 0.5, color: 'text.primary' } }}>
-              <li>You provide context (architecture, metrics, or config).</li>
-              <li>The tool scores <strong>Request Pressure</strong>, <strong>Resource Saturation</strong>, and <strong>System Coupling</strong>, and assesses <strong>Observability Maturity</strong>.</li>
-              <li>It computes a Performance Pressure Index (PPI) and identifies propagation paths and failure modes.</li>
-              <li>Output: prioritized interventions, risk areas, and alignment with FinOps/SRE so you can act before incidents.</li>
+          <Typography sx={pageTitleSx}>Research / Tools</Typography>
+          <Typography sx={pageSubtitleSx}>
+            Diagnostics, cost modelling, and engineering methodology — artifacts I build and use.
+          </Typography>
+
+          {/* 1. PPI Diagnostic */}
+          <motion.div {...inView} transition={{ duration: 0.6 }}>
+            <Box sx={cardSx}>
+              <Typography sx={sectionHeadingSx}>PPI Diagnostic Tool</Typography>
+              <Typography sx={bodyTextSx}>
+                The KPI99 Diagnostic applies the PPI-F™ framework to your system and produces evidence-based findings — scored across Request Pressure, Resource Saturation, System Coupling, and Observability Maturity.
+              </Typography>
+              <Box component="ul" sx={{ pl: 2.5, mb: 2.5, '& li': { color: 'rgba(255,255,255,0.75)', fontSize: { xs: '0.88rem', sm: '0.93rem' }, mb: 0.75, lineHeight: 1.6 } }}>
+                <li>Provide system context (architecture, metrics, or config).</li>
+                <li>Receive a Performance Pressure Index with propagation paths and failure modes.</li>
+                <li>Output: prioritised interventions, risk areas, and FinOps/SRE alignment.</li>
+              </Box>
+              <Button
+                variant="outlined"
+                href="https://diagnostic.kpi99.co"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={goldOutlinedBtn}
+              >
+                Open PPI Diagnostic at KPI99 →
+              </Button>
             </Box>
-            <Button
-              variant="outlined"
-              color="primary"
-              href="https://diagnostic.kpi99.co"
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{ fontWeight: 600 }}
-            >
-              PPI Diagnostic at KPI99
-            </Button>
-          </Paper>
+          </motion.div>
 
-          {/* 2. System Cost Modeling — ICEA + Example Calculator */}
-          <Paper variant="outlined" sx={sectionStyle}>
-            <Typography variant="h6" sx={{ color: 'primary.main', fontWeight: 700, mb: 1 }}>
-              System Cost Modeling
-            </Typography>
-            <Typography sx={{ color: 'text.primary', mb: 2 }}>
-              <strong>ICEA (Infrastructure Cost &amp; Efficiency Analyzer)</strong> converts Spark cluster and executor configuration into efficiency scores, waste estimates, and recommended configurations. It produces evidence for sizing and cost decisions and optional PDF reports.
-            </Typography>
-            <Typography sx={{ color: 'text.primary', mb: 2 }}>
-              <strong>How it works:</strong> Enter node and executor specs (cores, memory, cost, count) and workload (avg runtime, jobs/day). ICEA computes executor packing, utilization, waste, and recommended config; you get a live preview and can request a full report or expert analysis.
-            </Typography>
+          {/* 2. ICEA / Cost Calculator */}
+          <motion.div {...inView} transition={{ duration: 0.6, delay: 0.06 }}>
+            <Box sx={cardSx}>
+              <Typography sx={sectionHeadingSx}>ICEA — Infrastructure Cost &amp; Efficiency Analyzer</Typography>
+              <Typography sx={bodyTextSx}>
+                ICEA converts Spark cluster and executor configuration into efficiency scores, waste estimates, and recommended configurations. Enter your workload below for a directional cost estimate; the full ICEA tool at KPI99 includes executor-level analysis and PDF reports.
+              </Typography>
 
-            <Typography variant="subtitle1" sx={{ color: 'primary.main', fontWeight: 600, mb: 2 }}>
-              Example calculator (simplified)
-            </Typography>
-            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 2 }}>
-              <TextField
-                label="Nodes"
-                type="number"
-                size="small"
-                value={nodes}
-                onChange={(e) => setNodes(Number(e.target.value) || 0)}
-                inputProps={{ min: 1, max: 10000 }}
-              />
-              <TextField
-                label="Hourly cost per node (USD)"
-                type="number"
-                size="small"
-                value={hourlyCost}
-                onChange={(e) => setHourlyCost(Number(e.target.value) || 0)}
-                inputProps={{ min: 0, step: 0.01 }}
-              />
-              <TextField
-                label="Jobs per day"
-                type="number"
-                size="small"
-                value={jobsPerDay}
-                onChange={(e) => setJobsPerDay(Number(e.target.value) || 0)}
-                inputProps={{ min: 0.1, step: 1 }}
-              />
-              <TextField
-                label="Avg runtime (minutes)"
-                type="number"
-                size="small"
-                value={avgRuntimeMin}
-                onChange={(e) => setAvgRuntimeMin(Number(e.target.value) || 0)}
-                inputProps={{ min: 0.1, step: 1 }}
-              />
-              <TextField
-                label="Waste % (estimate)"
-                type="number"
-                size="small"
-                value={wastePct}
-                onChange={(e) => setWastePct(Number(e.target.value) || 0)}
-                inputProps={{ min: 0, max: 100, step: 5 }}
-              />
+              <Typography sx={{ color: GOLD, fontWeight: 600, fontSize: '0.85rem', letterSpacing: '0.06em', textTransform: 'uppercase', mb: 2, fontFamily: 'DS-DIGII, monospace' }}>
+                Example calculator
+              </Typography>
+
+              <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 2.5 }}>
+                {([
+                  { label: 'Nodes', value: nodes, set: setNodes, min: 1, max: 10000, step: 1 },
+                  { label: 'Hourly cost per node (USD)', value: hourlyCost, set: setHourlyCost, min: 0, step: 0.01 },
+                  { label: 'Jobs per day', value: jobsPerDay, set: setJobsPerDay, min: 1, step: 1 },
+                  { label: 'Avg runtime (minutes)', value: avgRuntimeMin, set: setAvgRuntimeMin, min: 0.1, step: 1 },
+                  { label: 'Waste % (estimate)', value: wastePct, set: setWastePct, min: 0, max: 100, step: 5 },
+                ] as Array<{ label: string; value: number; set: (v: number) => void; min?: number; max?: number; step?: number }>).map(({ label, value, set, min, max, step }) => (
+                  <TextField
+                    key={label}
+                    label={label}
+                    type="number"
+                    size="small"
+                    value={value}
+                    onChange={(e) => set(Number(e.target.value) || 0)}
+                    inputProps={{ min, max, step }}
+                    sx={inputSx}
+                  />
+                ))}
+              </Box>
+
+              <Table size="small" sx={{ maxWidth: 420, mb: 1.5, '& .MuiTableCell-root': tableCellSx }}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell sx={{ ...tableCellSx, fontWeight: 700, color: '#fff' }}>Metric</TableCell>
+                    <TableCell align="right" sx={{ ...tableCellSx, fontWeight: 700, color: '#fff' }}>Value</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow><TableCell>Hourly cluster cost</TableCell><TableCell align="right">${hourlyCluster.toFixed(2)}</TableCell></TableRow>
+                  <TableRow><TableCell>Daily cost (usage)</TableCell><TableCell align="right">${dailyCost.toFixed(2)}</TableCell></TableRow>
+                  <TableRow><TableCell>Monthly cost</TableCell><TableCell align="right">${monthlyCost.toFixed(2)}</TableCell></TableRow>
+                  <TableRow><TableCell sx={{ color: GOLD }}>Est. waste (monthly)</TableCell><TableCell align="right" sx={{ color: GOLD }}>${wasteMonthly.toFixed(2)}</TableCell></TableRow>
+                </TableBody>
+              </Table>
+
+              <Typography sx={{ color: TEXT_MUTED, fontSize: '0.78rem', fontStyle: 'italic', mb: 2.5 }}>
+                Formula: daily cost = nodes × hourly_cost × (avg_runtime_min / 60) × jobs_per_day. Waste is directional; use ICEA for executor-level analysis.
+              </Typography>
+
+              <Button
+                variant="outlined"
+                href="https://icea.kpi99.co"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={goldOutlinedBtn}
+              >
+                ICEA at KPI99 →
+              </Button>
             </Box>
-            <Table size="small" sx={{ maxWidth: 400, mb: 2 }}>
-              <TableHead>
-                <TableRow>
-                  <TableCell sx={{ fontWeight: 700 }}>Metric</TableCell>
-                  <TableCell align="right" sx={{ fontWeight: 700 }}>Value</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow><TableCell>Hourly cluster cost</TableCell><TableCell align="right">${hourlyCluster.toFixed(2)}</TableCell></TableRow>
-                <TableRow><TableCell>Daily cost (usage)</TableCell><TableCell align="right">${dailyCost.toFixed(2)}</TableCell></TableRow>
-                <TableRow><TableCell>Monthly cost</TableCell><TableCell align="right">${monthlyCost.toFixed(2)}</TableCell></TableRow>
-                <TableRow><TableCell>Est. waste (monthly)</TableCell><TableCell align="right">${wasteMonthly.toFixed(2)}</TableCell></TableRow>
-              </TableBody>
-            </Table>
-            <Typography variant="caption" display="block" color="text.secondary" sx={{ mb: 2 }}>
-              Formula: daily cost = nodes × hourly_cost × (avg_runtime_min / 60) × jobs_per_day. Waste is directional; use ICEA for executor-level analysis.
-            </Typography>
-            <Button
-              variant="outlined"
-              color="primary"
-              href="https://icea.kpi99.co"
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{ fontWeight: 600 }}
-            >
-              ICEA at KPI99
-            </Button>
-          </Paper>
+          </motion.div>
 
-          {/* 3. Performance Analysis Checklists */}
-          <Paper variant="outlined" sx={sectionStyle}>
-            <Typography variant="h6" sx={{ color: 'primary.main', fontWeight: 700, mb: 1 }}>
-              Performance Analysis Checklists
-            </Typography>
-            <Typography sx={{ color: 'text.primary', mb: 2 }}>
-              Engineering methodology I use for consistent, evidence-based performance work. Apply before launch, during capacity reviews, after incidents, and in cost reviews.
-            </Typography>
+          {/* 3. Checklists */}
+          <motion.div {...inView} transition={{ duration: 0.6, delay: 0.08 }}>
+            <Box sx={cardSx}>
+              <Typography sx={sectionHeadingSx}>Performance Analysis Checklists</Typography>
+              <Typography sx={bodyTextSx}>
+                Engineering methodology for consistent, evidence-based performance work. Apply before launch, during capacity reviews, after incidents, and in cost reviews.
+              </Typography>
 
-            <Typography variant="subtitle2" sx={{ color: 'primary.main', fontWeight: 600, mt: 2, mb: 1 }}>
-              Pre-launch / change
-            </Typography>
-            <List dense disablePadding>
               {[
-                'Baseline metrics and SLOs defined',
-                'Load and stress tests run with target profile',
-                'Pressure sources and propagation paths documented',
-                'Failure modes and rollback criteria agreed',
-                'Observability (metrics, traces, logs) in place',
-              ].map((item, i) => (
-                <ListItem key={i} disablePadding sx={{ py: 0.25 }}>
-                  <ListItemIcon sx={{ minWidth: 28 }}>
-                    <CheckBoxOutlineBlank sx={{ fontSize: 18, color: 'primary.main' }} />
-                  </ListItemIcon>
-                  <ListItemText primary={item} primaryTypographyProps={{ fontSize: '0.95rem' }} />
-                </ListItem>
+                { heading: 'Pre-launch / change', items: prelaunch },
+                { heading: 'Capacity & scale',    items: capacity  },
+                { heading: 'Incident / post-mortem', items: incident },
+                { heading: 'Cost / FinOps review', items: finops   },
+              ].map(({ heading, items }, i) => (
+                <Box key={heading} sx={{ mt: i === 0 ? 0.5 : 2.5 }}>
+                  <Typography sx={{ color: GOLD, fontWeight: 600, fontSize: '0.82rem', letterSpacing: '0.06em', textTransform: 'uppercase', mb: 1, fontFamily: 'DS-DIGII, monospace' }}>
+                    {heading}
+                  </Typography>
+                  <CheckList items={items} />
+                </Box>
               ))}
-            </List>
-
-            <Typography variant="subtitle2" sx={{ color: 'primary.main', fontWeight: 600, mt: 2, mb: 1 }}>
-              Capacity & scale
-            </Typography>
-            <List dense disablePadding>
-              {[
-                'Current utilization and saturation measured',
-                'Growth and peak demand forecasted',
-                'PPI or equivalent pressure index reviewed',
-                'Cost-to-serve and efficiency trends tracked',
-                'Scaling triggers and limits documented',
-              ].map((item, i) => (
-                <ListItem key={i} disablePadding sx={{ py: 0.25 }}>
-                  <ListItemIcon sx={{ minWidth: 28 }}>
-                    <CheckBoxOutlineBlank sx={{ fontSize: 18, color: 'primary.main' }} />
-                  </ListItemIcon>
-                  <ListItemText primary={item} primaryTypographyProps={{ fontSize: '0.95rem' }} />
-                </ListItem>
-              ))}
-            </List>
-
-            <Typography variant="subtitle2" sx={{ color: 'primary.main', fontWeight: 600, mt: 2, mb: 1 }}>
-              Incident / post-mortem
-            </Typography>
-            <List dense disablePadding>
-              {[
-                'Timeline and symptom data collected',
-                'Pressure propagation and root cause mapped',
-                'Invariants that were violated identified',
-                'Detection and response gaps documented',
-                'Remediation and prevention actions prioritized',
-              ].map((item, i) => (
-                <ListItem key={i} disablePadding sx={{ py: 0.25 }}>
-                  <ListItemIcon sx={{ minWidth: 28 }}>
-                    <CheckBoxOutlineBlank sx={{ fontSize: 18, color: 'primary.main' }} />
-                  </ListItemIcon>
-                  <ListItemText primary={item} primaryTypographyProps={{ fontSize: '0.95rem' }} />
-                </ListItem>
-              ))}
-            </List>
-
-            <Typography variant="subtitle2" sx={{ color: 'primary.main', fontWeight: 600, mt: 2, mb: 1 }}>
-              Cost / FinOps review
-            </Typography>
-            <List dense disablePadding>
-              {[
-                'Resource usage and cost attribution clear',
-                'Waste and optimization levers identified',
-                'Right-sizing and reservation options evaluated',
-                'PPI or ICEA-style efficiency evidence used',
-                'Actions tied to business and SRE goals',
-              ].map((item, i) => (
-                <ListItem key={i} disablePadding sx={{ py: 0.25 }}>
-                  <ListItemIcon sx={{ minWidth: 28 }}>
-                    <CheckBoxOutlineBlank sx={{ fontSize: 18, color: 'primary.main' }} />
-                  </ListItemIcon>
-                  <ListItemText primary={item} primaryTypographyProps={{ fontSize: '0.95rem' }} />
-                </ListItem>
-              ))}
-            </List>
-          </Paper>
+            </Box>
+          </motion.div>
 
           {/* CTA */}
-          <Paper variant="outlined" sx={{ ...sectionStyle, textAlign: 'center' }}>
-            <Typography sx={{ color: 'text.primary', mb: 2 }}>
-              These tools and checklists support the methodology behind PPI-F and ICEA. For reports, expert analysis, and implementation support, see KPI99.
-            </Typography>
-            <Link
-              href="https://kpi99.co"
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{ fontWeight: 700 }}
-            >
-              KPI99
-            </Link>
-          </Paper>
+          <motion.div {...inView} transition={{ duration: 0.6, delay: 0.1 }}>
+            <Box sx={{ ...cardSx, textAlign: 'center' }}>
+              <Typography sx={{ ...bodyTextSx, mb: 2 }}>
+                These tools and checklists support the methodology behind PPI-F and ICEA. For reports, expert analysis, and implementation support, see KPI99.
+              </Typography>
+              <Link
+                href="https://kpi99.co"
+                target="_blank"
+                rel="noopener noreferrer"
+                underline="none"
+                sx={{ color: GOLD, fontWeight: 700, fontSize: '1rem', '&:hover': { color: '#ffffff' } }}
+              >
+                kpi99.co →
+              </Link>
+            </Box>
+          </motion.div>
+
         </Container>
       </Box>
     </motion.div>

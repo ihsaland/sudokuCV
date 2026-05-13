@@ -11,7 +11,7 @@ const CompleteCV: React.FC = () => {
   const sections = [
     {
       title: "Professional Summary",
-      content: "Principal Software Architect with 15+ years defining and scaling distributed systems for high-throughput data platforms. Capacity planning, cost-to-serve modeling, and system-level performance engineering across multi-billion event workloads.",
+      content: "Systems Pressure Architect with 15+ years defining and scaling distributed systems for high-throughput data platforms. Capacity planning, cost-to-serve modeling, and system-level performance engineering across multi-billion event workloads.",
       section: "professional-summary",
       difficulty: "Easy",
       path: "/professional-summary"
@@ -118,7 +118,7 @@ const CompleteCV: React.FC = () => {
                           ? '0 4px 8px rgba(0,0,0,0.2)'
                           : 'none',
                         borderColor: unlockedSections.includes(section.section)
-                          ? '#ffff00'
+                          ? '#D4AF37'
                           : 'rgba(255, 255, 255, 0.5)',
                         backgroundColor: unlockedSections.includes(section.section)
                           ? 'rgba(0, 0, 0, 0.7)'
@@ -183,11 +183,11 @@ const CompleteCV: React.FC = () => {
                               }
                             }}
                           >
-                            {section.title === "Education" ? "Complete the Medium Sudoku puzzle to unlock this section." :
-                             section.title === "Work Experience" ? "Complete the Hard Sudoku puzzle to unlock this section." :
-                             section.title === "Skills" ? "Complete the Advanced Sudoku puzzle to unlock this section." :
-                             section.title === "Projects" ? "Complete the Expert Sudoku puzzle to unlock this section." :
-                             `Complete the ${section.difficulty} Sudoku puzzle to unlock this section.`}
+                            {section.title === "Education" ? "Complete the Elevated (Medium) challenge to unlock this section." :
+                             section.title === "Work Experience" ? "Complete the Critical (Hard) challenge to unlock this section." :
+                             section.title === "Skills" ? "Complete the Cascade (Advanced) challenge to unlock this section." :
+                             section.title === "Projects" ? "Complete the Meltdown (Expert) challenge to unlock this section." :
+                             `Complete the ${section.difficulty} challenge to unlock this section.`}
                           </Typography>
                         </motion.div>
                       )}

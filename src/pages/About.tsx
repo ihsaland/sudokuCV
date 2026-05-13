@@ -1,61 +1,90 @@
 import React from 'react';
-import { Box, Typography, Container, Paper, Button } from '@mui/material';
+import { Box, Typography, Container, Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import BackgroundPattern from '../components/BackgroundPattern';
 import { useNavigate } from 'react-router-dom';
-
-const sectionStyle = {
-  p: { xs: 2, sm: 3 },
-  borderRadius: 2,
-  backgroundColor: 'rgba(255, 255, 255, 0.98)',
-  backdropFilter: 'blur(10px)',
-  mb: 4,
-};
+import {
+  GOLD, cardSx, pageBox, containerSx, pageTitleSx, pageSubtitleSx,
+  bodyTextSx, goldOutlinedBtn, fadeUp, inView,
+} from '../styles/pageStyles';
 
 const About: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-      <Box sx={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
+    <motion.div {...fadeUp}>
+      <Box sx={pageBox}>
         <BackgroundPattern />
-        <Container maxWidth="md" sx={{ position: 'relative', zIndex: 1, py: 4 }}>
-          <Paper variant="outlined" sx={{ ...sectionStyle, textAlign: 'center' }}>
-            <Box
-              component="img"
-              src="/images/ian-salandy.png"
-              alt="Ian Salandy"
-              sx={{
-                width: { xs: 140, sm: 180 },
-                height: { xs: 140, sm: 180 },
-                borderRadius: '50%',
-                objectFit: 'cover',
-                border: '3px solid',
-                borderColor: 'primary.main',
-                mb: 2,
-                display: 'block',
-                mx: 'auto',
-              }}
-            />
-            <Typography variant="h4" sx={{ color: 'primary.main', fontWeight: 700, mb: 2 }}>
-              About
-            </Typography>
-            <Typography sx={{ color: 'text.primary', mb: 2 }}>
-              Ian Salandy — Principal Software Architect. Distributed systems, performance &amp; reliability.
-            </Typography>
-            <Typography sx={{ color: 'text.secondary', mb: 2 }}>
-              15+ years defining and scaling distributed systems architectures for high-throughput data platforms — capacity planning, cost-to-serve modeling, and system-level performance engineering. Trusted advisor to leadership on system risk, scalability strategy, and infrastructure investment.
-            </Typography>
-            <Typography sx={{ color: 'text.secondary', mb: 2 }}>
-              Java • Python • Spark • Kafka • Kubernetes • AWS. Methodology includes the PPI-F™ framework; consulting and advisory through KPI99 where applicable.
-            </Typography>
-            <Button variant="outlined" color="primary" onClick={() => navigate('/cv')} sx={{ mr: 1 }}>
-              View CV
-            </Button>
-            <Button variant="outlined" color="primary" onClick={() => navigate('/contact')}>
-              Contact
-            </Button>
-          </Paper>
+        <Container maxWidth="md" sx={containerSx}>
+
+          {/* Hero card */}
+          <motion.div {...inView} transition={{ duration: 0.6 }}>
+            <Box sx={{ ...cardSx, textAlign: 'center', mb: 4 }}>
+              {/* Avatar */}
+              <Box sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>
+                <Box sx={{
+                  p: '3px', borderRadius: '50%',
+                  background: `conic-gradient(from 180deg, ${GOLD}, rgba(212,175,55,0.2), ${GOLD})`,
+                }}>
+                  <Box
+                    component="img"
+                    src="/images/animePic.jpeg"
+                    alt="Ian Salandy"
+                    sx={{
+                      width: { xs: 130, sm: 160 },
+                      height: { xs: 130, sm: 160 },
+                      borderRadius: '50%',
+                      objectFit: 'cover',
+                      display: 'block',
+                      border: '2px solid #07070f',
+                    }}
+                  />
+                </Box>
+              </Box>
+
+              <Typography sx={pageTitleSx}>About</Typography>
+
+              {/* Separator */}
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mb: 2 }}>
+                <Box sx={{ height: '1px', width: 40, background: `linear-gradient(90deg, transparent, ${GOLD})` }} />
+                <Typography sx={{ color: GOLD, fontSize: { xs: '0.8rem', sm: '0.9rem' }, letterSpacing: '0.1em', textTransform: 'uppercase', fontFamily: 'DS-DIGII, monospace' }}>
+                  Systems Pressure Architect
+                </Typography>
+                <Box sx={{ height: '1px', width: 40, background: `linear-gradient(90deg, ${GOLD}, transparent)` }} />
+              </Box>
+
+              <Typography sx={{ ...pageSubtitleSx, mb: 3 }}>
+                Distributed systems, performance &amp; reliability.
+              </Typography>
+
+              <Typography sx={bodyTextSx}>
+                15+ years defining and scaling distributed systems architectures for high-throughput data platforms — capacity planning, cost-to-serve modeling, and system-level performance engineering. Trusted advisor to leadership on system risk, scalability strategy, and infrastructure investment.
+              </Typography>
+
+              <Typography sx={bodyTextSx}>
+                Java · Python · Spark · Kafka · Kubernetes · AWS. Methodology includes the PPI-F™ framework; consulting and advisory through KPI99 where applicable.
+              </Typography>
+
+              <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap', mt: 3 }}>
+                <Button variant="outlined" onClick={() => navigate('/cv')} sx={goldOutlinedBtn}>
+                  View CV
+                </Button>
+                <Button
+                  variant="outlined"
+                  component="a"
+                  href="/Ian_Salandy.pdf"
+                  download="Ian_Salandy.pdf"
+                  sx={goldOutlinedBtn}
+                >
+                  Download Resume
+                </Button>
+                <Button variant="outlined" onClick={() => navigate('/contact')} sx={goldOutlinedBtn}>
+                  Contact
+                </Button>
+              </Box>
+            </Box>
+          </motion.div>
+
         </Container>
       </Box>
     </motion.div>

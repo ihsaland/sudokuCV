@@ -1,249 +1,110 @@
 import React from 'react';
-import { Box, Typography, Grid, Paper, Divider, IconButton, Tooltip } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box, Typography, Container, Divider, IconButton, Tooltip } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { motion } from 'framer-motion';
+import BackgroundPattern from '../components/BackgroundPattern';
+import {
+  GOLD, cardSx, pageBox, containerSx, pageTitleSx,
+  bodyTextSx, fadeUp, inView, TEXT_MUTED,
+} from '../styles/pageStyles';
 
-const StyledPaper = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(4),
-  margin: theme.spacing(2),
-  backgroundColor: 'rgba(0, 0, 0, 0.6)',
-  backdropFilter: 'blur(8px)',
-  borderRadius: '8px',
-  borderWidth: '0.5px',
-  borderColor: '#ffffff',
-  transition: 'all 0.3s ease',
-  '&:hover': {
-    transform: 'translateY(-4px)',
-    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-  }
-}));
+const contacts = [
+  { icon: <EmailIcon />, label: 'Email', value: 'ihsaland@gmail.com',          copy: 'ihsaland@gmail.com' },
+  { icon: <LinkedInIcon />, label: 'LinkedIn', value: 'linkedin.com/in/isalandy', copy: 'linkedin.com/in/isalandy' },
+  { icon: <GitHubIcon />, label: 'GitHub', value: 'github.com/ihsaland',         copy: 'github.com/ihsaland' },
+];
 
 const ContactMe: React.FC = () => {
-  const handleCopy = (text: string) => {
-    navigator.clipboard.writeText(text);
-  };
+  const handleCopy = (text: string) => navigator.clipboard.writeText(text);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <Box sx={{ 
-        minHeight: 'calc(100vh - 64px)',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        padding: { xs: 2, md: 4 },
-        pt: { xs: 8, sm: 10 }
-      }}>
-        <StyledPaper variant="outlined">
-          <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
-            <Box
-              component="img"
-              src="/images/ian-salandy-headshot.png"
-              alt="Ian Salandy"
-              sx={{
-                width: { xs: 120, sm: 150 },
-                height: { xs: 120, sm: 150 },
-                borderRadius: '50%',
-                objectFit: 'cover',
-                border: '3px solid rgba(255,255,255,0.6)',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
-              }}
-            />
-          </Box>
-          <Typography 
-            variant="h4" 
-            component="h1" 
-            gutterBottom 
-            align="center"
-            sx={{
-              color: '#ffffff',
-              fontWeight: 600,
-              mb: 3,
-              position: 'relative',
-              fontSize: { xs: '1.75rem', sm: '2rem' },
-              '&::after': {
-                content: '""',
-                position: 'absolute',
-                bottom: -8,
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '60px',
-                height: '4px',
-                backgroundColor: '#ffffff',
-                borderRadius: '2px',
-              }
-            }}
-          >
-            Contact Me
-          </Typography>
-          
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Box>
-                <Typography 
-                  variant="h6" 
-                  gutterBottom
-                  sx={{ 
-                    color: '#ffffff',
-                    fontWeight: 500,
-                    mb: 2,
-                    fontSize: { xs: '1.1rem', sm: '1.25rem' },
-                  }}
-                >
-                  Get in Touch
-                </Typography>
-                <Typography 
-                  variant="body1" 
-                  paragraph
-                  sx={{ 
-                    color: '#ffffff',
-                    fontSize: { xs: '0.9rem', sm: '1rem' },
-                  }}
-                >
-                  Feel free to reach out to me through any of the following channels:
-                </Typography>
-                
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                  <EmailIcon sx={{ mr: 2, color: '#ffffff' }} />
-                  <Typography 
-                    variant="body1"
-                    sx={{ 
-                      color: '#ffffff',
-                      fontSize: { xs: '0.9rem', sm: '1rem' },
-                      flex: 1
-                    }}
-                  >
-                    Email: ihsaland@gmail.com
-                  </Typography>
-                  <Tooltip title="Copy email">
-                    <IconButton 
-                      onClick={() => handleCopy('ihsaland@gmail.com')}
-                      size="small"
-                      sx={{ 
-                        color: '#ffffff',
-                        padding: '4px',
-                        '&:hover': {
-                          color: '#ffff00',
-                          transform: 'scale(1.1)',
-                          backgroundColor: 'rgba(255, 255, 255, 0.15)',
-                        },
-                        transition: 'all 0.2s ease'
-                      }}
-                    >
-                      <ContentCopyIcon sx={{ fontSize: '1rem' }} />
-                    </IconButton>
-                  </Tooltip>
-                </Box>
-                
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                  <LinkedInIcon sx={{ mr: 2, color: '#ffffff' }} />
-                  <Typography 
-                    variant="body1"
-                    sx={{ 
-                      color: '#ffffff',
-                      fontSize: { xs: '0.9rem', sm: '1rem' },
-                      flex: 1
-                    }}
-                  >
-                    LinkedIn: linkedin.com/in/isalandy
-                  </Typography>
-                  <Tooltip title="Copy LinkedIn URL">
-                    <IconButton 
-                      onClick={() => handleCopy('linkedin.com/in/isalandy')}
-                      size="small"
-                      sx={{ 
-                        color: '#ffffff',
-                        padding: '4px',
-                        '&:hover': {
-                          color: '#ffff00',
-                          transform: 'scale(1.1)',
-                          backgroundColor: 'rgba(255, 255, 255, 0.15)',
-                        },
-                        transition: 'all 0.2s ease'
-                      }}
-                    >
-                      <ContentCopyIcon sx={{ fontSize: '1rem' }} />
-                    </IconButton>
-                  </Tooltip>
-                </Box>
-                
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                  <GitHubIcon sx={{ mr: 2, color: '#ffffff' }} />
-                  <Typography 
-                    variant="body1"
-                    sx={{ 
-                      color: '#ffffff',
-                      fontSize: { xs: '0.9rem', sm: '1rem' },
-                      flex: 1
-                    }}
-                  >
-                    GitHub: github.com/ihsaland
-                  </Typography>
-                  <Tooltip title="Copy GitHub URL">
-                    <IconButton 
-                      onClick={() => handleCopy('github.com/ihsaland')}
-                      size="small"
-                      sx={{ 
-                        color: '#ffffff',
-                        padding: '4px',
-                        '&:hover': {
-                          color: '#ffff00',
-                          transform: 'scale(1.1)',
-                          backgroundColor: 'rgba(255, 255, 255, 0.15)',
-                        },
-                        transition: 'all 0.2s ease'
-                      }}
-                    >
-                      <ContentCopyIcon sx={{ fontSize: '1rem' }} />
-                    </IconButton>
-                  </Tooltip>
-                </Box>
+    <motion.div {...fadeUp}>
+      <Box sx={pageBox}>
+        <BackgroundPattern />
+        <Container maxWidth="sm" sx={containerSx}>
 
-                <Divider sx={{ my: 4, borderWidth: '0.5px', borderColor: '#ffffff' }} />
+          <Typography sx={pageTitleSx}>Contact</Typography>
 
-                <Typography 
-                  variant="h6" 
-                  gutterBottom
-                  sx={{ 
-                    color: '#ffffff',
-                    fontWeight: 500,
-                    mb: 2,
-                    fontSize: { xs: '1.1rem', sm: '1.25rem' },
-                  }}
-                >
-                  Phone:
-                </Typography>
-                <Typography 
-                  variant="body1" 
-                  sx={{ 
-                    whiteSpace: 'pre-line',
-                    lineHeight: 1.6,
-                    fontStyle: 'italic',
-                    color: '#ffffff',
-                    fontSize: { xs: '0.9rem', sm: '1rem' },
-                  }}
-                >
-                  {`Begin and end, the digits twin,
-A southern code lies deep within.
-Mirror the start, then climb in line—
-Six, seven, eight, then nine.`}
-                </Typography>
+          <motion.div {...inView} transition={{ duration: 0.6 }}>
+            <Box sx={{ ...cardSx, mt: 3 }}>
+
+              {/* Avatar */}
+              <Box sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>
+                <Box sx={{
+                  p: '3px', borderRadius: '50%',
+                  background: `conic-gradient(from 180deg, ${GOLD}, rgba(212,175,55,0.2), ${GOLD})`,
+                }}>
+                  <Box
+                    component="img"
+                    src="/images/animePic.jpeg"
+                    alt="Ian Salandy"
+                    sx={{
+                      width: { xs: 110, sm: 130 },
+                      height: { xs: 110, sm: 130 },
+                      borderRadius: '50%',
+                      objectFit: 'cover',
+                      display: 'block',
+                      border: '2px solid #07070f',
+                    }}
+                  />
+                </Box>
               </Box>
-            </Grid>
-          </Grid>
-        </StyledPaper>
+
+              <Typography sx={{ color: '#ffffff', fontWeight: 600, fontSize: { xs: '1rem', sm: '1.1rem' }, mb: 2 }}>
+                Get in Touch
+              </Typography>
+              <Typography sx={{ ...bodyTextSx, mb: 3 }}>
+                Reach out through any of the following channels.
+              </Typography>
+
+              {/* Contact rows */}
+              {contacts.map(({ icon, label, value, copy }, i) => (
+                <React.Fragment key={label}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', py: 1.5 }}>
+                    <Box sx={{ color: GOLD, mr: 2, display: 'flex', alignItems: 'center' }}>{icon}</Box>
+                    <Box sx={{ flex: 1 }}>
+                      <Typography sx={{ color: TEXT_MUTED, fontSize: '0.72rem', letterSpacing: '0.06em', textTransform: 'uppercase', mb: 0.25 }}>{label}</Typography>
+                      <Typography sx={{ color: 'rgba(255,255,255,0.85)', fontSize: { xs: '0.88rem', sm: '0.95rem' } }}>{value}</Typography>
+                    </Box>
+                    <Tooltip title={`Copy ${label}`}>
+                      <IconButton
+                        onClick={() => handleCopy(copy)}
+                        size="small"
+                        sx={{
+                          color: TEXT_MUTED,
+                          '&:hover': { color: GOLD, backgroundColor: 'rgba(212,175,55,0.1)' },
+                          transition: 'all 0.18s ease',
+                        }}
+                      >
+                        <ContentCopyIcon sx={{ fontSize: '0.95rem' }} />
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
+                  {i < contacts.length - 1 && (
+                    <Divider sx={{ borderColor: 'rgba(255,255,255,0.07)' }} />
+                  )}
+                </React.Fragment>
+              ))}
+
+              <Divider sx={{ my: 3, borderColor: 'rgba(255,255,255,0.1)' }} />
+
+              {/* Phone riddle */}
+              <Typography sx={{ color: GOLD, fontWeight: 600, fontSize: '0.82rem', letterSpacing: '0.06em', textTransform: 'uppercase', mb: 1.5, fontFamily: 'DS-DIGII, monospace' }}>
+                Phone
+              </Typography>
+              <Typography sx={{ ...bodyTextSx, fontStyle: 'italic', whiteSpace: 'pre-line', mb: 0, lineHeight: 1.8 }}>
+                {`Begin and end, the digits twin,\nA southern code lies deep within.\nMirror the start, then climb in line—\nSix, seven, eight, then nine.`}
+              </Typography>
+            </Box>
+          </motion.div>
+
+        </Container>
       </Box>
     </motion.div>
   );
 };
 
-export default ContactMe; 
+export default ContactMe;

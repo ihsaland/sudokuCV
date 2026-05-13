@@ -1,195 +1,76 @@
 import React from 'react';
-import { Box, Paper, Typography, Divider, Container } from '@mui/material';
+import { Box, Typography, Container } from '@mui/material';
 import { motion } from 'framer-motion';
+import BackgroundPattern from '../components/BackgroundPattern';
+import {
+  cardSx, pageBox, containerSx, pageTitleSx, sectionHeadingSx,
+  bodyTextSx, fadeUp, inView, GOLD, TEXT_MUTED, TEXT_BODY,
+} from '../styles/pageStyles';
 
-const Education: React.FC = () => {
-  return (
-    <Container maxWidth="lg">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <Box sx={{ 
-          p: { xs: 2, sm: 3 }, 
-          maxWidth: 800, 
-          mx: 'auto',
-          minHeight: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center'
-        }}>
-      <Paper 
-            elevation={3}
-        sx={{ 
-              p: { xs: 3, sm: 5 },
-              backgroundColor: 'rgba(255, 255, 255, 0.98)',
-          backdropFilter: 'blur(10px)',
-              borderRadius: 2,
-              transition: 'all 0.3s ease-in-out',
-          '&:hover': {
-            transform: 'translateY(-4px)',
-                boxShadow: (theme) => theme.shadows[8],
-          }
-        }}
-      >
-        <Typography 
-              variant="h3" 
-          gutterBottom 
-          sx={{ 
-            color: 'primary.main',
-                fontWeight: 700,
-                mb: 4,
-            position: 'relative',
-                fontSize: { xs: '2rem', sm: '2.5rem' },
-            '&::after': {
-              content: '""',
-              position: 'absolute',
-                  bottom: -12,
-              left: 0,
-                  width: '80px',
-              height: '4px',
-              backgroundColor: 'primary.main',
-              borderRadius: '2px',
-            }
-          }}
-        >
-          Education
-        </Typography>
-        
-            <Box sx={{ mb: { xs: 4, sm: 5 } }}>
-          <Typography 
-                variant="h5" 
-            gutterBottom
-            sx={{ 
-              color: 'primary.main',
-                  fontWeight: 600,
-                  fontSize: { xs: '1.25rem', sm: '1.5rem' },
-                }}
-              >
-                M.S. Computer Science
-              </Typography>
-              <Typography 
-                variant="h6" 
-                sx={{ 
-                  color: 'text.primary',
-              fontWeight: 500,
-              fontSize: { xs: '1.1rem', sm: '1.25rem' },
-            }}
-          >
-                North Carolina State University
-          </Typography>
-          <Typography 
-            variant="subtitle1" 
-            sx={{ 
-                  color: 'text.secondary',
-                  mb: 2,
-              fontSize: { xs: '0.9rem', sm: '1rem' },
-            }}
-          >
-                2004 - 2006
-              </Typography>
-              <Typography 
-                variant="body1" 
-                sx={{ 
-                  mt: 1,
-                  color: 'text.primary',
-                  lineHeight: 1.8,
-                  fontSize: { xs: '1rem', sm: '1.1rem' },
-                }}
-              >
-                Advanced studies in computer science and engineering, focusing on software development and system architecture.
-              </Typography>
+const Education: React.FC = () => (
+  <motion.div {...fadeUp}>
+    <Box sx={pageBox}>
+      <BackgroundPattern />
+      <Container maxWidth="md" sx={containerSx}>
+
+        <motion.div {...inView} transition={{ duration: 0.5 }}>
+          <Box sx={{ textAlign: 'center', mb: 5 }}>
+            <Typography sx={pageTitleSx}>Education</Typography>
+            <Box sx={{ height: '1px', width: 60, background: `linear-gradient(90deg, transparent, ${GOLD}, transparent)`, mx: 'auto', mt: 2 }} />
+          </Box>
+        </motion.div>
+
+        {/* M.S. */}
+        <motion.div {...inView} transition={{ duration: 0.5, delay: 0.1 }}>
+          <Box sx={cardSx}>
+            <Typography sx={{ ...sectionHeadingSx, fontSize: { xs: '1rem', sm: '1.1rem' } }}>
+              M.S. Computer Science
+            </Typography>
+            <Typography sx={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600, fontSize: { xs: '0.9rem', sm: '0.95rem' }, mb: 0.5 }}>
+              North Carolina State University
+            </Typography>
+            <Typography sx={{ color: TEXT_MUTED, fontSize: { xs: '0.78rem', sm: '0.82rem' }, mb: 2, fontFamily: 'DS-DIGII, monospace', letterSpacing: '0.04em' }}>
+              2004 – 2006
+            </Typography>
+            <Typography sx={bodyTextSx}>
+              Graduate-level systems engineering research with a focus on distributed computing, parallel architectures, and performance modeling. Thesis work involved workload characterization and resource allocation optimization for large-scale parallel systems — foundational to later capacity planning practice.
+            </Typography>
+            <Box component="ul" sx={{ pl: 2.5, m: 0, mt: 1.5, '& li': { ...bodyTextSx, mb: 0.75, '&::marker': { color: GOLD } } }}>
+              <li>Advanced Distributed Systems & Fault Tolerance</li>
+              <li>System Performance Analysis & Modeling</li>
+              <li>Cloud & Parallel Computing Architectures</li>
+              <li>Algorithm Design & Computational Complexity</li>
             </Box>
+          </Box>
+        </motion.div>
 
-            <Divider sx={{ my: 4 }} />
+        {/* B.S. */}
+        <motion.div {...inView} transition={{ duration: 0.5, delay: 0.15 }}>
+          <Box sx={cardSx}>
+            <Typography sx={{ ...sectionHeadingSx, fontSize: { xs: '1rem', sm: '1.1rem' } }}>
+              B.S. Computer Science
+            </Typography>
+            <Typography sx={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600, fontSize: { xs: '0.9rem', sm: '0.95rem' }, mb: 0.5 }}>
+              Morehouse College
+            </Typography>
+            <Typography sx={{ color: TEXT_MUTED, fontSize: { xs: '0.78rem', sm: '0.82rem' }, mb: 2, fontFamily: 'DS-DIGII, monospace', letterSpacing: '0.04em' }}>
+              2000 – 2004
+            </Typography>
+            <Typography sx={bodyTextSx}>
+              Foundation in computer science theory and applied systems programming. Developed strong problem-solving instincts through coursework emphasizing algorithmic thinking, operating systems internals, and network protocols — forming the technical base for a career in systems engineering.
+            </Typography>
+            <Box component="ul" sx={{ pl: 2.5, m: 0, mt: 1.5, '& li': { ...bodyTextSx, mb: 0.75, '&::marker': { color: GOLD } } }}>
+              <li>Data Structures & Algorithms</li>
+              <li>Operating Systems & Systems Programming</li>
+              <li>Computer Networks & Protocols</li>
+              <li>Software Engineering Principles</li>
+            </Box>
+          </Box>
+        </motion.div>
 
-            <Box sx={{ mb: { xs: 4, sm: 5 } }}>
-              <Typography 
-                variant="h5" 
-                gutterBottom
-                sx={{ 
-                  color: 'primary.main',
-                  fontWeight: 600,
-                  fontSize: { xs: '1.25rem', sm: '1.5rem' },
-                }}
-              >
-                B.S. Computer Science
-              </Typography>
-              <Typography 
-                variant="h6" 
-                sx={{ 
-                  color: 'text.primary',
-                  fontWeight: 500,
-                  fontSize: { xs: '1.1rem', sm: '1.25rem' },
-                }}
-              >
-                Morehouse College
-          </Typography>
-          <Typography 
-                variant="subtitle1" 
-            sx={{ 
-                  color: 'text.secondary',
-              mb: 2,
-                  fontSize: { xs: '0.9rem', sm: '1rem' },
-            }}
-          >
-            2000 - 2004
-          </Typography>
-          <Typography 
-            variant="body1" 
-            sx={{ 
-              mt: 1,
-                  color: 'text.primary',
-              lineHeight: 1.8,
-                  fontSize: { xs: '1rem', sm: '1.1rem' },
-            }}
-          >
-            Studied computer science and engineering, focusing on software development and system architecture.
-          </Typography>
-        </Box>
-
-            <Divider sx={{ my: 4 }} />
-
-        <Typography 
-              variant="h5" 
-          gutterBottom
-          sx={{ 
-            color: 'primary.main',
-                fontWeight: 600,
-                mb: 3,
-                fontSize: { xs: '1.25rem', sm: '1.5rem' },
-          }}
-        >
-          Relevant Coursework
-        </Typography>
-        
-        <Box 
-          component="ul" 
-          sx={{ 
-            pl: 2,
-            '& li': {
-                  mb: 2,
-                  color: 'text.primary',
-                  fontSize: { xs: '1rem', sm: '1.1rem' },
-                  lineHeight: 1.6,
-              '&::marker': {
-                color: 'primary.main',
-                    fontWeight: 'bold',
-              }
-            }
-          }}
-        >
-          <li>Computer Science Fundamentals</li>
-          <li>System Architecture and Design</li>
-          <li>Cloud Computing</li>
-          <li>Infrastructure Management</li>
-        </Box>
-      </Paper>
+      </Container>
     </Box>
-      </motion.div>
-    </Container>
-  );
-};
+  </motion.div>
+);
 
-export default Education; 
+export default Education;

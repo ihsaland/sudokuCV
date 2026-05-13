@@ -104,7 +104,7 @@ const Footer: React.FC = () => {
                           borderBottom: '1px solid rgba(255, 255, 255, 0.3)',
                           transition: 'all 0.3s ease',
                           '&:hover': {
-                            color: '#ffff00',
+                            color: '#D4AF37',
                             borderBottom: '1px solid rgba(255, 255, 255, 0.8)',
                             textShadow: '0 0 8px rgba(255, 255, 255, 0.5)'
                           }

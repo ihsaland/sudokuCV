@@ -1,46 +1,50 @@
 import React from 'react';
-import { Box, Typography, Container, Paper } from '@mui/material';
+import { Box, Typography, Container } from '@mui/material';
 import { motion } from 'framer-motion';
 import BackgroundPattern from '../components/BackgroundPattern';
+import {
+  GOLD, cardSx, pageBox, containerSx, pageTitleSx, pageSubtitleSx,
+  sectionHeadingSx, bodyTextSx, fadeUp, inView,
+} from '../styles/pageStyles';
 
-const sectionStyle = {
-  p: { xs: 2, sm: 3 },
-  borderRadius: 2,
-  backgroundColor: 'rgba(255, 255, 255, 0.98)',
-  backdropFilter: 'blur(10px)',
-  mb: 4,
-};
+const cases = [
+  {
+    title: 'Billions-of-events architectures',
+    body: 'Defined scalability architecture for distributed data platforms at multi-billion annual event scale — encompassing partitioning strategy, backpressure handling, and consumer-group topology across Kafka and Spark.',
+  },
+  {
+    title: 'Throughput & cost',
+    body: 'System-level scaling strategies improving throughput by 35%; cost-to-serve modelling reducing infrastructure spend by ~$750K annually (25%) through executor right-sizing, partition tuning, and predictive scaling.',
+  },
+  {
+    title: 'Predictive scaling & diagnostics',
+    body: 'Workload models for 2×–10× growth scenarios; diagnostics frameworks, performance automation, and benchmarking / regression governance for release stability. Used to prevent incidents before they surface in production.',
+  },
+];
 
-const CaseStudies: React.FC = () => {
-  return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-      <Box sx={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
-        <BackgroundPattern />
-        <Container maxWidth="md" sx={{ position: 'relative', zIndex: 1, py: 4 }}>
-          <Paper variant="outlined" sx={{ ...sectionStyle, textAlign: 'center' }}>
-            <Typography variant="h4" sx={{ color: 'primary.main', fontWeight: 700, mb: 2 }}>
-              Case Studies
-            </Typography>
-            <Typography sx={{ color: 'text.secondary', mb: 2 }}>
-              Selected architectural impact aligned with recent platform work: scale, throughput, cost, and predictive modeling.
-            </Typography>
-            <Paper variant="outlined" sx={{ p: 2, mb: 2, textAlign: 'left' }}>
-              <Typography variant="subtitle1" sx={{ color: 'primary.main', fontWeight: 600 }}>Billions-of-events architectures</Typography>
-              <Typography sx={{ color: 'text.secondary' }}>Defined scalability architecture for distributed data platforms at multi-billion annual event scale.</Typography>
-            </Paper>
-            <Paper variant="outlined" sx={{ p: 2, mb: 2, textAlign: 'left' }}>
-              <Typography variant="subtitle1" sx={{ color: 'primary.main', fontWeight: 600 }}>Throughput &amp; cost</Typography>
-              <Typography sx={{ color: 'text.secondary' }}>System-level scaling strategies improving throughput by 35%; cost-to-serve modeling reducing infrastructure cost by ~$750K annually (25%).</Typography>
-            </Paper>
-            <Paper variant="outlined" sx={{ p: 2, textAlign: 'left' }}>
-              <Typography variant="subtitle1" sx={{ color: 'primary.main', fontWeight: 600 }}>Predictive scaling &amp; diagnostics</Typography>
-              <Typography sx={{ color: 'text.secondary' }}>Workload models for 2x–10x growth scenarios; diagnostics frameworks, performance automation, and benchmarking / regression governance for release stability.</Typography>
-            </Paper>
-          </Paper>
-        </Container>
-      </Box>
-    </motion.div>
-  );
-};
+const CaseStudies: React.FC = () => (
+  <motion.div {...fadeUp}>
+    <Box sx={pageBox}>
+      <BackgroundPattern />
+      <Container maxWidth="md" sx={containerSx}>
+
+        <Typography sx={pageTitleSx}>Case Studies</Typography>
+        <Typography sx={pageSubtitleSx}>
+          Selected architectural impact aligned with recent platform work: scale, throughput, cost, and predictive modelling.
+        </Typography>
+
+        {cases.map(({ title, body }, i) => (
+          <motion.div key={title} {...inView} transition={{ duration: 0.55, delay: i * 0.08 }}>
+            <Box sx={cardSx}>
+              <Typography sx={sectionHeadingSx}>{title}</Typography>
+              <Typography sx={{ ...bodyTextSx, mb: 0 }}>{body}</Typography>
+            </Box>
+          </motion.div>
+        ))}
+
+      </Container>
+    </Box>
+  </motion.div>
+);
 
 export default CaseStudies;
