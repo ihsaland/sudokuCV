@@ -134,7 +134,7 @@ const Home: React.FC = () => {
                 variant="h1"
                 sx={{
                   fontWeight: 700,
-                  fontSize: { xs: '2.8rem', sm: '3.8rem', md: '4.6rem' },
+                  fontSize: { xs: '2.4rem', sm: '3.8rem', md: '4.6rem' },
                   letterSpacing: '0.03em',
                   lineHeight: 1.1,
                   background: 'linear-gradient(160deg, #ffffff 40%, rgba(255,255,255,0.65) 100%)',
@@ -222,7 +222,7 @@ const Home: React.FC = () => {
               }}>
                 Platform Impact
               </Typography>
-              <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr 1fr', sm: '1fr 1fr 1fr' }, gap: 3 }}>
+              <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr 1fr' }, gap: 3 }}>
                 {stats.map(({ value, prefix, suffix, display, label }) => (
                   <Box key={label} sx={{
                     textAlign: 'center',

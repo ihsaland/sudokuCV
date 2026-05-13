@@ -865,7 +865,7 @@ const SudokuGame: React.FC = () => {
                     ) : cell.notes.length > 0 ? (
                       <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', width: '100%', height: '100%', alignItems: 'center', justifyItems: 'center', p: '1px' }}>
                         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => (
-                          <Box key={n} component="span" sx={{ fontSize: { xs: '0.34rem', sm: '0.46rem' }, lineHeight: 1, fontWeight: 600, color: cell.notes.includes(n) ? '#5c85c0' : 'transparent', userSelect: 'none' }}>
+                          <Box key={n} component="span" sx={{ fontSize: { xs: '0.4rem', sm: '0.46rem' }, lineHeight: 1, fontWeight: 600, color: cell.notes.includes(n) ? '#5c85c0' : 'transparent', userSelect: 'none' }}>
                             {n}
                           </Box>
                         ))}
@@ -929,14 +929,14 @@ const SudokuGame: React.FC = () => {
             </Box>
 
             {/* Number pad */}
-            <Box sx={{ display: 'flex', justifyContent: 'center', gap: { xs: 0.4, sm: 0.75 } }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', gap: { xs: 0.3, sm: 0.75 } }}>
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => {
                 const done = digitCounts[num] >= 9;
                 return (
                   <Button key={num} aria-label={`Number ${num}`} onClick={() => handleNumberInput(num)}
                     sx={{
-                      minWidth: { xs: 36, sm: 46 }, height: { xs: 36, sm: 46 }, p: 0,
-                      fontSize: { xs: '0.95rem', sm: '1.1rem' }, fontWeight: 700, borderRadius: '8px',
+                      minWidth: { xs: 30, sm: 46 }, height: { xs: 30, sm: 46 }, p: 0,
+                      fontSize: { xs: '0.85rem', sm: '1.1rem' }, fontWeight: 700, borderRadius: '8px',
                       backgroundColor: done ? '#e0e0e0' : notesMode ? '#5c85c0' : '#1565c0',
                       color: done ? '#9e9e9e' : '#fff',
                       opacity: done ? 0.55 : 1,

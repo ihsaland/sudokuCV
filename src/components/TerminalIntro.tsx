@@ -41,6 +41,7 @@ const TerminalIntro: React.FC = () => {
         textAlign: 'left',
         maxWidth: '560px',
         mx: 'auto',
+        overflow: 'hidden',
       }}
     >
       {/* Toolbar dots */}
