@@ -68,7 +68,8 @@ const Skills: React.FC = () => (
           <Box sx={cardSx}>
             <Typography sx={sectionHeadingSx}>Methodology</Typography>
             <Typography sx={bodyTextSx}>
-              Application of the{' '}
+              I study how distributed systems behave under pressure — technically, operationally, and economically.
+              That research is formalised as the{' '}
               <Box
                 component="a"
                 href="https://kpi99.co/en/ppi-framework.html"
@@ -78,7 +79,10 @@ const Skills: React.FC = () => (
               >
                 PPI-F™ (Performance Pressure Index) Framework
               </Box>
-              {' '}— pressure sources, propagation paths, system invariants, failure modes, and optimization levers — for system-level performance analysis and risk mitigation. Consulting and advisory through KPI99 where applicable.
+              : a four-pillar governance model spanning Performance, Production Readiness, Infrastructure Efficiency,
+              and Failure Resilience. Covers pressure sources, propagation paths, system invariants, failure blast radius,
+              consequence-weighted scoring, and the Pressure Map as primary diagnostic deliverable.
+              Consulting and advisory through KPI99.
             </Typography>
           </Box>
         </motion.div>

@@ -3,11 +3,11 @@ import { Box, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 
 const LINES = [
-  { type: 'cmd',    text: '$ pressure --describe ian-salandy' },
+  { type: 'cmd',    text: '$ ppi-f assess ian-salandy --mode deep' },
   { type: 'output', text: 'Systems Pressure Architect' },
-  { type: 'output', text: 'Distributed systems · cost-to-serve · scale' },
-  { type: 'output', text: 'Predicting and preventing failure before' },
-  { type: 'output', text: 'it surfaces in production.' },
+  { type: 'output', text: 'Technical · Operational · Economic pressure' },
+  { type: 'output', text: 'Where pressure builds in distributed systems' },
+  { type: 'output', text: 'before latency or errors surface.' },
 ];
 
 const DELAYS_MS = [700, 1300, 1700, 2100, 2500];

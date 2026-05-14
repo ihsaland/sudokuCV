@@ -58,11 +58,15 @@ const About: React.FC = () => {
               </Typography>
 
               <Typography sx={bodyTextSx}>
-                15+ years defining and scaling distributed systems architectures for high-throughput data platforms — capacity planning, cost-to-serve modeling, and system-level performance engineering. Trusted advisor to leadership on system risk, scalability strategy, and infrastructure investment.
+                I study how distributed systems behave under pressure — technically, operationally, and economically.
+                15+ years translating that research into architecture decisions: capacity planning, cost-to-serve modeling,
+                and system-level performance engineering across multi-billion event workloads.
               </Typography>
 
               <Typography sx={bodyTextSx}>
-                Java · Python · Spark · Kafka · Kubernetes · AWS. Methodology includes the PPI-F™ framework; consulting and advisory through KPI99 where applicable.
+                Methodology formalised as PPI-F™ — mapping pressure sources, propagation paths, and failure blast radius
+                across Performance, Production Readiness, Infrastructure Efficiency, and Failure Resilience.
+                Consulting and advisory through KPI99. Java · Python · Spark · Kafka · Kubernetes · AWS.
               </Typography>
 
               <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap', mt: 3 }}>
