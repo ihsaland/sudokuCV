@@ -42,7 +42,7 @@ const moreMenuItems: { to: string; label: string }[] = [
   { to: '/case-studies', label: 'Case Studies'  },
   { to: '/articles',     label: 'Articles'      },
   { to: '/research',     label: 'Research'      },
-  { to: '/consulting',   label: 'Pressure Intelligence' },
+  { to: '/pressure-intelligence', label: 'Pressure Intelligence' },
 ];
 
 const MORE_PATHS = moreMenuItems.map((m) => m.to);

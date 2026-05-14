@@ -46,7 +46,7 @@ const ProfessionalSummary: React.FC = () => (
               Performance pressure is not latency — it is the accumulated stress from traffic shape, resource saturation, coupling density, operational fragility, and economic misalignment, manifesting before any single metric crosses a threshold. My work maps where that pressure builds and traces its propagation paths before it surfaces as outages or cost overruns.
             </Typography>
             <Typography sx={bodyTextSx} style={{ fontSize: '1rem', lineHeight: 1.8 }}>
-              Trusted advisor to engineering leadership on system risk, scalability strategy, and infrastructure investment decisions. Methodology formalised as the PPI-F™ (Performance Pressure Index) Framework — structured governance across Performance, Production Readiness, Infrastructure Efficiency, and Failure Resilience. Consulting and advisory through KPI99.
+              Trusted advisor to engineering leadership on system risk, scalability strategy, and infrastructure investment decisions. Methodology formalised as the PPI-F™ (Performance Pressure Index) Framework — structured governance across Performance, Production Readiness, Infrastructure Efficiency, and Failure Resilience. Advisory through KPI99.
             </Typography>
           </Box>
         </motion.div>

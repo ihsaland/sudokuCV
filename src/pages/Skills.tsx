@@ -82,7 +82,7 @@ const Skills: React.FC = () => (
               : a four-pillar governance model spanning Performance, Production Readiness, Infrastructure Efficiency,
               and Failure Resilience. Covers pressure sources, propagation paths, system invariants, failure blast radius,
               consequence-weighted scoring, and the Pressure Map as primary diagnostic deliverable.
-              Consulting and advisory through KPI99.
+              Advisory through KPI99.
             </Typography>
           </Box>
         </motion.div>

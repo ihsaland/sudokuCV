@@ -15,7 +15,7 @@ const exploreItems = [
   { to: '/case-studies',  label: 'Case Studies', desc: 'Real-world system optimisations' },
   { to: '/articles',      label: 'Articles',     desc: 'Architecture insights & thought leadership' },
   { to: '/research',      label: 'Research',     desc: 'PPI diagnostic tools & cost modelling' },
-  { to: '/consulting',    label: 'Pressure Intelligence', desc: 'Advisory via KPI99 & PPI-F™' },
+  { to: '/pressure-intelligence', label: 'Pressure Intelligence', desc: 'Advisory via KPI99 & PPI-F™' },
   { to: '/ppi-framework', label: 'PPI-F™',       desc: 'Performance Pressure Index methodology' },
 ];
 

@@ -160,7 +160,7 @@ const PrintableResume: React.FC = () => (
         ))}
       </Box>
       <Typography sx={{ ...s.body, mt: '6px' }}>
-        Methodology: PPI-F™ (Performance Pressure Index) Framework — pressure sources, propagation paths, system invariants, failure modes, and optimization levers. Consulting & advisory through KPI99.
+        Methodology: PPI-F™ (Performance Pressure Index) Framework — four-pillar governance across Performance, Production Readiness, Infrastructure Efficiency, and Failure Resilience. Infrastructure economics including cost-to-serve modeling, waste indexing, and economic blast radius analysis. Advisory through KPI99.
       </Typography>
 
       {/* Education */}

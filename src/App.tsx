@@ -22,7 +22,7 @@ const Frameworks         = React.lazy(() => import('./pages/Frameworks'));
 const CaseStudies        = React.lazy(() => import('./pages/CaseStudies'));
 const Articles           = React.lazy(() => import('./pages/Articles'));
 const ResearchTools      = React.lazy(() => import('./pages/ResearchTools'));
-const Consulting         = React.lazy(() => import('./pages/Consulting'));
+const PressureIntelligence = React.lazy(() => import('./pages/Consulting'));
 const SudokuGame         = React.lazy(() => import('./components/SudokuGame'));
 const CompleteCV         = React.lazy(() => import('./pages/CompleteCV'));
 const ContactMe          = React.lazy(() => import('./pages/ContactMe'));
@@ -165,7 +165,8 @@ const App: React.FC = () => (
                     <Route path="/case-studies"  element={<CaseStudies />} />
                     <Route path="/articles"      element={<Articles />} />
                     <Route path="/research"      element={<ResearchTools />} />
-                    <Route path="/consulting"    element={<Consulting />} />
+                    <Route path="/consulting"    element={<PressureIntelligence />} />
+                    <Route path="/pressure-intelligence" element={<PressureIntelligence />} />
                     <Route path="/game"          element={<SudokuGame />} />
                     <Route path="/cv"            element={<CompleteCV />} />
                     <Route path="/contact"       element={<ContactMe />} />

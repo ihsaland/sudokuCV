@@ -66,7 +66,7 @@ const About: React.FC = () => {
               <Typography sx={bodyTextSx}>
                 Methodology formalised as PPI-F™ — mapping pressure sources, propagation paths, and failure blast radius
                 across Performance, Production Readiness, Infrastructure Efficiency, and Failure Resilience.
-                Consulting and advisory through KPI99. Java · Python · Spark · Kafka · Kubernetes · AWS.
+                Advisory through KPI99. Java · Python · Spark · Kafka · Kubernetes · AWS.
               </Typography>
 
               <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap', mt: 3 }}>
