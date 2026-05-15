@@ -46,18 +46,19 @@ const SudokuHint: React.FC = () => {
             left: '50%',
             transform: 'translateX(-50%)',
             zIndex: 1100,
-            width: 'max-content',
-            maxWidth: 'calc(100vw - 32px)',
+            width: 'calc(100vw - 32px)',
+            maxWidth: 420,
           }}
         >
           <Box
             sx={{
               display: 'flex',
-              alignItems: 'center',
-              gap: { xs: 1.25, sm: 2 },
+              flexDirection: { xs: 'column', sm: 'row' },
+              alignItems: { xs: 'stretch', sm: 'center' },
+              gap: { xs: 1, sm: 2 },
               px: { xs: 2, sm: 2.5 },
-              py: { xs: 1.25, sm: 1.5 },
-              borderRadius: '40px',
+              py: { xs: 1.5, sm: 1.5 },
+              borderRadius: { xs: '16px', sm: '40px' },
               background: 'rgba(10,10,18,0.88)',
               backdropFilter: 'blur(20px)',
               WebkitBackdropFilter: 'blur(20px)',
@@ -65,54 +66,84 @@ const SudokuHint: React.FC = () => {
               boxShadow: `0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,175,55,0.08)`,
             }}
           >
-            {/* Pulsing lock icon */}
-            <Box sx={{ position: 'relative', flexShrink: 0 }}>
-              <Box sx={{
-                position: 'absolute', inset: -6, borderRadius: '50%',
-                border: `1px solid rgba(212,175,55,0.35)`,
-                animation: 'hint-pulse 2s ease-in-out infinite',
-              }} />
-              <LockOutlined sx={{ color: GOLD, fontSize: '1.1rem' }} />
-            </Box>
+            {/* Top row on mobile: icon + text + dismiss */}
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.25 }}>
+              {/* Pulsing lock icon */}
+              <Box sx={{ position: 'relative', flexShrink: 0 }}>
+                <Box sx={{
+                  position: 'absolute', inset: -6, borderRadius: '50%',
+                  border: `1px solid rgba(212,175,55,0.35)`,
+                  animation: 'hint-pulse 2s ease-in-out infinite',
+                }} />
+                <LockOutlined sx={{ color: GOLD, fontSize: '1.1rem' }} />
+              </Box>
 
-            <Typography sx={{
-              color: 'rgba(255,255,255,0.85)',
-              fontSize: { xs: '0.8rem', sm: '0.875rem' },
-              fontWeight: 500,
-              whiteSpace: 'nowrap',
-            }}>
-              The full CV is locked behind Sudoku
-            </Typography>
-
-            {/* CTA */}
-            <Box
-              onClick={go}
-              sx={{
-                display: 'flex', alignItems: 'center', gap: 0.5,
-                cursor: 'pointer', flexShrink: 0,
-                color: GOLD, fontWeight: 700,
+              <Typography sx={{
+                color: 'rgba(255,255,255,0.85)',
                 fontSize: { xs: '0.8rem', sm: '0.875rem' },
-                borderLeft: `0.5px solid rgba(212,175,55,0.25)`,
-                pl: { xs: 1.25, sm: 1.75 },
-                '&:hover': { color: '#fff' },
-                transition: 'color 0.15s ease',
-              }}
-            >
-              Unlock it <ArrowForward sx={{ fontSize: '0.85rem' }} />
+                fontWeight: 500,
+                flex: 1,
+                lineHeight: 1.4,
+              }}>
+                The full CV is locked behind Sudoku
+              </Typography>
+
+              {/* Dismiss — top-right on mobile */}
+              <IconButton
+                onClick={dismiss}
+                size="small"
+                sx={{
+                  color: 'rgba(255,255,255,0.3)',
+                  p: 0.25, flexShrink: 0,
+                  display: { xs: 'flex', sm: 'none' },
+                  '&:hover': { color: 'rgba(255,255,255,0.7)', background: 'none' },
+                }}
+              >
+                <Close sx={{ fontSize: '0.85rem' }} />
+              </IconButton>
             </Box>
 
-            {/* Dismiss */}
-            <IconButton
-              onClick={dismiss}
-              size="small"
-              sx={{
-                color: 'rgba(255,255,255,0.3)',
-                p: 0.25, ml: -0.5,
-                '&:hover': { color: 'rgba(255,255,255,0.7)', background: 'none' },
-              }}
-            >
-              <Close sx={{ fontSize: '0.85rem' }} />
-            </IconButton>
+            {/* Bottom row on mobile: CTA + desktop dismiss */}
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: { sm: 1.5 } }}>
+              {/* Divider — desktop only */}
+              <Box sx={{
+                display: { xs: 'none', sm: 'block' },
+                width: '0.5px',
+                alignSelf: 'stretch',
+                background: 'rgba(212,175,55,0.25)',
+              }} />
+
+              {/* CTA */}
+              <Box
+                onClick={go}
+                sx={{
+                  display: 'flex', alignItems: 'center', gap: 0.5,
+                  cursor: 'pointer', flexShrink: 0,
+                  color: GOLD, fontWeight: 700,
+                  fontSize: { xs: '0.8rem', sm: '0.875rem' },
+                  borderTop: { xs: `0.5px solid rgba(212,175,55,0.2)`, sm: 'none' },
+                  pt: { xs: 1, sm: 0 },
+                  '&:hover, &:active': { color: '#fff' },
+                  transition: 'color 0.15s ease',
+                }}
+              >
+                Unlock it <ArrowForward sx={{ fontSize: '0.85rem' }} />
+              </Box>
+
+              {/* Dismiss — desktop only */}
+              <IconButton
+                onClick={dismiss}
+                size="small"
+                sx={{
+                  color: 'rgba(255,255,255,0.3)',
+                  p: 0.25,
+                  display: { xs: 'none', sm: 'flex' },
+                  '&:hover': { color: 'rgba(255,255,255,0.7)', background: 'none' },
+                }}
+              >
+                <Close sx={{ fontSize: '0.85rem' }} />
+              </IconButton>
+            </Box>
           </Box>
         </motion.div>
       )}
