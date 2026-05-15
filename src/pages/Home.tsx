@@ -190,7 +190,7 @@ const Home: React.FC = () => {
                     backgroundColor: '#111111',
                     color: '#ffffff',
                     border: '0.5px solid rgba(255,255,255,0.3)',
-                    '&:hover': { backgroundColor: '#222222', borderColor: 'rgba(255,255,255,0.6)' },
+                    '&:hover, &:active': { backgroundColor: '#222222', borderColor: 'rgba(255,255,255,0.6)' },
                   }}
                 >
                   Download Resume
@@ -203,7 +203,7 @@ const Home: React.FC = () => {
                     px: { xs: 3, sm: 3.5 }, py: 1.4,
                     color: GOLD,
                     borderColor: `rgba(212,175,55,0.6)`,
-                    '&:hover': { color: '#ffffff', borderColor: GOLD, backgroundColor: 'rgba(212,175,55,0.08)' },
+                    '&:hover, &:active': { color: '#ffffff', borderColor: GOLD, backgroundColor: 'rgba(212,175,55,0.08)' },
                   }}
                 >
                   View CV

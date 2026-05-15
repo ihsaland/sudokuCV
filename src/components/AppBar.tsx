@@ -70,6 +70,7 @@ const AppBar: React.FC = () => {
         borderBottom: `0.5px solid ${GOLD_BORDER}`,
         boxShadow: '0 1px 24px rgba(0,0,0,0.45)',
         zIndex: (t) => t.zIndex.drawer + 1,
+        overflow: 'visible',
       }}
     >
       <Toolbar
@@ -233,20 +234,20 @@ const AppBar: React.FC = () => {
             component={Link}
             to="/coding"
             sx={{
-              display: { xs: 'none', sm: 'flex' },
-              ml: { sm: 0.5 },
+              display: { xs: 'none', md: 'flex' },
+              ml: { md: 0.5 },
               color: 'rgba(255,255,255,0.55)',
               fontFamily: 'DS-DIGII, monospace',
               fontWeight: 600,
-              fontSize: { sm: '0.72rem', md: '0.76rem' },
+              fontSize: '0.76rem',
               letterSpacing: '0.04em',
-              px: { sm: 1.2, md: 1.5 },
+              px: 1.5,
               py: 0.6,
               borderRadius: '20px',
               border: '0.5px solid rgba(255,255,255,0.12)',
               backgroundColor: 'transparent',
               transition: 'all 0.18s ease',
-              '&:hover': {
+              '&:hover, &:active': {
                 color: 'rgba(255,255,255,0.88)',
                 borderColor: 'rgba(255,255,255,0.28)',
                 backgroundColor: 'rgba(255,255,255,0.06)',
@@ -266,20 +267,20 @@ const AppBar: React.FC = () => {
             component={Link}
             to="/game"
             sx={{
-              display: { xs: 'none', sm: 'flex' },
-              ml: { sm: 0.5 },
+              display: { xs: 'none', md: 'flex' },
+              ml: { md: 0.5 },
               color: GOLD,
               fontFamily: 'DS-DIGII, monospace',
               fontWeight: 700,
-              fontSize: { sm: '0.78rem', md: '0.82rem' },
+              fontSize: '0.82rem',
               letterSpacing: '0.04em',
-              px: { sm: 1.5, md: 2 },
+              px: 2,
               py: 0.65,
               borderRadius: '20px',
               border: `0.5px solid ${GOLD_BORDER}`,
               backgroundColor: 'rgba(212,175,55,0.06)',
               transition: 'all 0.18s ease',
-              '&:hover': {
+              '&:hover, &:active': {
                 color: '#0a0a0a',
                 backgroundColor: GOLD,
                 borderColor: GOLD,
