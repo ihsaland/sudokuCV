@@ -623,8 +623,8 @@ const SudokuGame: React.FC = () => {
         {showHowToPlay && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }} style={{ position: 'fixed', inset: 0, zIndex: 1300 }}>
-            <Box sx={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.78)', backdropFilter: 'blur(6px)' }}>
-              <Paper elevation={24} sx={{ p: { xs: 3, sm: 4 }, maxWidth: '92%', width: { xs: '92%', sm: '420px' }, borderRadius: '16px', backgroundColor: 'rgba(255,255,255,0.99)' }}>
+            <Box sx={{ width: '100%', height: '100%', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', overflowY: 'auto', backgroundColor: 'rgba(0,0,0,0.78)', backdropFilter: 'blur(6px)', py: { xs: 2, sm: 4 } }}>
+              <Paper elevation={24} sx={{ p: { xs: 3, sm: 4 }, maxWidth: '92%', width: { xs: '92%', sm: '420px' }, borderRadius: '16px', backgroundColor: 'rgba(255,255,255,0.99)', mx: 'auto', my: 'auto' }}>
                 <Typography variant="h5" sx={{ fontWeight: 700, mb: 0.5 }}>How to Play</Typography>
                 <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2.5 }}>
                   Solve all 5 levels to unlock the complete CV.
@@ -817,12 +817,16 @@ const SudokuGame: React.FC = () => {
             })}
           </Box>
 
-          {/* Grid */}
+          {/* Grid — intrinsic-ratio wrapper so aspect-ratio CSS is not required */}
+          <Box sx={{ position: 'relative', width: '100%', paddingBottom: '100%' }}>
           <Box sx={{
-            display: 'grid', gridTemplateColumns: 'repeat(9, 1fr)',
+            position: 'absolute', inset: 0,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(9, 1fr)',
+            gridTemplateRows: 'repeat(9, 1fr)',
             gap: '1px', backgroundColor: '#000',
             border: '2px solid #000', borderRadius: '4px',
-            overflow: 'hidden', aspectRatio: '1', width: '100%',
+            overflow: 'hidden',
             animation: boardFlash ? 'board-flash 0.5s ease' : 'none',
             '& > div:nth-child(3n):not(:nth-child(9n))': { borderRight: '2px solid #000' },
             '& > div:nth-child(n+19):nth-child(-n+27)':  { borderBottom: '2px solid #000' },
@@ -836,7 +840,7 @@ const SudokuGame: React.FC = () => {
                 return (
                   <Box key={`${ri}-${ci}`} onClick={() => handleCellClick(ri, ci)}
                     sx={{
-                      aspectRatio: '1', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
                       backgroundColor: getCellBg(ri, ci),
                       cursor: cell.isFixed ? 'default' : 'pointer',
                       userSelect: 'none', transition: 'background-color 0.08s ease',
@@ -876,6 +880,7 @@ const SudokuGame: React.FC = () => {
               })
             )}
           </Box>
+          </Box>{/* end intrinsic-ratio wrapper */}
 
           {/* Controls */}
           <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', gap: 1.25 }}>
