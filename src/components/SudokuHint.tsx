@@ -42,9 +42,10 @@ const SudokuHint: React.FC = () => {
           transition={{ type: 'spring', stiffness: 260, damping: 22 }}
           style={{
             position: 'fixed',
-            bottom: 28,
-            left: '50%',
-            transform: 'translateX(-50%)',
+            bottom: 'calc(28px + env(safe-area-inset-bottom, 0px))',
+            left: 0,
+            right: 0,
+            margin: '0 auto',
             zIndex: 1100,
             width: 'calc(100vw - 32px)',
             maxWidth: 420,
