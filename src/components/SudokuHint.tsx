@@ -36,16 +36,14 @@ const SudokuHint: React.FC = () => {
     <AnimatePresence>
       {visible && (
         <motion.div
-          initial={{ y: 80, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 80, opacity: 0 }}
+          initial={{ y: 80, x: '-50%', opacity: 0 }}
+          animate={{ y: 0, x: '-50%', opacity: 1 }}
+          exit={{ y: 80, x: '-50%', opacity: 0 }}
           transition={{ type: 'spring', stiffness: 260, damping: 22 }}
           style={{
             position: 'fixed',
             bottom: 'calc(28px + env(safe-area-inset-bottom, 0px))',
-            left: 0,
-            right: 0,
-            margin: '0 auto',
+            left: '50%',
             zIndex: 1100,
             width: 'calc(100vw - 32px)',
             maxWidth: 420,
