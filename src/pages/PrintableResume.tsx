@@ -3,7 +3,7 @@ import { Box, Typography, Divider, Button } from '@mui/material';
 import PrintIcon from '@mui/icons-material/Print';
 
 /**
- * Print-optimized resume — light background, standard fonts.
+ * Print-optimized resume, light background, standard fonts.
  * Accessible at /resume; user prints → Save as PDF to update Ian_Salandy.pdf.
  */
 
@@ -53,7 +53,7 @@ const Role: React.FC<{ org: string; title: string; period: string; bullets: stri
 const PrintableResume: React.FC = () => (
   <Box sx={{ background: '#fff', minHeight: '100vh', py: 0 }}>
 
-    {/* Print button — hidden on print */}
+    {/* Print button, hidden on print */}
     <Box sx={{ display: 'flex', justifyContent: 'flex-end', px: 4, pt: 2, pb: 1, '@media print': { display: 'none' } }}>
       <Button
         variant="outlined"
@@ -108,12 +108,12 @@ const PrintableResume: React.FC = () => (
       <Role
         org="Salesforce"
         title="Acting Principal Architect / Staff Performance Engineer"
-        period="2021 – Present"
+        period="2021, Present"
         bullets={[
           'Defined scalability architecture for distributed data platforms processing billions of events annually across multi-region deployments.',
           'Designed system-level scaling strategies across compute, storage, and query layers improving throughput by 35%.',
           'Built cost-to-serve models reducing infrastructure spend by ~$750K annually without degrading SLAs.',
-          'Developed predictive workload models forecasting system behavior under 2×–10× growth scenarios.',
+          'Developed predictive workload models forecasting system behavior under 2×-10× growth scenarios.',
           'Established cross-system diagnostics frameworks for bottleneck identification across Spark, Trino, and Kafka stacks.',
           'Led benchmarking and regression governance, setting org-wide quality gates across quarterly releases.',
           'Presented system risk, scaling constraints, and architectural recommendations to VP and C-suite stakeholders.',
@@ -123,7 +123,7 @@ const PrintableResume: React.FC = () => (
       <Role
         org="IBM"
         title="Principal Performance & Capacity Engineer"
-        period="2016 – 2021"
+        period="2016-2021"
         bullets={[
           'Defined capacity planning and scalability strategies for enterprise distributed systems supporting millions of daily transactions.',
           'Built infrastructure efficiency models reducing waste by 20%+ through workload-aligned allocation.',
@@ -135,7 +135,7 @@ const PrintableResume: React.FC = () => (
       <Role
         org="Accenture"
         title="Lead Performance Engineer"
-        period="2009 – 2016"
+        period="2009-2016"
         bullets={[
           'Led performance architecture initiatives for enterprise systems across financial services, retail, and public sector clients.',
           'Designed load simulation frameworks to validate scalability ahead of peak seasonal events.',
@@ -160,7 +160,7 @@ const PrintableResume: React.FC = () => (
         ))}
       </Box>
       <Typography sx={{ ...s.body, mt: '6px' }}>
-        Methodology: PPI-F™ (Performance Pressure Index) Framework — four-pillar governance across Performance, Production Readiness, Infrastructure Efficiency, and Failure Resilience. Infrastructure economics including cost-to-serve modeling, waste indexing, and economic blast radius analysis. Advisory through KPI99.
+        Methodology: PPI-F™ (Performance Pressure Index) Framework, four-pillar governance across Performance, Production Readiness, Infrastructure Efficiency, and Failure Resilience. Infrastructure economics including cost-to-serve modeling, waste indexing, and economic blast radius analysis. Advisory through KPI99.
       </Typography>
 
       {/* Education */}
@@ -171,7 +171,7 @@ const PrintableResume: React.FC = () => (
           <Typography sx={s.roleTitle}>M.S. Computer Science</Typography>
           <Typography sx={s.roleOrg}>North Carolina State University</Typography>
         </Box>
-        <Typography sx={s.rolePeriod}>2004 – 2006</Typography>
+        <Typography sx={s.rolePeriod}>2004-2006</Typography>
       </Box>
       <Typography sx={{ ...s.body, mb: '10px' }}>
         Graduate research in distributed computing, parallel architectures, and performance modeling.
@@ -182,7 +182,7 @@ const PrintableResume: React.FC = () => (
           <Typography sx={s.roleTitle}>B.S. Computer Science</Typography>
           <Typography sx={s.roleOrg}>Morehouse College</Typography>
         </Box>
-        <Typography sx={s.rolePeriod}>2000 – 2004</Typography>
+        <Typography sx={s.rolePeriod}>2000-2004</Typography>
       </Box>
       <Typography sx={s.body}>
         Foundation in algorithms, operating systems, networks, and software engineering principles.

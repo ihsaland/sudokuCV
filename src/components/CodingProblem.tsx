@@ -115,7 +115,7 @@ The memoized function must:
 - Only call the original function once per unique argument set
 - Use JSON-serialisable arguments as the cache key
 
-This pattern is foundational to cost-to-serve reduction — calling expensive computations only when inputs change.`,
+This pattern is foundational to cost-to-serve reduction, calling expensive computations only when inputs change.`,
     functionName: 'memoize',
     template: `function memoize(fn) {
   // Your implementation
@@ -229,10 +229,10 @@ Do not use Array.prototype.flat().`,
     requiredUnlock: 'professional-summary',
     description: `Implement createEventEmitter() that returns an event bus with four methods:
 
-  on(event, handler)    — subscribe to an event
-  off(event, handler)   — unsubscribe a specific handler
-  emit(event, ...args)  — call all handlers for the event with given args
-  once(event, handler)  — subscribe, but auto-unsubscribe after the first call
+  on(event, handler)   , subscribe to an event
+  off(event, handler)  , unsubscribe a specific handler
+  emit(event, ...args) , call all handlers for the event with given args
+  once(event, handler) , subscribe, but auto-unsubscribe after the first call
 
 All methods should be chainable (return this).
 
@@ -259,7 +259,7 @@ Event emitters are the backbone of reactive systems, logging pipelines, and dist
         },
       },
       {
-        description: 'off removes handler — no longer called after removal',
+        description: 'off removes handler, no longer called after removal',
         run: (fn) => {
           const emitter = (fn as () => { on: Function; off: Function; emit: Function })();
           let count = 0;
@@ -315,8 +315,8 @@ Event emitters are the backbone of reactive systems, logging pipelines, and dist
     requiredUnlock: 'professional-summary',
     description: `Implement createLRUCache(capacity) that returns an LRU (Least Recently Used) cache with:
 
-  get(key)         — return the value if present, else -1
-  put(key, value)  — insert or update key. If capacity is exceeded,
+  get(key)        , return the value if present, else -1
+  put(key, value) , insert or update key. If capacity is exceeded,
                      evict the least recently used entry.
 
 Both operations must run in O(1) time.
@@ -400,7 +400,7 @@ LRU eviction is the default policy in Redis, CPU caches, and most CDN edge nodes
 The output of each function becomes the input of the next.
 pipe() with no functions should return an identity function.
 
-Pipelines are the foundation of stream processing, ETL workflows, and middleware chains — the connective tissue of high-throughput data architectures.`,
+Pipelines are the foundation of stream processing, ETL workflows, and middleware chains, the connective tissue of high-throughput data architectures.`,
     functionName: 'pipe',
     template: `function pipe(...fns) {
   // Your implementation
@@ -529,7 +529,7 @@ In distributed systems, retry logic with backoff is table stakes for handling tr
 Rules:
 - Plain objects: recursively merge keys from source into target
 - Arrays and primitives in source always overwrite target (no array merging)
-- Neither input should be mutated — return a new object
+- Neither input should be mutated, return a new object
 - source values take precedence over target values
 
 This is the core of configuration merging, schema composition, and state patching in distributed config systems.`,
@@ -632,7 +632,7 @@ The curried function should:
         },
       },
       {
-        description: 'Mixed groupings — (1)(2,3)',
+        description: 'Mixed groupings, (1)(2,3)',
         run: (fn) => {
           const sum3 = (a: number, b: number, c: number) => a * b * c;
           const curried = (fn as (f: typeof sum3) => Function)(sum3);

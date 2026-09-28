@@ -37,10 +37,10 @@ const focusAreas = [
     color: GOLD,
     items: [
       'Cost-to-serve per unit of work (not total spend)',
-      'Waste indexing — idle compute, over-provisioned storage',
+      'Waste indexing, idle compute, over-provisioned storage',
       'Economic blast radius from architectural coupling',
-      'Spend elasticity under load — linear vs super-linear growth',
-      'FinOps–SRE alignment on shared SLO economics',
+      'Spend elasticity under load, linear vs super-linear growth',
+      'FinOps-SRE alignment on shared SLO economics',
     ],
   },
 ];
@@ -48,11 +48,11 @@ const focusAreas = [
 const economicsDetails = [
   {
     label: 'Cost-to-Serve Modeling',
-    desc: 'Spend per unit of work — not total infrastructure cost. A system processing 1B events/day at $X/day has a cost-to-serve of $X per billion events. Changes in that ratio are the real signal: rising cost-to-serve means the architecture is becoming less efficient under load, independent of whether total spend went up or down.',
+    desc: 'Spend per unit of work, not total infrastructure cost. A system processing 1B events/day at $X/day has a cost-to-serve of $X per billion events. Changes in that ratio are the real signal: rising cost-to-serve means the architecture is becoming less efficient under load, independent of whether total spend went up or down.',
   },
   {
     label: 'Waste Indexing',
-    desc: 'Idle compute, over-provisioned storage, zombie resources, and cross-AZ transfer bleed are not just cost line items — they are pressure signals. Waste accumulates when capacity is not tracking demand shape. A system with high waste is also a system with hidden over-provisioning that will not protect it during real spikes.',
+    desc: 'Idle compute, over-provisioned storage, zombie resources, and cross-AZ transfer bleed are not just cost line items, they are pressure signals. Waste accumulates when capacity is not tracking demand shape. A system with high waste is also a system with hidden over-provisioning that will not protect it during real spikes.',
   },
   {
     label: 'Economic Blast Radius',
@@ -60,11 +60,11 @@ const economicsDetails = [
   },
   {
     label: 'Spend Elasticity',
-    desc: 'Does cost grow linearly, sub-linearly, or super-linearly as load increases? Sub-linear growth is the goal — well-designed systems get cheaper per unit as they scale. Super-linear cost growth under pressure is a structural warning: it means the architecture is absorbing demand through expensive paths rather than efficient ones.',
+    desc: 'Does cost grow linearly, sub-linearly, or super-linearly as load increases? Sub-linear growth is the goal, well-designed systems get cheaper per unit as they scale. Super-linear cost growth under pressure is a structural warning: it means the architecture is absorbing demand through expensive paths rather than efficient ones.',
   },
   {
-    label: 'FinOps–SRE Alignment',
-    desc: 'SLOs without cost guardrails are incomplete. Reliability has a unit price, and teams that do not know it cannot make defensible architecture tradeoffs. Aligning FinOps and SRE means SLO decisions include a cost-to-serve component — so reliability targets are set with awareness of what headroom they consume economically, not just operationally.',
+    label: 'FinOps-SRE Alignment',
+    desc: 'SLOs without cost guardrails are incomplete. Reliability has a unit price, and teams that do not know it cannot make defensible architecture tradeoffs. Aligning FinOps and SRE means SLO decisions include a cost-to-serve component, so reliability targets are set with awareness of what headroom they consume economically, not just operationally.',
   },
 ];
 
@@ -87,7 +87,7 @@ const engagementTypes = [
   {
     label: 'Executive Briefing',
     tag: 'Leadership communication',
-    desc: 'Translate technical and economic pressure risk into business terms. Controlled vs external pressure, infrastructure investment rationale, cost-to-serve trajectory, and capacity headroom for 2×–10× growth scenarios.',
+    desc: 'Translate technical and economic pressure risk into business terms. Controlled vs external pressure, infrastructure investment rationale, cost-to-serve trajectory, and capacity headroom for 2×-10× growth scenarios.',
   },
   {
     label: 'Incident Post-Mortem',
@@ -108,7 +108,7 @@ const PressureIntelligence: React.FC = () => {
           <Box sx={{ textAlign: 'center', mb: 5 }}>
             <Typography sx={pageTitleSx}>Pressure Intelligence</Typography>
             <Typography sx={pageSubtitleSx}>
-              I study how distributed systems behave under pressure — technically, operationally, and economically.
+              I study how distributed systems behave under pressure, technically, operationally, and economically.
               Advisory through KPI99 using the PPI-F™ framework.
             </Typography>
           </Box>
@@ -120,12 +120,12 @@ const PressureIntelligence: React.FC = () => {
               <Typography sx={{ ...bodyTextSx, fontSize: '1rem', lineHeight: 1.8, mb: 1.5 }}>
                 Performance pressure is not the same as latency. It is the accumulated stress on a system
                 from traffic shape, resource saturation, coupling density, operational fragility, and
-                economic misalignment — manifesting before any single metric crosses a threshold.
+                economic misalignment, manifesting before any single metric crosses a threshold.
               </Typography>
               <Typography sx={bodyTextSx}>
                 My work maps where pressure builds in revenue- and data-critical distributed systems
                 and traces the propagation paths before they surface as outages or cost overruns.
-                The output is a structured Pressure Map — causal, layered, gradient-encoded — not a
+                The output is a structured Pressure Map, causal, layered, gradient-encoded, not a
                 dashboard summary or a set of tool recommendations.
               </Typography>
               <Box sx={{ mt: 2.5, p: { xs: 1.5, sm: 2 }, borderRadius: '10px', border: `1px solid ${GOLD_BORDER}`, backgroundColor: GOLD_DIM, textAlign: 'center' }}>
@@ -155,14 +155,14 @@ const PressureIntelligence: React.FC = () => {
             </Box>
           </motion.div>
 
-          {/* Infrastructure Economics — dedicated section */}
+          {/* Infrastructure Economics, dedicated section */}
           <motion.div {...inView} transition={{ duration: 0.6, delay: 0.08 }}>
             <Box sx={cardSx}>
               <Typography sx={sectionHeadingSx}>Infrastructure Economics</Typography>
               <Typography sx={{ ...bodyTextSx, mb: 2.5 }}>
                 Most performance work stops at latency and throughput. Infrastructure economics asks the
                 next question: <em style={{ color: 'rgba(255,255,255,0.88)' }}>what does this system cost per unit of work, and how does that ratio
-                change under pressure?</em> Cost-to-serve is not a FinOps concern bolted onto engineering —
+                change under pressure?</em> Cost-to-serve is not a FinOps concern bolted onto engineering,
                 it is a first-class pressure signal.
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
@@ -190,7 +190,7 @@ const PressureIntelligence: React.FC = () => {
               </Box>
               <Box sx={{ mt: 2.5, p: { xs: 1.5, sm: 2 }, borderRadius: '10px', border: `0.5px solid ${GOLD_BORDER}`, backgroundColor: GOLD_DIM }}>
                 <Typography sx={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.85rem', lineHeight: 1.7 }}>
-                  Infrastructure economics is built into PPI-F™'s Infrastructure Efficiency pillar (25% consequence weight), with drivers covering spend tracking per workload, right-sizing discipline, cost anomaly detection, and FinOps governance alignment — scored alongside reliability and performance, not separately.
+                  Infrastructure economics is built into PPI-F™'s Infrastructure Efficiency pillar (25% consequence weight), with drivers covering spend tracking per workload, right-sizing discipline, cost anomaly detection, and FinOps governance alignment, scored alongside reliability and performance, not separately.
                 </Typography>
               </Box>
             </Box>

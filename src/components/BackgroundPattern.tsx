@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 
 /**
- * Noise gradient mesh — five slowly-drifting colour blobs composited
+ * Noise gradient mesh, five slowly-drifting colour blobs composited
  * with screen blend mode over a near-black base. Each blob is a
  * CSS radial-gradient whose position is driven by a unique keyframe
  * animation so they never repeat in sync.
@@ -20,7 +20,7 @@ const BackgroundPattern: React.FC = () => (
       }}
     />
 
-    {/* Mesh node 1 — gold, top-centre */}
+    {/* Mesh node 1, gold, top-centre */}
     <Box
       sx={{
         position: 'fixed',
@@ -40,7 +40,7 @@ const BackgroundPattern: React.FC = () => (
       }}
     />
 
-    {/* Mesh node 2 — deep violet, upper-right */}
+    {/* Mesh node 2, deep violet, upper-right */}
     <Box
       sx={{
         position: 'fixed',
@@ -59,7 +59,7 @@ const BackgroundPattern: React.FC = () => (
       }}
     />
 
-    {/* Mesh node 3 — cobalt blue, mid-left */}
+    {/* Mesh node 3, cobalt blue, mid-left */}
     <Box
       sx={{
         position: 'fixed',
@@ -78,7 +78,7 @@ const BackgroundPattern: React.FC = () => (
       }}
     />
 
-    {/* Mesh node 4 — teal, lower-right */}
+    {/* Mesh node 4, teal, lower-right */}
     <Box
       sx={{
         position: 'fixed',
@@ -97,7 +97,7 @@ const BackgroundPattern: React.FC = () => (
       }}
     />
 
-    {/* Mesh node 5 — warm rose, lower-left */}
+    {/* Mesh node 5, warm rose, lower-left */}
     <Box
       sx={{
         position: 'fixed',
@@ -116,7 +116,7 @@ const BackgroundPattern: React.FC = () => (
       }}
     />
 
-    {/* Noise grain overlay — breaks up banding and adds organic texture */}
+    {/* Noise grain overlay, breaks up banding and adds organic texture */}
     <Box
       sx={{
         position: 'fixed',

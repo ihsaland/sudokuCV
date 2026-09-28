@@ -19,7 +19,7 @@ const pillars = [
     label: 'Performance',
     weight: '30%',
     color: '#64B5F6',
-    desc: 'Latency, throughput, tail behaviour, and capacity under real mixed workloads. Measured against defined SLOs — not averages. Includes load testing discipline, regression detection, and capacity forecasting.',
+    desc: 'Latency, throughput, tail behaviour, and capacity under real mixed workloads. Measured against defined SLOs, not averages. Includes load testing discipline, regression detection, and capacity forecasting.',
     drivers: ['SLA/SLO definition for latency and throughput', 'Tail-latency monitoring (p95/p99)', 'Capacity planning by forecast', 'Regular load testing and regression detection', 'Response-time targets per API/DB layer'],
   },
   {
@@ -35,7 +35,7 @@ const pillars = [
     label: 'Infrastructure Efficiency',
     weight: '25%',
     color: GOLD,
-    desc: 'Unit economics, waste, scaling discipline, and cost guardrails. Efficiency is not cost-cutting — it\'s ensuring that spend directly maps to workload demand. Waste and over-provisioning mask real pressure signals.',
+    desc: 'Unit economics, waste, scaling discipline, and cost guardrails. Efficiency is not cost-cutting, it\'s ensuring that spend directly maps to workload demand. Waste and over-provisioning mask real pressure signals.',
     drivers: ['Spend tracking per workload and team', 'Resource right-sizing and idle decommissioning', 'Cost anomaly detection and budget alerts', 'FinOps governance alignment', 'Commitment model optimisation'],
   },
   {
@@ -43,15 +43,15 @@ const pillars = [
     label: 'Failure Resilience',
     weight: '20%',
     color: '#E57373',
-    desc: 'Isolation, recovery, and validated continuity assumptions. Not whether systems fail — they will — but how fast they recover, how far failure propagates, and whether runbooks and drills match reality.',
+    desc: 'Isolation, recovery, and validated continuity assumptions. Not whether systems fail, they will, but how fast they recover, how far failure propagates, and whether runbooks and drills match reality.',
     drivers: ['Automated failover and regional resilience', 'RTO/RPO definition and DR validation', 'Dependency fault isolation (circuit breakers, bulkheads)', 'Resilience exercise cadence (chaos engineering)', 'Failure propagation controls (retries, backoff)'],
   },
 ];
 
 const metrics = [
   { label: 'Pressure Index',     desc: 'Quantifies load relative to capacity across all four pillars, consequence-weighted.' },
-  { label: 'Latency Elasticity', desc: 'How sensitively response time changes as load increases — the slope of the latency curve.' },
-  { label: 'Failure Velocity',   desc: 'Rate of degradation under stress — how fast does a system move from marginal to failed?' },
+  { label: 'Latency Elasticity', desc: 'How sensitively response time changes as load increases, the slope of the latency curve.' },
+  { label: 'Failure Velocity',   desc: 'Rate of degradation under stress, how fast does a system move from marginal to failed?' },
   { label: 'Recovery Friction',  desc: 'Effort required to restore service: detection lag + escalation time + mitigation steps.' },
   { label: 'Cost-to-Serve',      desc: 'Infrastructure spend per unit of work delivered. Tracks whether efficiency scales with load.' },
 ];
@@ -63,7 +63,7 @@ const tiers = [
     tag: 'Free · 24 questions',
     color: 'rgba(100,181,246,0.18)',
     border: 'rgba(100,181,246,0.35)',
-    desc: '6 narrative prompts per pillar. Intake signal for hypothesis generation — not a scored maturity assessment.',
+    desc: '6 narrative prompts per pillar. Intake signal for hypothesis generation, not a scored maturity assessment.',
   },
   {
     id: 'survey',
@@ -84,12 +84,12 @@ const tiers = [
 ];
 
 const engagementSteps = [
-  { n: '01', label: 'Questionnaire',       desc: 'Scoped intake — problem statement, stakeholders, business harm, success criteria.' },
-  { n: '02', label: 'Hypothesis Report',   desc: '3–5 testable, pre-registered predictions. Falsifiable. Locked before diagnostics begin.' },
+  { n: '01', label: 'Questionnaire',       desc: 'Scoped intake, problem statement, stakeholders, business harm, success criteria.' },
+  { n: '02', label: 'Hypothesis Report',   desc: '3-5 testable, pre-registered predictions. Falsifiable. Locked before diagnostics begin.' },
   { n: '03', label: 'Diagnostics',         desc: 'Per-pillar evidence collection across Performance, Production Readiness, Infrastructure, and Failure Resilience.' },
   { n: '04', label: 'Playbook',            desc: 'Prioritised actions with entry/exit criteria, rollback plans, and hypothesis traceability.' },
   { n: '05', label: 'Run Log',             desc: 'Baseline (Run-0) through remediation (Run-N), delta-tracked per hypothesis.' },
-  { n: '06', label: 'Pressure Map',        desc: 'Hero deliverable. Causal, layered, gradient-encoded. Client-specific — not a template paste-in.' },
+  { n: '06', label: 'Pressure Map',        desc: 'Hero deliverable. Causal, layered, gradient-encoded. Client-specific, not a template paste-in.' },
   { n: '07', label: 'Hypothesis Close',    desc: 'Outcome vs prediction. What was confirmed, what was wrong, what was learned.' },
 ];
 
@@ -108,7 +108,7 @@ const PPIFramework: React.FC = () => (
             Performance is pressure, not latency.
           </Typography>
           <Typography sx={{ ...bodyTextSx, maxWidth: 600, mx: 'auto', textAlign: 'center', fontSize: '1rem', lineHeight: 1.8 }}>
-            I study how distributed systems behave under pressure — technically, operationally, and economically.
+            I study how distributed systems behave under pressure, technically, operationally, and economically.
             PPI-F™ is the formalisation of that methodology: a structured governance framework for understanding
             where pressure builds in revenue- and data-critical distributed systems, and how it propagates before
             latency or errors surface.
@@ -153,7 +153,7 @@ const PPIFramework: React.FC = () => (
             <Typography sx={sectionHeadingSx}>Four Pillars</Typography>
             <Typography sx={{ ...bodyTextSx, mb: 2.5 }}>
               Pressure is consequence-weighted across four domains. A system can appear healthy on one axis
-              while under critical stress on another — PPI-F surfaces those asymmetries.
+              while under critical stress on another, PPI-F surfaces those asymmetries.
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               {pillars.map(({ label, weight, color, desc, drivers }) => (
@@ -202,7 +202,7 @@ const PPIFramework: React.FC = () => (
           <Box sx={cardSx}>
             <Typography sx={sectionHeadingSx}>Pressure Scoring</Typography>
             <Typography sx={{ ...bodyTextSx, mb: 2 }}>
-              Each driver is rated on a 1–5 maturity scale. Lower maturity = higher pressure:
+              Each driver is rated on a 1-5 maturity scale. Lower maturity = higher pressure:
             </Typography>
             <Box sx={{ border: `1px solid ${GOLD}55`, borderRadius: '12px', p: { xs: 2, sm: 3 }, mb: 2.5, backgroundColor: 'rgba(212,175,55,0.05)', textAlign: 'center' }}>
               <Typography sx={{ fontFamily: 'DS-DIGII, monospace', fontSize: { xs: '0.88rem', sm: '1rem' }, fontWeight: 700, color: GOLD, lineHeight: 2 }}>
@@ -242,22 +242,22 @@ const PPIFramework: React.FC = () => (
         {/* Pressure Map */}
         <motion.div {...inView} transition={{ duration: 0.6, delay: 0.14 }}>
           <Box sx={cardSx}>
-            <Typography sx={sectionHeadingSx}>Pressure Map — Hero Deliverable</Typography>
+            <Typography sx={sectionHeadingSx}>Pressure Map, Hero Deliverable</Typography>
             <Typography sx={{ ...bodyTextSx, mb: 2 }}>
               KPI99 ships maps, not scores. The Pressure Map is the primary client artifact:
               a layered, causal representation of where pressure accumulates and how it propagates
-              across system boundaries — encoded as a gradient, not a binary red/green flag.
+              across system boundaries, encoded as a gradient, not a binary red/green flag.
             </Typography>
             <Box
               component="img"
               src="/images/kpi99-flagship-pressure-map.webp"
-              alt="KPI99 Flagship Pressure Map — 7-layer distributed system pressure visualization"
+              alt="KPI99 Flagship Pressure Map, 7-layer distributed system pressure visualization"
               sx={{ width: '100%', borderRadius: '12px', mb: 2, border: `0.5px solid ${GOLD_BORDER}` }}
             />
             <Box component="ul" sx={{ pl: 2.5, m: 0, '& li': { ...bodyTextSx, mb: 0.75, '&::marker': { color: GOLD } } }}>
               <li>Minimum 7 layers: from user/traffic origin through compute, storage, and cost-to-serve levers</li>
               <li>Pressure gradient (low → critical) encoded as colour intensity per region</li>
-              <li>Directed causal arrows labelled with mechanism — retry storm, queue wait amplification, daily-average planning blind spot</li>
+              <li>Directed causal arrows labelled with mechanism, retry storm, queue wait amplification, daily-average planning blind spot</li>
               <li>Client-specific: rebuilt per engagement from their topology and evidence, not pasted from a template</li>
             </Box>
           </Box>
@@ -269,7 +269,7 @@ const PPIFramework: React.FC = () => (
             <Typography sx={sectionHeadingSx}>Engagement Artifact Chain</Typography>
             <Typography sx={{ ...bodyTextSx, mb: 2 }}>
               Every engagement produces an ordered artifact chain. Pre-registered predictions are locked
-              before diagnostics begin — no post-hoc rationalization.
+              before diagnostics begin, no post-hoc rationalization.
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
               {engagementSteps.map(({ n, label, desc }, i) => (
@@ -297,8 +297,8 @@ const PPIFramework: React.FC = () => (
           <Box sx={cardSx}>
             <Typography sx={sectionHeadingSx}>Pre-Registered Predictions Ledger</Typography>
             <Typography sx={{ ...bodyTextSx }}>
-              3–5 signed, falsifiable predictions are locked per qualifying engagement before diagnostics begin.
-              Records are git-backed and immutable — append-only under <code style={{ color: GOLD, fontSize: '0.82rem' }}>data/prediction-ledger/</code>.
+              3-5 signed, falsifiable predictions are locked per qualifying engagement before diagnostics begin.
+              Records are git-backed and immutable, append-only under <code style={{ color: GOLD, fontSize: '0.82rem' }}>data/prediction-ledger/</code>.
               Aggregate accuracy is reported at T+12 months: count locked, count evaluated, hit rate. No client names.
               No results before collection floor is reached. Transparency over silence.
             </Typography>

@@ -36,17 +36,17 @@ const ProfessionalSummary: React.FC = () => (
           <Box sx={cardSx}>
             <Box sx={{ p: { xs: 1.5, sm: 2 }, borderRadius: '10px', border: `1px solid ${GOLD_BORDER}`, backgroundColor: GOLD_DIM, mb: 2.5 }}>
               <Typography sx={{ color: GOLD, fontFamily: 'DS-DIGII, monospace', fontSize: { xs: '0.88rem', sm: '0.95rem' }, fontWeight: 700, textAlign: 'center', letterSpacing: '0.03em', lineHeight: 1.6 }}>
-                I study how distributed systems behave under pressure —<br />technically, operationally, and economically.
+                I study how distributed systems behave under pressure,<br />technically, operationally, and economically.
               </Typography>
             </Box>
             <Typography sx={bodyTextSx} style={{ fontSize: '1rem', lineHeight: 1.8 }}>
               Systems Pressure Architect with 15+ years of experience defining and scaling distributed systems architectures for high-throughput data platforms. Expert in capacity planning, cost-to-serve modeling, and system-level performance engineering across multi-billion event workloads. Proven ability to design architectures that scale predictably, reduce infrastructure cost, and maintain reliability under production pressure.
             </Typography>
             <Typography sx={bodyTextSx} style={{ fontSize: '1rem', lineHeight: 1.8 }}>
-              Performance pressure is not latency — it is the accumulated stress from traffic shape, resource saturation, coupling density, operational fragility, and economic misalignment, manifesting before any single metric crosses a threshold. My work maps where that pressure builds and traces its propagation paths before it surfaces as outages or cost overruns.
+              Performance pressure is not latency, it is the accumulated stress from traffic shape, resource saturation, coupling density, operational fragility, and economic misalignment, manifesting before any single metric crosses a threshold. My work maps where that pressure builds and traces its propagation paths before it surfaces as outages or cost overruns.
             </Typography>
             <Typography sx={bodyTextSx} style={{ fontSize: '1rem', lineHeight: 1.8 }}>
-              Trusted advisor to engineering leadership on system risk, scalability strategy, and infrastructure investment decisions. Methodology formalised as the PPI-F™ (Performance Pressure Index) Framework — structured governance across Performance, Production Readiness, Infrastructure Efficiency, and Failure Resilience. Advisory through KPI99.
+              Trusted advisor to engineering leadership on system risk, scalability strategy, and infrastructure investment decisions. Methodology formalised as the PPI-F™ (Performance Pressure Index) Framework, structured governance across Performance, Production Readiness, Infrastructure Efficiency, and Failure Resilience. Advisory through KPI99.
             </Typography>
           </Box>
         </motion.div>

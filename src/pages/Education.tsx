@@ -30,10 +30,10 @@ const Education: React.FC = () => (
               North Carolina State University
             </Typography>
             <Typography sx={{ color: TEXT_MUTED, fontSize: { xs: '0.78rem', sm: '0.82rem' }, mb: 2, fontFamily: 'DS-DIGII, monospace', letterSpacing: '0.04em' }}>
-              2004 – 2006
+              2004-2006
             </Typography>
             <Typography sx={bodyTextSx}>
-              Graduate-level systems engineering research with a focus on distributed computing, parallel architectures, and performance modeling. Thesis work involved workload characterization and resource allocation optimization for large-scale parallel systems — foundational to later capacity planning practice.
+              Graduate-level systems engineering research with a focus on distributed computing, parallel architectures, and performance modeling. Thesis work involved workload characterization and resource allocation optimization for large-scale parallel systems, foundational to later capacity planning practice.
             </Typography>
             <Box component="ul" sx={{ pl: 2.5, m: 0, mt: 1.5, '& li': { ...bodyTextSx, mb: 0.75, '&::marker': { color: GOLD } } }}>
               <li>Advanced Distributed Systems & Fault Tolerance</li>
@@ -54,10 +54,10 @@ const Education: React.FC = () => (
               Morehouse College
             </Typography>
             <Typography sx={{ color: TEXT_MUTED, fontSize: { xs: '0.78rem', sm: '0.82rem' }, mb: 2, fontFamily: 'DS-DIGII, monospace', letterSpacing: '0.04em' }}>
-              2000 – 2004
+              2000-2004
             </Typography>
             <Typography sx={bodyTextSx}>
-              Foundation in computer science theory and applied systems programming. Developed strong problem-solving instincts through coursework emphasizing algorithmic thinking, operating systems internals, and network protocols — forming the technical base for a career in systems engineering.
+              Foundation in computer science theory and applied systems programming. Developed strong problem-solving instincts through coursework emphasizing algorithmic thinking, operating systems internals, and network protocols, forming the technical base for a career in systems engineering.
             </Typography>
             <Box component="ul" sx={{ pl: 2.5, m: 0, mt: 1.5, '& li': { ...bodyTextSx, mb: 0.75, '&::marker': { color: GOLD } } }}>
               <li>Data Structures & Algorithms</li>

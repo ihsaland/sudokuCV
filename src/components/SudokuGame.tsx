@@ -79,7 +79,7 @@ const SECTION_REVEALS: Record<string, { headline: string; sub: string }> = {
   },
   'work-experience': {
     headline: 'Work Experience Unlocked',
-    sub:      'Salesforce · IBM · Accenture — distributed systems under real pressure',
+    sub:      'Salesforce · IBM · Accenture, distributed systems under real pressure',
   },
   'skills': {
     headline: 'Skills Unlocked',
@@ -87,7 +87,7 @@ const SECTION_REVEALS: Record<string, { headline: string; sub: string }> = {
   },
   'projects': {
     headline: 'Projects Unlocked',
-    sub:      'PPI-F™ · KPI99 · ICEA — built and deployed in production',
+    sub:      'PPI-F™ · KPI99 · ICEA, built and deployed in production',
   },
 };
 
@@ -578,8 +578,8 @@ const SudokuGame: React.FC = () => {
   // ── Labels ─────────────────────────────────────────────────────────────────
   const levelLabel = () => {
     const d = gameState.difficulty;
-    if (d === 'expert' && gameState.puzzleNumber > 5) return 'Meltdown — Free Play';
-    return `${DIFFICULTY_LABELS[d]} — ${CV_SECTION_NAMES[UNLOCKS[d]]}`;
+    if (d === 'expert' && gameState.puzzleNumber > 5) return 'Meltdown, Free Play';
+    return `${DIFFICULTY_LABELS[d]}, ${CV_SECTION_NAMES[UNLOCKS[d]]}`;
   };
 
   // ── Debug ──────────────────────────────────────────────────────────────────
@@ -630,13 +630,13 @@ const SudokuGame: React.FC = () => {
                   Solve all 5 levels to unlock the complete CV.
                 </Typography>
                 <Box component="ul" sx={{ pl: 2.5, m: 0, '& li': { mb: 1.25, fontSize: { xs: '0.85rem', sm: '0.9rem' }, lineHeight: 1.55 } }}>
-                  <li>Fill every row, column and 3×3 box with <strong>1–9</strong>, no repeats</li>
-                  <li>Select a cell, then tap a number or press <strong>1–9</strong> on your keyboard</li>
+                  <li>Fill every row, column and 3×3 box with <strong>1-9</strong>, no repeats</li>
+                  <li>Select a cell, then tap a number or press <strong>1-9</strong> on your keyboard</li>
                   <li><strong>Arrow keys</strong> navigate the board</li>
                   <li><strong>Notes</strong> (✏) lets you annotate candidate numbers per cell</li>
                   <li><strong>Auto-fill</strong> populates all valid candidates across the board</li>
-                  <li><strong>Hints</strong> reveal one correct cell — you get {MAX_HINTS} per puzzle</li>
-                  <li><strong>{MAX_MISTAKES} pressure points</strong> end the puzzle — think before you place</li>
+                  <li><strong>Hints</strong> reveal one correct cell, you get {MAX_HINTS} per puzzle</li>
+                  <li><strong>{MAX_MISTAKES} pressure points</strong> end the puzzle, think before you place</li>
                 </Box>
                 <Button variant="contained" fullWidth onClick={dismissTutorial}
                   sx={{ mt: 2.5, fontWeight: 600, fontSize: '0.95rem' }}>
@@ -659,7 +659,7 @@ const SudokuGame: React.FC = () => {
                   System Overload
                 </Typography>
                 <Typography sx={{ color: 'text.secondary', mb: 0.5, fontSize: { xs: '0.88rem', sm: '0.95rem' } }}>
-                  {MAX_MISTAKES} pressure points — cascade failure
+                  {MAX_MISTAKES} pressure points, cascade failure
                 </Typography>
                 <Typography sx={{ color: 'text.secondary', mb: 3, fontSize: { xs: '0.78rem', sm: '0.85rem' } }}>
                   Time: {formatTime(gameState.elapsedSeconds)}
@@ -773,7 +773,7 @@ const SudokuGame: React.FC = () => {
               const unlocked = unlockedSections.includes(UNLOCKS[d]);
               const current  = d === gameState.difficulty;
               return (
-                <Tooltip key={d} title={`${DIFFICULTY_LABELS[d]} — ${CV_SECTION_NAMES[UNLOCKS[d]]}`} placement="top">
+                <Tooltip key={d} title={`${DIFFICULTY_LABELS[d]}, ${CV_SECTION_NAMES[UNLOCKS[d]]}`} placement="top">
                   <Box sx={{
                     width:  current ? 11 : 8,
                     height: current ? 11 : 8,
@@ -817,7 +817,7 @@ const SudokuGame: React.FC = () => {
             })}
           </Box>
 
-          {/* Grid — intrinsic-ratio wrapper so aspect-ratio CSS is not required */}
+          {/* Grid, intrinsic-ratio wrapper so aspect-ratio CSS is not required */}
           <Box sx={{ position: 'relative', width: '100%', paddingBottom: '100%' }}>
           <Box sx={{
             position: 'absolute', inset: 0,
@@ -903,7 +903,7 @@ const SudokuGame: React.FC = () => {
                   </IconButton>
                 </span>
               </Tooltip>
-              <Tooltip title={notesMode ? 'Notes ON — numbers annotate candidates' : 'Notes OFF — numbers fill cells'} placement="top">
+              <Tooltip title={notesMode ? 'Notes ON, numbers annotate candidates' : 'Notes OFF, numbers fill cells'} placement="top">
                 <Button onClick={() => setNotesMode(p => !p)} size="small" variant={notesMode ? 'contained' : 'outlined'}
                   startIcon={<EditIcon sx={{ fontSize: '0.9rem !important' }} />}
                   sx={{ fontSize: { xs: '0.68rem', sm: '0.73rem' }, px: 1.1, py: 0.45, textTransform: 'none', minWidth: 0, backgroundColor: notesMode ? '#1565c0' : 'transparent', borderColor: '#1565c0', color: notesMode ? '#fff' : '#1565c0', '&:hover': { backgroundColor: notesMode ? '#1976d2' : '#e3f2fd' } }}>

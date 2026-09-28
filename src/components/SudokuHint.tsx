@@ -87,7 +87,7 @@ const SudokuHint: React.FC = () => {
                 The full CV is locked behind Sudoku
               </Typography>
 
-              {/* Dismiss — top-right on mobile */}
+              {/* Dismiss, top-right on mobile */}
               <IconButton
                 onClick={dismiss}
                 size="small"
@@ -104,7 +104,7 @@ const SudokuHint: React.FC = () => {
 
             {/* Bottom row on mobile: CTA + desktop dismiss */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: { sm: 1.5 } }}>
-              {/* Divider — desktop only */}
+              {/* Divider, desktop only */}
               <Box sx={{
                 display: { xs: 'none', sm: 'block' },
                 width: '0.5px',
@@ -129,7 +129,7 @@ const SudokuHint: React.FC = () => {
                 Unlock it <ArrowForward sx={{ fontSize: '0.85rem' }} />
               </Box>
 
-              {/* Dismiss — desktop only */}
+              {/* Dismiss, desktop only */}
               <IconButton
                 onClick={dismiss}
                 size="small"

@@ -10,7 +10,7 @@ import {
 const cases = [
   {
     title: 'Billions-of-events architectures',
-    body: 'Defined scalability architecture for distributed data platforms at multi-billion annual event scale — encompassing partitioning strategy, backpressure handling, and consumer-group topology across Kafka and Spark.',
+    body: 'Defined scalability architecture for distributed data platforms at multi-billion annual event scale, encompassing partitioning strategy, backpressure handling, and consumer-group topology across Kafka and Spark.',
   },
   {
     title: 'Throughput & cost',
@@ -18,7 +18,7 @@ const cases = [
   },
   {
     title: 'Predictive scaling & diagnostics',
-    body: 'Workload models for 2×–10× growth scenarios; diagnostics frameworks, performance automation, and benchmarking / regression governance for release stability. Used to prevent incidents before they surface in production.',
+    body: 'Workload models for 2×-10× growth scenarios; diagnostics frameworks, performance automation, and benchmarking / regression governance for release stability. Used to prevent incidents before they surface in production.',
   },
 ];
 

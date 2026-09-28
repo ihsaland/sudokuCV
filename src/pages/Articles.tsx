@@ -13,31 +13,31 @@ const published = [
     title: 'The next AI wave is likely to reward economic intelligence, not just model intelligence',
     url: 'https://www.linkedin.com/pulse/next-ai-wave-likely-reward-economic-intelligence-just-ian-salandy-yu81e/',
     source: 'LinkedIn', date: 'May 2026',
-    summary: 'The market is shifting from AI capability to AI efficiency. Companies that survive AI economics at scale will be those that apply classical distributed systems thinking — queuing theory, resource contention, execution efficiency — to token spend and inference routing.',
+    summary: 'The market is shifting from AI capability to AI efficiency. Companies that survive AI economics at scale will be those that apply classical distributed systems thinking, queuing theory, resource contention, execution efficiency, to token spend and inference routing.',
   },
   {
     title: 'The Illusion of Infinite Compute: Mapping Spark Resource Allocation to Real Cloud Hardware',
     url: 'https://www.linkedin.com/pulse/illusion-infinite-compute-mapping-spark-resource-real-ian-salandy-aixbe/',
     source: 'LinkedIn', date: 'May 2026',
-    summary: 'Spark resources are abstractions, not infrastructure. Teams that misconfigure executors as isolated compute units fail to account for shared physical resources like CPU caches and memory bandwidth — and pay for it at scale.',
+    summary: 'Spark resources are abstractions, not infrastructure. Teams that misconfigure executors as isolated compute units fail to account for shared physical resources like CPU caches and memory bandwidth, and pay for it at scale.',
   },
   {
     title: "The Most Dangerous Code in Production Isn't the Code You Use",
     url: 'https://www.linkedin.com/pulse/most-dangerous-code-production-isnt-you-use-ian-salandy-xtswe/',
     source: 'LinkedIn', date: 'Apr 2026',
-    summary: 'Dormant, rarely-executed code is untested against current infrastructure and workload conditions. When it eventually runs — through edge cases or fallback paths — it fails unpredictably because it was never designed for modern system pressures.',
+    summary: 'Dormant, rarely-executed code is untested against current infrastructure and workload conditions. When it eventually runs, through edge cases or fallback paths, it fails unpredictably because it was never designed for modern system pressures.',
   },
   {
     title: 'Why Systems Fail at Scale (And How to See It Before It Happens)',
     url: 'https://www.linkedin.com/pulse/why-systems-fail-scale-how-see-before-happens-ian-salandy-fp4ve/',
     source: 'LinkedIn', date: 'Apr 2026',
-    summary: 'Distributed systems collapse not from lack of resources but from mounting pressure across interconnected components that goes undetected. Cost is an early warning signal — and organisations that assess systems dynamically find the breaking points before production does.',
+    summary: 'Distributed systems collapse not from lack of resources but from mounting pressure across interconnected components that goes undetected. Cost is an early warning signal, and organisations that assess systems dynamically find the breaking points before production does.',
   },
   {
-    title: 'PPI-F™ — Performance Pressure Index Framework',
+    title: 'PPI-F™, Performance Pressure Index Framework',
     url: 'https://kpi99.co/en/ppi-framework.html',
     source: 'KPI99', date: null,
-    summary: 'A structured methodology for understanding how pressure propagates through distributed systems — pressure sources, propagation paths, system invariants, failure modes, and optimisation levers.',
+    summary: 'A structured methodology for understanding how pressure propagates through distributed systems, pressure sources, propagation paths, system invariants, failure modes, and optimisation levers.',
   },
 ];
 

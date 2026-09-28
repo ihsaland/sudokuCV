@@ -58,13 +58,13 @@ const About: React.FC = () => {
               </Typography>
 
               <Typography sx={bodyTextSx}>
-                I study how distributed systems behave under pressure — technically, operationally, and economically.
+                I study how distributed systems behave under pressure, technically, operationally, and economically.
                 15+ years translating that research into architecture decisions: capacity planning, cost-to-serve modeling,
                 and system-level performance engineering across multi-billion event workloads.
               </Typography>
 
               <Typography sx={bodyTextSx}>
-                Methodology formalised as PPI-F™ — mapping pressure sources, propagation paths, and failure blast radius
+                Methodology formalised as PPI-F™, mapping pressure sources, propagation paths, and failure blast radius
                 across Performance, Production Readiness, Infrastructure Efficiency, and Failure Resilience.
                 Advisory through KPI99. Java · Python · Spark · Kafka · Kubernetes · AWS.
               </Typography>

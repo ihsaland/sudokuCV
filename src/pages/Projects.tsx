@@ -7,7 +7,7 @@ import { GOLD } from '../styles/pageStyles';
 
 const workProjects = [
   {
-    title: 'Scalability Architecture — Billions of Events',
+    title: 'Scalability Architecture, Billions of Events',
     description:
       'Defined scalability architecture for distributed data platforms processing billions of events annually. Designed system-level scaling across compute, storage, and query layers, improving throughput by 35%.',
     tags: ['Spark', 'Kafka', 'Distributed Systems', 'High Throughput'],
@@ -19,9 +19,9 @@ const workProjects = [
     tags: ['Cost-to-Serve', 'AWS', 'Capacity Planning', 'FinOps'],
   },
   {
-    title: 'Predictive Workload Modelling (2x–10x Growth)',
+    title: 'Predictive Workload Modelling (2x-10x Growth)',
     description:
-      'Built predictive workload models forecasting system behaviour under 2x–10x growth scenarios — enabling proactive scaling decisions and failure prevention before production pressure hits.',
+      'Built predictive workload models forecasting system behaviour under 2x-10x growth scenarios, enabling proactive scaling decisions and failure prevention before production pressure hits.',
     tags: ['Workload Modelling', 'Forecasting', 'Scaling', 'SRE'],
   },
   {
@@ -40,21 +40,21 @@ const workProjects = [
 
 const openSourceProjects = [
   {
-    title: 'Scalebreaker — Build Your Throughput',
+    title: 'Scalebreaker, Build Your Throughput',
     url: 'https://github.com/ihsaland/scalebreaker',
     tags: ['TypeScript', 'System Design', 'Interactive', 'Architecture'],
     description:
-      'A gamified platform for learning distributed systems architecture hands-on. Users design systems in a real-time flow interface, test against realistic performance metrics — throughput, latency, bottlenecks — and progress through increasingly complex scenarios. Built to make architectural trade-offs legible through experience, not theory.',
+      'A gamified platform for learning distributed systems architecture hands-on. Users design systems in a real-time flow interface, test against realistic performance metrics, throughput, latency, bottlenecks, and progress through increasingly complex scenarios. Built to make architectural trade-offs legible through experience, not theory.',
   },
   {
-    title: 'CodingPrep — Interactive Interview Platform',
+    title: 'CodingPrep, Interactive Interview Platform',
     url: 'https://github.com/ihsaland/codingPrep',
     tags: ['TypeScript', 'Algorithms', 'Data Structures', 'Visualisation'],
     description:
       '10 data structures and 10 algorithms with step-by-step animated visualisations, 20 practice problems across difficulty levels, and a full Python syntax reference. Built as a structured learning tool with complexity analysis and runnable examples for each concept.',
   },
   {
-    title: 'SudokuCV — This Site',
+    title: 'SudokuCV, This Site',
     url: 'https://github.com/ihsaland/sudokuCV',
     tags: ['TypeScript', 'React', 'Framer Motion', 'MUI'],
     description:

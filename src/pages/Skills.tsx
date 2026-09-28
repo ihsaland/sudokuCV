@@ -68,7 +68,7 @@ const Skills: React.FC = () => (
           <Box sx={cardSx}>
             <Typography sx={sectionHeadingSx}>Methodology</Typography>
             <Typography sx={bodyTextSx}>
-              I study how distributed systems behave under pressure — technically, operationally, and economically.
+              I study how distributed systems behave under pressure, technically, operationally, and economically.
               That research is formalised as the{' '}
               <Box
                 component="a"

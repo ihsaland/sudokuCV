@@ -46,7 +46,7 @@ export const pageBox = {
   overflow: 'hidden',
 };
 
-/** Container sx — consistent zIndex + padding */
+/** Container sx, consistent zIndex + padding */
 export const containerSx = {
   position: 'relative' as const,
   zIndex: 1,

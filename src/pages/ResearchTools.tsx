@@ -98,7 +98,7 @@ const ResearchTools: React.FC = () => {
 
           <Typography sx={pageTitleSx}>Research / Tools</Typography>
           <Typography sx={pageSubtitleSx}>
-            Diagnostics, cost modelling, and engineering methodology — artifacts I build and use.
+            Diagnostics, cost modelling, and engineering methodology, artifacts I build and use.
           </Typography>
 
           {/* 1. PPI Diagnostic */}
@@ -106,7 +106,7 @@ const ResearchTools: React.FC = () => {
             <Box sx={cardSx}>
               <Typography sx={sectionHeadingSx}>PPI Diagnostic Tool</Typography>
               <Typography sx={bodyTextSx}>
-                The KPI99 Diagnostic applies the PPI-F™ framework to your system and produces evidence-based findings — scored across Request Pressure, Resource Saturation, System Coupling, and Observability Maturity.
+                The KPI99 Diagnostic applies the PPI-F™ framework to your system and produces evidence-based findings, scored across Request Pressure, Resource Saturation, System Coupling, and Observability Maturity.
               </Typography>
               <Box component="ul" sx={{ pl: 2.5, mb: 2.5, '& li': { color: 'rgba(255,255,255,0.75)', fontSize: { xs: '0.88rem', sm: '0.93rem' }, mb: 0.75, lineHeight: 1.6 } }}>
                 <li>Provide system context (architecture, metrics, or config).</li>
@@ -128,7 +128,7 @@ const ResearchTools: React.FC = () => {
           {/* 2. ICEA / Cost Calculator */}
           <motion.div {...inView} transition={{ duration: 0.6, delay: 0.06 }}>
             <Box sx={cardSx}>
-              <Typography sx={sectionHeadingSx}>ICEA — Infrastructure Cost &amp; Efficiency Analyzer</Typography>
+              <Typography sx={sectionHeadingSx}>ICEA, Infrastructure Cost &amp; Efficiency Analyzer</Typography>
               <Typography sx={bodyTextSx}>
                 ICEA converts Spark cluster and executor configuration into efficiency scores, waste estimates, and recommended configurations. Enter your workload below for a directional cost estimate; the full ICEA tool at KPI99 includes executor-level analysis and PDF reports.
               </Typography>

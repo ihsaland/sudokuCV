@@ -25,12 +25,12 @@ const Frameworks: React.FC = () => {
           {/* PPI-F */}
           <motion.div {...inView} transition={{ duration: 0.6 }}>
             <Box sx={cardSx}>
-              <Typography sx={sectionHeadingSx}>PPI-F™ — Performance Pressure Index Framework</Typography>
+              <Typography sx={sectionHeadingSx}>PPI-F™, Performance Pressure Index Framework</Typography>
               <Typography sx={bodyTextSx}>
-                System-level pressure analysis across four dimensions: Request Pressure, Resource Saturation, System Coupling, and Observability Maturity. Predicts and prevents failure before incidents — turning performance from a reactive concern into a quantifiable, manageable metric.
+                System-level pressure analysis across four dimensions: Request Pressure, Resource Saturation, System Coupling, and Observability Maturity. Predicts and prevents failure before incidents, turning performance from a reactive concern into a quantifiable, manageable metric.
               </Typography>
               <Typography sx={{ ...bodyTextSx, mb: 2 }}>
-                PPI-F produces a single comparable index so teams can prioritise where to reduce pressure — architecture, capacity, or observability — before production degrades.
+                PPI-F produces a single comparable index so teams can prioritise where to reduce pressure, architecture, capacity, or observability, before production degrades.
               </Typography>
 
               {/* Four pillars */}
@@ -67,7 +67,7 @@ const Frameworks: React.FC = () => {
           <motion.div {...inView} transition={{ duration: 0.6, delay: 0.08 }}>
             <Box sx={{ ...cardSx, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
               <Box>
-                <Typography sx={sectionHeadingSx}>ICEA — Infrastructure Cost &amp; Efficiency Analyzer</Typography>
+                <Typography sx={sectionHeadingSx}>ICEA, Infrastructure Cost &amp; Efficiency Analyzer</Typography>
                 <Typography sx={{ ...bodyTextSx, mb: 0 }}>
                   Diagnostic tool for Spark executor packing, utilisation, waste, and recommended configurations.
                 </Typography>

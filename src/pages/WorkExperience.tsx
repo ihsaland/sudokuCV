@@ -51,12 +51,12 @@ const WorkExperience: React.FC = () => (
             <Role
               company="Salesforce"
               title="Acting Principal Architect / Staff Performance Engineer"
-              period="2021 – Present"
+              period="2021, Present"
               bullets={[
                 'Defined scalability architecture for distributed data platforms processing billions of events annually across multi-region deployments.',
                 'Designed system-level scaling strategies across compute, storage, and query layers improving throughput by 35% under production-equivalent load.',
                 'Built cost-to-serve models that informed infrastructure consolidation, reducing annual spend by ~$750K without degrading SLAs.',
-                'Developed predictive workload models forecasting system behavior under 2×–10× growth scenarios, informing capacity investment decisions.',
+                'Developed predictive workload models forecasting system behavior under 2×-10× growth scenarios, informing capacity investment decisions.',
                 'Established performance diagnostics frameworks enabling cross-system bottleneck identification across heterogeneous data stacks (Spark, Trino, Kafka).',
                 'Designed performance automation tooling enabling repeatable large-scale validation across releases and infrastructure changes.',
                 'Led benchmarking and regression governance initiatives, setting org-wide quality gates ensuring stability across quarterly releases.',
@@ -72,7 +72,7 @@ const WorkExperience: React.FC = () => (
             <Role
               company="IBM"
               title="Principal Performance & Capacity Engineer"
-              period="2016 – 2021"
+              period="2016-2021"
               bullets={[
                 'Defined capacity planning and scalability strategies for enterprise distributed systems supporting millions of daily transactions.',
                 'Designed diagnostics frameworks to systematically analyze system behavior under sustained and peak load conditions.',
@@ -90,7 +90,7 @@ const WorkExperience: React.FC = () => (
             <Role
               company="Accenture"
               title="Lead Performance Engineer"
-              period="2009 – 2016"
+              period="2009-2016"
               bullets={[
                 'Led performance architecture initiatives for large-scale enterprise systems across financial services, retail, and public sector clients.',
                 'Designed load simulation and capacity stress frameworks to validate scalability ahead of peak seasonal events.',

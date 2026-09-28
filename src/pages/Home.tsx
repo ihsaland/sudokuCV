@@ -141,7 +141,7 @@ const Home: React.FC = () => {
                 </Box>
               </Box>
 
-              {/* Name — typewriter */}
+              {/* Name, typewriter */}
               <Typography
                 variant="h1"
                 sx={{

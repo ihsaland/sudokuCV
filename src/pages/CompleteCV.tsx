@@ -48,7 +48,7 @@ const sections = [
   },
   {
     title: 'Work Experience',
-    content: 'Salesforce — Acting Principal Architect / Staff Performance Engineer (2021–Present). IBM — Principal Performance & Capacity Engineer (2016–2021). Accenture — Lead Performance Engineer (2009–2016).',
+    content: 'Salesforce, Acting Principal Architect / Staff Performance Engineer (2021-Present). IBM, Principal Performance & Capacity Engineer (2016-2021). Accenture, Lead Performance Engineer (2009-2016).',
     section: 'work-experience',
     difficulty: 'Hard',
     path: '/work-experience',
@@ -64,7 +64,7 @@ const sections = [
   },
   {
     title: 'Projects',
-    content: 'Billions-of-events architectures; 35% throughput improvement; ~$750K annual cost reduction via efficiency modeling; predictive 2×–10× growth modeling; diagnostics, automation, and regression governance.',
+    content: 'Billions-of-events architectures; 35% throughput improvement; ~$750K annual cost reduction via efficiency modeling; predictive 2×-10× growth modeling; diagnostics, automation, and regression governance.',
     section: 'projects',
     difficulty: 'Expert',
     path: '/projects',
@@ -131,7 +131,7 @@ const CVCard: React.FC<CardProps> = ({ sec, unlocked, onNavigate, prefersReduced
           p: { xs: 2.5, sm: 3 },
         }}
       >
-        {/* Glow orb — top-right corner */}
+        {/* Glow orb, top-right corner */}
         {unlocked && (
           <Box
             sx={{

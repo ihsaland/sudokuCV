@@ -96,7 +96,7 @@ const ContactMe: React.FC = () => {
                 Phone
               </Typography>
               <Typography sx={{ ...bodyTextSx, fontStyle: 'italic', whiteSpace: 'pre-line', mb: 0, lineHeight: 1.8 }}>
-                {`Begin and end, the digits twin,\nA southern code lies deep within.\nMirror the start, then climb in line—\nSix, seven, eight, then nine.`}
+                {`Begin and end, the digits twin,\nA southern code lies deep within.\nMirror the start, then climb in line, \nSix, seven, eight, then nine.`}
               </Typography>
             </Box>
           </motion.div>

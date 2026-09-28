@@ -18,7 +18,7 @@ const GOLD = '#D4AF37';
 const GOLD_DIM = 'rgba(212,175,55,0.12)';
 const GOLD_BORDER = 'rgba(212,175,55,0.35)';
 
-/** Pill-style nav button — gold-filled when active, ghost hover otherwise */
+/** Pill-style nav button, gold-filled when active, ghost hover otherwise */
 const navSx = (active: boolean) => ({
   color: active ? '#0a0a0a' : 'rgba(255,255,255,0.82)',
   fontWeight: 600,
@@ -228,7 +228,7 @@ const AppBar: React.FC = () => {
             Contact
           </Button>
 
-          {/* CTA — secondary: Code Challenges */}
+          {/* CTA, secondary: Code Challenges */}
           <Button
             color="inherit"
             component={Link}
@@ -261,7 +261,7 @@ const AppBar: React.FC = () => {
             {'{ }'}
           </Button>
 
-          {/* CTA — primary: Sudoku / Test Your Might */}
+          {/* CTA, primary: Sudoku / Test Your Might */}
           <Button
             color="inherit"
             component={Link}
