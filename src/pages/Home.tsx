@@ -25,15 +25,16 @@ const stats = [
   { value: null, display: 'Bn+',           label: 'events architected' },
 ];
 
-type Article = { title: string; url: string; date: string };
+type Article = { title: string; url: string | null; date: string; status?: 'published' | 'draft' };
 
 // Articles are loaded at runtime from /articles.json so the list can be updated
 // without a rebuild. The FALLBACK_ARTICLES below is used only if the fetch fails.
+// Only entries with status "published" (or missing status) are shown; drafts are hidden.
 const FALLBACK_ARTICLES: Article[] = [
-  { title: 'The next AI wave is likely to reward economic intelligence, not just model intelligence', url: 'https://www.linkedin.com/pulse/next-ai-wave-likely-reward-economic-intelligence-just-ian-salandy-yu81e/', date: 'May 2026' },
-  { title: 'The Illusion of Infinite Compute: Mapping Spark Resource Allocation to Real Cloud Hardware', url: 'https://www.linkedin.com/pulse/illusion-infinite-compute-mapping-spark-resource-real-ian-salandy-aixbe/', date: 'May 2026' },
-  { title: "The Most Dangerous Code in Production Isn't the Code You Use", url: 'https://www.linkedin.com/pulse/most-dangerous-code-production-isnt-you-use-ian-salandy-xtswe/', date: 'Apr 2026' },
-  { title: 'Why Systems Fail at Scale (And How to See It Before It Happens)', url: 'https://www.linkedin.com/pulse/why-systems-fail-scale-how-see-before-happens-ian-salandy-fp4ve/', date: 'Apr 2026' },
+  { title: 'The next AI wave is likely to reward economic intelligence, not just model intelligence', url: 'https://www.linkedin.com/pulse/next-ai-wave-likely-reward-economic-intelligence-just-ian-salandy-yu81e/', date: 'May 2026', status: 'published' },
+  { title: 'The Illusion of Infinite Compute: Mapping Spark Resource Allocation to Real Cloud Hardware', url: 'https://www.linkedin.com/pulse/illusion-infinite-compute-mapping-spark-resource-real-ian-salandy-aixbe/', date: 'May 2026', status: 'published' },
+  { title: "The Most Dangerous Code in Production Isn't the Code You Use", url: 'https://www.linkedin.com/pulse/most-dangerous-code-production-isnt-you-use-ian-salandy-xtswe/', date: 'Apr 2026', status: 'published' },
+  { title: 'Why Systems Fail at Scale (And How to See It Before It Happens)', url: 'https://www.linkedin.com/pulse/why-systems-fail-scale-how-see-before-happens-ian-salandy-fp4ve/', date: 'Apr 2026', status: 'published' },
 ];
 
 // ── Card tilt ──────────────────────────────────────────────────────────────
@@ -86,11 +87,18 @@ const Home: React.FC = () => {
   const tiltExplore = useTilt(3);
   const tiltSudoku  = useTilt();
 
-  const [articles, setArticles] = useState<Article[]>(FALLBACK_ARTICLES);
+  const [articles, setArticles] = useState<Article[]>(
+    FALLBACK_ARTICLES.filter((a) => (a.status ?? 'published') === 'published')
+  );
   useEffect(() => {
     fetch('/articles.json')
       .then((r) => (r.ok ? r.json() : null))
-      .then((data) => { if (Array.isArray(data) && data.length > 0) setArticles(data as Article[]); })
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          const published = (data as Article[]).filter((a) => (a.status ?? 'published') === 'published');
+          if (published.length > 0) setArticles(published);
+        }
+      })
       .catch(() => { /* keep fallback */ });
   }, []);
 
