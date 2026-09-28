@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Container, Button, Link } from '@mui/material';
 import { PlayArrow, GetApp, LockOutlined, ArrowForward, OpenInNew } from '@mui/icons-material';
 import BackgroundPattern from '../components/BackgroundPattern';
@@ -25,7 +25,11 @@ const stats = [
   { value: null, display: 'Bn+',           label: 'events architected' },
 ];
 
-const articles = [
+type Article = { title: string; url: string; date: string };
+
+// Articles are loaded at runtime from /articles.json so the list can be updated
+// without a rebuild. The FALLBACK_ARTICLES below is used only if the fetch fails.
+const FALLBACK_ARTICLES: Article[] = [
   { title: 'The next AI wave is likely to reward economic intelligence, not just model intelligence', url: 'https://www.linkedin.com/pulse/next-ai-wave-likely-reward-economic-intelligence-just-ian-salandy-yu81e/', date: 'May 2026' },
   { title: 'The Illusion of Infinite Compute: Mapping Spark Resource Allocation to Real Cloud Hardware', url: 'https://www.linkedin.com/pulse/illusion-infinite-compute-mapping-spark-resource-real-ian-salandy-aixbe/', date: 'May 2026' },
   { title: "The Most Dangerous Code in Production Isn't the Code You Use", url: 'https://www.linkedin.com/pulse/most-dangerous-code-production-isnt-you-use-ian-salandy-xtswe/', date: 'Apr 2026' },
@@ -81,6 +85,14 @@ const Home: React.FC = () => {
   const tiltWriting = useTilt();
   const tiltExplore = useTilt(3);
   const tiltSudoku  = useTilt();
+
+  const [articles, setArticles] = useState<Article[]>(FALLBACK_ARTICLES);
+  useEffect(() => {
+    fetch('/articles.json')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => { if (Array.isArray(data) && data.length > 0) setArticles(data as Article[]); })
+      .catch(() => { /* keep fallback */ });
+  }, []);
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
